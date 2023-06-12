@@ -1,9 +1,9 @@
-<!-- Generated from 5103a0b on 2023-06-12 @ 09:14 with Emacs 27.2 (Org mode 9.4.4) -->
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>用 Org Mode 建立你的网站 - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/">Home</a> <a class="nav-link" href="/guides/">Guides</a> <a class="nav-link" href="/news/">News</a> <a class="nav-link" href="/community/">Community</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/how-to-help/">How to Help</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">用 Org Mode 建立你的网站</h1><p class="site-post-meta"></p><div id="content"><p>
+<!-- Generated from d78ba51 on 2023-06-12 @ 09:44 with Emacs 27.2 (Org mode 9.4.4) -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>用 Org Mode 建立你的网站 - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">Home</a> <a class="nav-link" href="/systemcrafters/guides/">Guides</a> <a class="nav-link" href="/systemcrafters/news/">News</a> <a class="nav-link" href="/systemcrafters/community/">Community</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/systemcrafters/how-to-help/">How to Help</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">用 Org Mode 建立你的网站</h1><p class="site-post-meta"></p><div id="content"><p>
 <div class="video">  <iframe src="https://www.youtube.com/embed/AfkrzFodoNw" allowfullscreen></iframe></div>
 </p>
 
-<h2><a id="介绍" class="anchor" href="#介绍">¶</a>介绍</h2><div class="outline-text-2" id="text-org92b8efc">
+<h2><a id="介绍" class="anchor" href="#介绍">¶</a>介绍</h2><div class="outline-text-2" id="text-orgf00243b">
 <p>
 Org 模式的发布系统是其最有用的功能之一。它允许您将 Org 文件转换为许多其他格式,包括HTML、PDF、LaTeX 等。
 </p>
@@ -17,7 +17,7 @@ If you find this guide helpful, please consider supporting System Crafters via t
 </div>
 </div>
 
-<h2><a id="开始入门" class="anchor" href="#开始入门">¶</a>开始入门</h2><div class="outline-text-2" id="text-orgb0534be">
+<h2><a id="开始入门" class="anchor" href="#开始入门">¶</a>开始入门</h2><div class="outline-text-2" id="text-org8d88cb2">
 <p>
 要开始,我们需要一个地方放置我们将用于生成网站的所有代码以及将提供网站内容的 <code>.org</code> 文件。
 </p>
@@ -46,7 +46,7 @@ my-org-site/
 </blockquote>
 </div>
 
-<h2><a id="创建构建脚本" class="anchor" href="#创建构建脚本">¶</a>创建构建脚本</h2><div class="outline-text-2" id="text-org683cc31">
+<h2><a id="创建构建脚本" class="anchor" href="#创建构建脚本">¶</a>创建构建脚本</h2><div class="outline-text-2" id="text-org83550ef">
 <p>
 现在我们将创建一个 Emacs Lisp 脚本,通过运行单个 shell 命令来生成您的 Org 文档的HTML文件。
 </p>
@@ -90,7 +90,7 @@ my-org-site
 </p>
 </div>
 
-<h2><a id="设置发布项目" class="anchor" href="#设置发布项目">¶</a>设置发布项目</h2><div class="outline-text-2" id="text-org341ca89">
+<h2><a id="设置发布项目" class="anchor" href="#设置发布项目">¶</a>设置发布项目</h2><div class="outline-text-2" id="text-org93d0d0f">
 <p>
 现在我们有了基本的脚本,我们可以为我们的网站设置 Org 发布配置。
 </p>
@@ -135,7 +135,7 @@ my-org-site
 </p>
 </div>
 
-<h2><a id="预览生成的站点" class="anchor" href="#预览生成的站点">¶</a>预览生成的站点</h2><div class="outline-text-2" id="text-org39a421f">
+<h2><a id="预览生成的站点" class="anchor" href="#预览生成的站点">¶</a>预览生成的站点</h2><div class="outline-text-2" id="text-org498fa8f">
 <p>
 我们来看看刚刚生成的基本网站。有一个叫做 <a href="https://github.com/skeeto/emacs-web-server">simple-httpd</a> 的 Emacs 包可以在本地机器上托管您的文件作为网站,这样您就可以在浏览器中打开它。
 </p>
@@ -165,7 +165,7 @@ my-org-site
 </div>
 
 
-<h2><a id="改进html输出" class="anchor" href="#改进html输出">¶</a>改进HTML输出</h2><div class="outline-text-2" id="text-org0288825">
+<h2><a id="改进html输出" class="anchor" href="#改进html输出">¶</a>改进HTML输出</h2><div class="outline-text-2" id="text-orgcfa672b">
 <p>
 我们刚看到的页面有几件事我想改变一下,使输出看起来更清晰:
 </p>
@@ -213,7 +213,7 @@ my-org-site
 </ul>
 </div>
 
-<h3><a id="其他可自定义的项目设置" class="anchor" href="#其他可自定义的项目设置">¶</a>其他可自定义的项目设置</h3><div class="outline-text-3" id="text-org18ef95e">
+<h3><a id="其他可自定义的项目设置" class="anchor" href="#其他可自定义的项目设置">¶</a>其他可自定义的项目设置</h3><div class="outline-text-3" id="text-org0dc05dd">
 <p>
 这是您可能想要定制的更多项目设置列表,直接从 <code>org-publish-project-alist</code> 文档中提取:
 </p>
@@ -420,7 +420,7 @@ my-org-site
 </table>
 </div>
 
-<h2><a id="改进页面样式" class="anchor" href="#改进页面样式">¶</a>改进页面样式</h2><div class="outline-text-2" id="text-orga37bcf6">
+<h2><a id="改进页面样式" class="anchor" href="#改进页面样式">¶</a>改进页面样式</h2><div class="outline-text-2" id="text-org003874d">
 <p>
 在这一点上,我们为网站生成了一套基本的输出,但是如果我们想让它看起来更漂亮一些怎么办?
 </p>
@@ -459,7 +459,7 @@ my-org-site
 </p>
 </div>
 
-<h2><a id="生成含代码块的页面" class="anchor" href="#生成含代码块的页面">¶</a>生成含代码块的页面</h2><div class="outline-text-2" id="text-orgc533d6a">
+<h2><a id="生成含代码块的页面" class="anchor" href="#生成含代码块的页面">¶</a>生成含代码块的页面</h2><div class="outline-text-2" id="text-orga8c93cb">
 <p>
 到目前为止,我们一直在查看一个非常简单的示例页面,上面几乎没有太多内容。当我们尝试生成一个包含代码块的更详细的 Org 文件时会怎么样?
 </p>
@@ -512,7 +512,7 @@ my-org-site
 </p>
 </div>
 
-<h2><a id="页面之间的链接" class="anchor" href="#页面之间的链接">¶</a>页面之间的链接</h2><div class="outline-text-2" id="text-org2cefcb8">
+<h2><a id="页面之间的链接" class="anchor" href="#页面之间的链接">¶</a>页面之间的链接</h2><div class="outline-text-2" id="text-org3917e4a">
 <p>
 最后一件事我想向您展示的是如何在网站上的页面之间创建链接。让我们打开 <code>index.org</code> 并创建指向 <code>Emacs.org</code> 文件的链接。
 </p>
@@ -559,7 +559,7 @@ my-org-site
 </p>
 </div>
 
-<h2><a id="最后的构建脚本" class="anchor" href="#最后的构建脚本">¶</a>最后的构建脚本</h2><div class="outline-text-2" id="text-org485c506">
+<h2><a id="最后的构建脚本" class="anchor" href="#最后的构建脚本">¶</a>最后的构建脚本</h2><div class="outline-text-2" id="text-org409f5cd">
 <p>
 我已经将您在此视频中看到的所有代码提交到以下 GitHub 存储库:
 </p>

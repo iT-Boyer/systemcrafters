@@ -1,6 +1,6 @@
-<!-- Generated from 4cd4783 on 2023-06-12 @ 11:00 with Emacs 27.2 (Org mode 9.4.4) -->
+<!-- Generated from 1123f53 on 2023-06-12 @ 11:15 with Emacs 27.2 (Org mode 9.4.4) -->
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>Exploring the Org Roam DB API - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">首页</a> <a class="nav-link" href="/systemcrafters/guides/">指南</a> <a class="nav-link" href="/systemcrafters/news/">动态</a> <a class="nav-link" href="/systemcrafters/community/">社区</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">商店</a> <a class="nav-link" href="/systemcrafters/how-to-help/">帮助</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">Exploring the Org Roam DB API</h1><p class="site-post-meta">September  3, 2021</p><div class="video">  <iframe src="https://www.youtube.com/embed/fWmZoaTvA8k" allowfullscreen></iframe></div><div id="content">
-<h2><a id="system-crafters-store-update" class="anchor" href="#system-crafters-store-update">¶</a>System Crafters Store Update</h2><div class="outline-text-2" id="text-org1e9e115">
+<h2><a id="system-crafters-store-update" class="anchor" href="#system-crafters-store-update">¶</a>System Crafters Store Update</h2><div class="outline-text-2" id="text-org1d19389">
 <ul class="org-ul">
 <li>The first orders from the new System Crafters Store should be arriving in the next few days!</li>
 <li>I want to see what you got!  Post in #general on the System Crafters Discord or tag @SystemCrafters on Twitter</li>
@@ -13,7 +13,7 @@
 </p>
 </div>
 
-<h2><a id="news" class="anchor" href="#news">¶</a>News</h2><div class="outline-text-2" id="text-org3145028">
+<h2><a id="news" class="anchor" href="#news">¶</a>News</h2><div class="outline-text-2" id="text-org3e3dc64">
 <ul class="org-ul">
 <li>The first EXWM hacking stream went great!</li>
 <li>New video next week</li>
@@ -22,7 +22,7 @@
 </ul>
 </div>
 
-<h2><a id="exploring-the-org-roam-db-api" class="anchor" href="#exploring-the-org-roam-db-api">¶</a>Exploring the Org Roam DB API</h2><div class="outline-text-2" id="text-org71541a5">
+<h2><a id="exploring-the-org-roam-db-api" class="anchor" href="#exploring-the-org-roam-db-api">¶</a>Exploring the Org Roam DB API</h2><div class="outline-text-2" id="text-orgdcb2b18">
 <p>
 Today we&rsquo;ll take a look at the <code>org-roam-db-query</code> function which allows us to gather information about our notes and their connections to other notes.
 </p>
@@ -34,7 +34,7 @@ This API actually queries a local SQLite database!  We may have to look at the d
 <pre>(<span class="org-keyword">require</span> '<span class="org-constant">org-roam-node</span>)</pre>
 </div>
 
-<h2><a id="checking-out-the-db-schema" class="anchor" href="#checking-out-the-db-schema">¶</a>Checking out the DB schema</h2><div class="outline-text-2" id="text-orgdcf8c81">
+<h2><a id="checking-out-the-db-schema" class="anchor" href="#checking-out-the-db-schema">¶</a>Checking out the DB schema</h2><div class="outline-text-2" id="text-org02625e9">
 <p>
 Take a look at <code>org-roam-db.el</code>, find the comment labelled &ldquo;Schemata&rdquo; (line 144).
 </p>
@@ -44,7 +44,7 @@ There are functions for accessing columns like <code>org-roam-node-tags</code>.
 </p>
 </div>
 
-<h2><a id="querying-for-nodes" class="anchor" href="#querying-for-nodes">¶</a>Querying for nodes</h2><div class="outline-text-2" id="text-org47417b0">
+<h2><a id="querying-for-nodes" class="anchor" href="#querying-for-nodes">¶</a>Querying for nodes</h2><div class="outline-text-2" id="text-org96f8a16">
 <p>
 There are a few useful ways to do this:
 </p>
@@ -64,7 +64,7 @@ There are other useful functions in <code>org-roam-db.el</code> that we might lo
 </p>
 </div>
 
-<h2><a id="show-a-completion-list-of-nodes-with-specific-tag" class="anchor" href="#show-a-completion-list-of-nodes-with-specific-tag">¶</a>Show a completion list of nodes with specific tag</h2><div class="outline-text-2" id="text-org9d54aff">
+<h2><a id="show-a-completion-list-of-nodes-with-specific-tag" class="anchor" href="#show-a-completion-list-of-nodes-with-specific-tag">¶</a>Show a completion list of nodes with specific tag</h2><div class="outline-text-2" id="text-org7bb8e8c">
 <pre>(<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-select-language</span> ()
   (<span class="org-keyword">interactive</span>)
   (org-roam-node-read
@@ -77,7 +77,7 @@ There are other useful functions in <code>org-roam-db.el</code> that we might lo
    t))</pre>
 </div>
 
-<h2><a id="build-an-agenda-from-tagged-nodes" class="anchor" href="#build-an-agenda-from-tagged-nodes">¶</a>Build an agenda from tagged nodes</h2><div class="outline-text-2" id="text-org91bd165">
+<h2><a id="build-an-agenda-from-tagged-nodes" class="anchor" href="#build-an-agenda-from-tagged-nodes">¶</a>Build an agenda from tagged nodes</h2><div class="outline-text-2" id="text-org11de258">
 <pre>(<span class="org-keyword">require</span> '<span class="org-constant">seq</span>)
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-get-project-notes</span> ()
@@ -93,7 +93,7 @@ There are other useful functions in <code>org-roam-db.el</code> that we might lo
 (<span class="org-keyword">setq</span> org-agenda-files (my/org-roam-get-project-notes))</pre>
 </div>
 
-<h2><a id="build-an-agenda-from-projects-linked-to-a-node" class="anchor" href="#build-an-agenda-from-projects-linked-to-a-node">¶</a>Build an agenda from projects linked to a node</h2><div class="outline-text-2" id="text-orgf9bc005">
+<h2><a id="build-an-agenda-from-projects-linked-to-a-node" class="anchor" href="#build-an-agenda-from-projects-linked-to-a-node">¶</a>Build an agenda from projects linked to a node</h2><div class="outline-text-2" id="text-org1bd6bdd">
 <p>
 EmacSQL readme: <a href="https://github.com/skeeto/emacsql">https://github.com/skeeto/emacsql</a>
 </p>
@@ -116,7 +116,7 @@ EmacSQL readme: <a href="https://github.com/skeeto/emacsql">https://github.com/s
     (org-agenda)))</pre>
 </div>
 
-<h2><a id="adding-information-to-the-node-completion-list" class="anchor" href="#adding-information-to-the-node-completion-list">¶</a>Adding information to the node completion list</h2><div class="outline-text-2" id="text-org7405cde">
+<h2><a id="adding-information-to-the-node-completion-list" class="anchor" href="#adding-information-to-the-node-completion-list">¶</a>Adding information to the node completion list</h2><div class="outline-text-2" id="text-orgb9e8ed2">
 <p>
 Showing node TODO state:
 </p>

@@ -1,4 +1,4 @@
-<!-- Generated from 4cd4783 on 2023-06-12 @ 11:00 with Emacs 27.2 (Org mode 9.4.4) -->
+<!-- Generated from 1123f53 on 2023-06-12 @ 11:16 with Emacs 27.2 (Org mode 9.4.4) -->
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>Debugging with dap-mode - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">首页</a> <a class="nav-link" href="/systemcrafters/guides/">指南</a> <a class="nav-link" href="/systemcrafters/news/">动态</a> <a class="nav-link" href="/systemcrafters/community/">社区</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">商店</a> <a class="nav-link" href="/systemcrafters/how-to-help/">帮助</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">Debugging with dap-mode</h1><p class="site-post-meta"></p><div id="content"><p>
 <div class="video">  <iframe src="https://www.youtube.com/embed/0bilcQVSlbM" allowfullscreen></iframe></div>
 </p>
@@ -7,7 +7,7 @@
 Check out the final code <a href="https://github.com/daviwil/emacs-from-scratch/blob/210e517353abf4ed669bc40d4c7daf0fabc10a5c/Emacs.org#debugging-with-dap-mode">here</a>.
 </p>
 
-<h2><a id="basic-configuration" class="anchor" href="#basic-configuration">¶</a>Basic Configuration</h2><div class="outline-text-2" id="text-org771a638">
+<h2><a id="basic-configuration" class="anchor" href="#basic-configuration">¶</a>Basic Configuration</h2><div class="outline-text-2" id="text-org1f4294b">
 <ul class="org-ul">
 <li>Per-language configuration: <a href="https://emacs-lsp.github.io/dap-mode/page/configuration/">https://emacs-lsp.github.io/dap-mode/page/configuration/</a></li>
 <li>Make sure lsp-mode is active otherwise `workspaceFolder` won&rsquo;t be available</li>
@@ -23,7 +23,7 @@ In your TypeScript / JavaScript configuration:
 (dap-node-setup) <span class="org-comment-delimiter">;; </span><span class="org-comment">Automatically installs Node debug adapter if needed</span></pre>
 </div>
 
-<h2><a id="launching-the-debugger" class="anchor" href="#launching-the-debugger">¶</a>Launching the Debugger</h2><div class="outline-text-2" id="text-org5d8cc06">
+<h2><a id="launching-the-debugger" class="anchor" href="#launching-the-debugger">¶</a>Launching the Debugger</h2><div class="outline-text-2" id="text-org31ed95a">
 <ul class="org-ul">
 <li><code>dap-debug</code>: Select a template to execute</li>
 <li><code>dap-debug-last</code>: Run the most recent template</li>
@@ -34,7 +34,7 @@ In your TypeScript / JavaScript configuration:
 </ul>
 </div>
 
-<h2><a id="creating-a-debug-template" class="anchor" href="#creating-a-debug-template">¶</a>Creating a Debug Template</h2><div class="outline-text-2" id="text-orge60f9d1">
+<h2><a id="creating-a-debug-template" class="anchor" href="#creating-a-debug-template">¶</a>Creating a Debug Template</h2><div class="outline-text-2" id="text-org225d5d6">
 <ul class="org-ul">
 <li><code>dap-debug-edit-template</code>: Present a debug template for editing</li>
 </ul>
@@ -48,7 +48,7 @@ In your TypeScript / JavaScript configuration:
         <span class="org-builtin">:name</span> <span class="org-string">"Debug Server"</span>))</pre>
 </div>
 
-<h2><a id="features" class="anchor" href="#features">¶</a>Features</h2><h3><a id="breakpoints" class="anchor" href="#breakpoints">¶</a>Breakpoints</h3><div class="outline-text-3" id="text-orgdb038c3">
+<h2><a id="features" class="anchor" href="#features">¶</a>Features</h2><h3><a id="breakpoints" class="anchor" href="#breakpoints">¶</a>Breakpoints</h3><div class="outline-text-3" id="text-org04c8bec">
 <ul class="org-ul">
 <li><code>dap-breakpoint-toggle</code>: Toggle a breakpoint on the current line</li>
 <li><code>dap-breakpoint-delete-all</code>: Delete all breakpoints in the workspace</li>
@@ -59,7 +59,7 @@ In your TypeScript / JavaScript configuration:
 </ul>
 </div>
 
-<h3><a id="hydra" class="anchor" href="#hydra">¶</a>Hydra</h3><div class="outline-text-3" id="text-orgc3dedae">
+<h3><a id="hydra" class="anchor" href="#hydra">¶</a>Hydra</h3><div class="outline-text-3" id="text-org7232d6c">
 <ul class="org-ul">
 <li><code>dap-hydra</code>: Quick panel for debugging commands</li>
 <li>Keep in mind, the Hydra will capture keys unexpectedly (M-x, etc)</li>
@@ -71,21 +71,21 @@ In your TypeScript / JavaScript configuration:
 
 <h3><a id="locals" class="anchor" href="#locals">¶</a>Locals</h3>
 
-<h3><a id="expressions" class="anchor" href="#expressions">¶</a>Expressions</h3><div class="outline-text-3" id="text-org63e988f">
+<h3><a id="expressions" class="anchor" href="#expressions">¶</a>Expressions</h3><div class="outline-text-3" id="text-org4f04e72">
 <ul class="org-ul">
 <li><code>dap-ui-expressions-add</code>: Add a watch expression</li>
 <li><code>dap-ui-expressions-remove</code>: Remove a watch expression</li>
 </ul>
 </div>
 
-<h3><a id="repl" class="anchor" href="#repl">¶</a>REPL</h3><div class="outline-text-3" id="text-orgd733797">
+<h3><a id="repl" class="anchor" href="#repl">¶</a>REPL</h3><div class="outline-text-3" id="text-orgf212021">
 <ul class="org-ul">
 <li><code>dap-ui-repl</code>: Start a debugging REPL for your language (if supported)</li>
 <li><code>M-n / M-p</code>: Go forward/back in REPL command history</li>
 </ul>
 </div>
 
-<h3><a id="tooltips" class="anchor" href="#tooltips">¶</a>Tooltips</h3><div class="outline-text-3" id="text-org0687041">
+<h3><a id="tooltips" class="anchor" href="#tooltips">¶</a>Tooltips</h3><div class="outline-text-3" id="text-orgb0e540f">
 <ul class="org-ul">
 <li><code>dap-tooltip-mode</code>: Turns it on</li>
 <li><code>dap-tooltip-at-point</code>: Show the value at the current point</li>
@@ -95,7 +95,7 @@ In your TypeScript / JavaScript configuration:
 
 <h3><a id="ui-controls" class="anchor" href="#ui-controls">¶</a>UI Controls</h3>
 
-<h3><a id="loading-vs-code-debugging-configurations" class="anchor" href="#loading-vs-code-debugging-configurations">¶</a>Loading VS Code debugging configurations</h3><div class="outline-text-3" id="text-org654bb2e">
+<h3><a id="loading-vs-code-debugging-configurations" class="anchor" href="#loading-vs-code-debugging-configurations">¶</a>Loading VS Code debugging configurations</h3><div class="outline-text-3" id="text-org2e09d59">
 <p>
 If you&rsquo;re working in a project where other people use VS Code, this is valuable!
 </p>
@@ -105,7 +105,7 @@ If you&rsquo;re working in a project where other people use VS Code, this is val
 </ul>
 </div>
 
-<h2><a id="configuration" class="anchor" href="#configuration">¶</a>Configuration</h2><div class="outline-text-2" id="text-orgd46ebff">
+<h2><a id="configuration" class="anchor" href="#configuration">¶</a>Configuration</h2><div class="outline-text-2" id="text-org5ad8d16">
 <p>
 Here&rsquo;s how to customize the UI to show only what you care about
 </p>

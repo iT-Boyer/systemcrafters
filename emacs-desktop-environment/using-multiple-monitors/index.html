@@ -1,4 +1,4 @@
-<!-- Generated from 4cd4783 on 2023-06-12 @ 11:00 with Emacs 27.2 (Org mode 9.4.4) -->
+<!-- Generated from 1123f53 on 2023-06-12 @ 11:15 with Emacs 27.2 (Org mode 9.4.4) -->
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>Using Multiple Monitors in EXWM - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">首页</a> <a class="nav-link" href="/systemcrafters/guides/">指南</a> <a class="nav-link" href="/systemcrafters/news/">动态</a> <a class="nav-link" href="/systemcrafters/community/">社区</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">商店</a> <a class="nav-link" href="/systemcrafters/how-to-help/">帮助</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">Using Multiple Monitors in EXWM</h1><p class="site-post-meta"></p><div id="content"><p>
 <div class="video">  <iframe src="https://www.youtube.com/embed/eF5NfVN411Q" allowfullscreen></iframe></div>
 </p>
@@ -7,7 +7,7 @@
 Check out the final code <a href="https://github.com/daviwil/emacs-from-scratch/blob/5ebd390119a48cac6258843c7d5e570f4591fdd4/Desktop.org#exwm-configuration">here</a>.
 </p>
 
-<h2><a id="how-multiple-monitors-work-in-exwm" class="anchor" href="#how-multiple-monitors-work-in-exwm">¶</a>How multiple monitors work in EXWM</h2><div class="outline-text-2" id="text-org02f6ad8">
+<h2><a id="how-multiple-monitors-work-in-exwm" class="anchor" href="#how-multiple-monitors-work-in-exwm">¶</a>How multiple monitors work in EXWM</h2><div class="outline-text-2" id="text-orgdb6760c">
 <ul class="org-ul">
 <li>EXWM can use multiple displays via the <code>exwm-randr</code> module</li>
 <li>It doesn&rsquo;t configure the displays for you, though!</li>
@@ -16,20 +16,20 @@ Check out the final code <a href="https://github.com/daviwil/emacs-from-scratch/
 </ul>
 </div>
 
-<h2><a id="differences-from-other-wms" class="anchor" href="#differences-from-other-wms">¶</a>Differences from other WMs</h2><div class="outline-text-2" id="text-org898fd00">
+<h2><a id="differences-from-other-wms" class="anchor" href="#differences-from-other-wms">¶</a>Differences from other WMs</h2><div class="outline-text-2" id="text-orgffbc608">
 <ul class="org-ul">
 <li>Workspaces do not span multiple screens</li>
 <li>Switching to a workspace moves your focus to the display it is assigned to</li>
 </ul>
 </div>
 
-<h2><a id="enabling-another-display" class="anchor" href="#enabling-another-display">¶</a>Enabling another display</h2><div class="outline-text-2" id="text-orgb346767">
+<h2><a id="enabling-another-display" class="anchor" href="#enabling-another-display">¶</a>Enabling another display</h2><div class="outline-text-2" id="text-org0f64a34">
 <p>
 Use <code>arandr</code>, save configuration, use it to update <code>xrandr</code> call in Desktop.org.
 </p>
 </div>
 
-<h2><a id="workspace-monitor-assignment" class="anchor" href="#workspace-monitor-assignment">¶</a>Workspace monitor assignment</h2><div class="outline-text-2" id="text-orgab3f9bc">
+<h2><a id="workspace-monitor-assignment" class="anchor" href="#workspace-monitor-assignment">¶</a>Workspace monitor assignment</h2><div class="outline-text-2" id="text-org5ad58d1">
 <p>
 Tell EXWM which workspaces should be on other displays:
 </p>
@@ -41,7 +41,7 @@ Tell EXWM which workspaces should be on other displays:
 </p>
 </div>
 
-<h2><a id="mouse-warping" class="anchor" href="#mouse-warping">¶</a>Mouse warping</h2><div class="outline-text-2" id="text-orgb56879c">
+<h2><a id="mouse-warping" class="anchor" href="#mouse-warping">¶</a>Mouse warping</h2><div class="outline-text-2" id="text-org0e7c84f">
 <p>
 Doesn&rsquo;t work on VM, but does work on actual system config
 </p>
@@ -49,7 +49,7 @@ Doesn&rsquo;t work on VM, but does work on actual system config
 <pre>(<span class="org-keyword">setq</span> exwm-workspace-warp-cursor t)</pre>
 </div>
 
-<h2><a id="focus-follows-mouse" class="anchor" href="#focus-follows-mouse">¶</a>Focus follows mouse</h2><div class="outline-text-2" id="text-org8243b05">
+<h2><a id="focus-follows-mouse" class="anchor" href="#focus-follows-mouse">¶</a>Focus follows mouse</h2><div class="outline-text-2" id="text-org976fd39">
 <p>
 <b>NOTE:</b> These need to be configure before <code>exwm-enable</code>!
 </p>
@@ -58,7 +58,7 @@ Doesn&rsquo;t work on VM, but does work on actual system config
       focus-follows-mouse t)</pre>
 </div>
 
-<h2><a id="docking-and-undocking" class="anchor" href="#docking-and-undocking">¶</a>Docking and undocking</h2><div class="outline-text-2" id="text-org6756462">
+<h2><a id="docking-and-undocking" class="anchor" href="#docking-and-undocking">¶</a>Docking and undocking</h2><div class="outline-text-2" id="text-orgcf2a0c2">
 <p>
 What happens when you disconnect your display?
 </p>
@@ -112,7 +112,7 @@ An example from my config: <a href="https://github.com/daviwil/dotfiles/blob/mas
 </p>
 </div>
 
-<h2><a id="per-machine-configuration" class="anchor" href="#per-machine-configuration">¶</a>Per-machine configuration</h2><div class="outline-text-2" id="text-orgc2218f9">
+<h2><a id="per-machine-configuration" class="anchor" href="#per-machine-configuration">¶</a>Per-machine configuration</h2><div class="outline-text-2" id="text-org1509701">
 <p>
 Save <code>autorandr</code> profiles for each machine (e.g. <code>machine1-docked</code>, <code>machine1-mobile</code>, etc)
 </p>

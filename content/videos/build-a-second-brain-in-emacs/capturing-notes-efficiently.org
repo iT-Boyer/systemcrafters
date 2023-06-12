@@ -1,4 +1,4 @@
-#+title: 使用 org-roam 有效地捕获笔记
+#+title: 使用 Org Roam 有效捕获笔记
 
 [[yt:YxgA5z2R08I][Watch the video on YouTube!]]
 

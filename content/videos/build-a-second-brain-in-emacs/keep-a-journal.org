@@ -1,22 +1,22 @@
-#+title: Keep a Journal in Emacs with Org Roam
+#+title: 用org roam在emacs中写日记
 
 [[yt:3-sLBaJAtew][Watch the video on YouTube!]]
 
-* Intro
+* 介绍
 
-One of the best ways to think and work through problems is to have a written dialogue with yourself.  By the end of this video, you'll know how to log your thoughts from the day, link them to existing notes, and easily review the notes for any day, all with Org Roam.
+思考问题并解决问题的最佳方式之一是与自己进行书面对话。通过本视频,您将了解如何记录一天的想法,将其链接到现有笔记,并轻松查看任何一天的笔记,全部使用 Org Roam。
 
 #+begin_cta
 #+end_cta
 
-* The starting configuration
+* 开始配置
 
-Before we start, make sure you've got Org Roam set up already.
+在我们开始之前,请确保您已经设置了 Org Roam。
 
-You can get started quickly by copying the configuration below, but you'll learn more if you watch the two previous videos in the Org Roam series first:
+您可以快速开始复制下面的配置,但如果您首先观看 Org Roam 系列的前两部视频,您将学到更多:
 
-- [[https://youtu.be/AyhPmypHDEw][Getting Started with Org Roam]]
-- [[https://youtu.be/YxgA5z2R08I][Capturing Notes Efficiently with Org Roam]]
+- [[https://youtu.be/AyhPmypHDEw][使用 Org Roam 入门]]
+- [[https://youtu.be/YxgA5z2R08I][使用 Org Roam 有效捕获笔记]]
 
 #+begin_src emacs-lisp
 
@@ -43,20 +43,19 @@ You can get started quickly by copying the configuration below, but you'll learn
 
 #+end_src
 
-** Configuration Notes
+** 配置说明
 
-- Make sure to update the value of =org-roam-directory= to the path where you'd like your Org Roam files to be stored.  Create the directory before loading the configuration!
+- 请确保更新 =org-roam-directory= 的值以指向要存储 Org Roam 文件的路径。在加载配置之前创建该目录!
 
-- There is one slight difference with this configuration from the one in the previous episodes, the function =org-roam-setup= was renamed to =org-roam-db-autosync-mode=
+- 此配置与前几集略有不同, =org-roam-setup= 函数已重命名为 =org-roam-db-autosync-mode=
 
+* 创建日记条目文件夹
 
-* Creating the folder for journal entries
+在我们可以创建和查看日记条目之前,我们首先需要确保文件夹存在。
 
-Before we can create and view journal entries, we first need to make sure the folder exists.
+默认情况下,Org Roam 将在 =org-roam-directory= 的 =daily/= 子文件夹下创建每日文件。让我们创建那个文件夹!
 
-By default, Org Roam will create daily files under the =daily/= subfolder of your =org-roam-directory=.  Let's create that folder!
-
-If you'd like to change this folder to a different path, you can set the =org-roam-dailies-directory= like so:
+如果您想要将此文件夹更改为不同的路径,可以如下设置 =org-roam-dailies-directory=:
 
 #+begin_src emacs-lisp
 
@@ -64,59 +63,59 @@ If you'd like to change this folder to a different path, you can set the =org-ro
 
 #+end_src
 
-This path must be relative to =org-roam-directory=!
+此路径必须相对于 =org-roam-directory!=
 
-* Creating a journal entry for today
+* 为今天创建日记条目
 
-Once you've got Org Roam configured, you can run the command =org-roam-dailies-capture-today= which we've bound to ~C-c n d n~.
+配置 Org Roam 后,您可以运行命令 =org-roam-dailies-capture-today=,我们已将其绑定到 ~C-c n d n~ 。
 
-We're using the existing =org-roam-dailies-map= for key bindings!
+我们正在使用现有的 =org-roam-dailies-map= 进行键绑定!
 
-When you run that command, a capture window will appear for a file named with the current date.  Here, you can write whatever you like and then press ~C-c C-c~ to save the entry or ~C-c C-k~ to cancel the capture without saving it.
+当您运行该命令时,将出现一个捕获窗口,用于名为当前日期的文件。在这里,您可以写任何您喜欢的内容,然后按 ~C-c C-c~ 保存条目或按 ~C-c C-k~ 取消捕获而不保存。
 
-The nice thing about this command is that you can run it again to capture another entry, basically allowing you to create entries across the entire day.  Let's try it!
+这个命令的好处是您可以再次运行它来捕获另一个条目,基本上允许您在整天创建条目。让我们试一试!
 
-One major benefit of using Org Roam for your journal (instead of something like [[https://github.com/bastibe/org-journal][org-journal]]) is that you can link to any other note in your Org Roam database.  We can use ~C-c n i~ to insert a link to the =Scheme= entry that we created in a previous episode.
+使用 Org Roam 记录日志的主要好处(而不是像 [[https://github.com/bastibe/org-journal][org-journal]] 一样)是您可以链接到 Org Roam 数据库中的任何其他笔记。我们可以使用 ~C-c n i~ 在前一集创建的 =Scheme= 条目中插入链接。
 
-* Reviewing today's journal entries
+* 查看今天的日记条目
 
-Perhaps you want to take a look at the journal entries you've already written for today.  To do this, you can run the command =org-roam-dailies-goto-today= which we've bound to ~C-c n d d~.
+也许您想查看您今天已经写的日志条目。要实现这一点,可以运行命令 =org-roam-dailies-goto-today=,我们将其绑定为 ~C-c n d d~ 。
 
-When you run this command, the journal file for today will be opened so that you can read it and make any edits you like.
+运行此命令时,将打开今天的日记文件,以便您可以阅读它并进行任何您喜欢的编辑。
 
-This file is set up like any other Org Roam note.  You can also use ~C-c n f~ to navigate to it and even insert a link to it in other note files!
+该文件设置与任何其他 Org Roam 笔记相同。您也可以使用 ~C-c n f~ 访问它,甚至在其他笔记文件中插入到它的链接!
 
-* Creating and viewing entries for yesterday or tomorrow
+* 创建和查看昨天或明天的条目
 
-You can also create entries for the previous or next day from today:
+您还可以从今天创建前一天或下一天的条目:
 
-- Capture a note for yesterday with =org-roam-dailies-capture-yesterday= (~C-c n d Y~)
-- Capture a note for tomorrow with =org-roam-dailies-capture-tomorrow= (~C-c n d T~)
+- 使用 =org-roam-dailies-capture-yesterday= (~C-c n d Y~) 捕获昨天的笔记
+- 使用 =org-roam-dailies-capture-tomorrow= (~C-c n d T~)  捕获明天的笔记
 
-These commands can be useful for writing concluding thoughts for the previous day or leaving notes for yourself for tomorrow!
+这些命令对于写下前一天的结论性想法或为明天留言很有用!
 
-There are also commands to navigate to the entries for these days:
+也有命令导航到这些日子的条目:
 
-- Go to the file for yesterday with =org-roam-dailies-goto-yesterday= (~C-c n d y~)
-- Go to the file for tomorrow with =org-roam-dailies-goto-tomorrow= (~C-c n d t~)
+- 使用 =org-roam-dailies-goto-yesterday= (~C-c n d y~) 转到昨天的文件
+- 使用 =org-roam-dailies-goto-tomorrow= (~C-c n d t~) 转到明天的文件
 
-* Creating and viewing entries for a specific date
+* 创建和查看特定日期的条目
 
-You can create or view notes for a specific day with the following commands:
+您可以使用以下命令创建或查看特定日期的笔记:
 
-- Capture a note for a specific date with =org-roam-dailies-capture-date= (~C-c n d v~)
-- Go to the file for a specific date with =org-roam-dailies-goto-date= (~C-c n d c~)
+- 使用 =org-roam-dailies-capture-date= (~C-c n d v~) 捕获特定日期的笔记
+- 使用 =org-roam-dailies-goto-date= (~C-c n d c~) 转到特定日期的文件
 
-When you run either of these commands, you'll be shown a calendar which lets you pick the date to view or create entries.  Just hold shift and use the arrow keys to move around in the calendar!
+当您运行这两个命令中的任何一个时,会显示一个日历,让您选择要查看或创建条目的日期。只需按住 Shift 键并使用方向键在日历中移动!
 
-You can also navigate forward or backward in time from the date of the file you're currently viewing:
+您还可以从当前查看文件的日期向前或向后移动:
 
-- Go back one existing date file with =org-roam-dailies-goto-next-note= (~C-c n d b~)
-- Go forward one existing date file with =org-roam-dailies-goto-previous-note= (~C-c n d f~)
+- 使用 =org-roam-dailies-goto-next-note= (~C-c n d b~) 后退到现有的日期文件
+- 使用 =org-roam-dailies-goto-previous-note= (~C-c n d f~) 向前移动到现有的日期文件
 
-* Adding the time to each entry
+* 为每个条目添加时间
 
-If you want to add some more information to the entries that you capture, you can customize the default capture template:
+如果您想为捕获的条目添加更多信息,可以自定义默认的捕获模板:
 
 #+begin_src emacs-lisp
 
@@ -126,14 +125,15 @@ If you want to add some more information to the entries that you capture, you ca
 
 #+end_src
 
-More information on the format can be found in the documentation for =format-time-string=.
+有关格式的更多信息,请参阅 =format-time-string= 的文档。
 
-Now when we create a new daily entry, the date will be captured in the heading.
+现在创建新的日常条目时,日期将显示在标题中。
 
-You can create more capture templates for daily entries!  I'll give some more examples on how to use this in another video.
-* The final configuration
+您可以为日常条目创建更多捕获模板!我将在另一个视频中给出更多如何使用此内容的示例。
 
-Here's the final configuration for everything you saw in the video:
+* 最终配置
+
+以下是视频中显示的所有内容的最终配置:
 
 #+begin_src emacs-lisp
 

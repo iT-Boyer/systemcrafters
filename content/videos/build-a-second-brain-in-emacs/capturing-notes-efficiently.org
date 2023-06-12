@@ -1,76 +1,74 @@
-#+title: Capturing Notes Efficiently with Org Roam
+#+title: 使用 org-roam 有效地捕获笔记
 
 [[yt:YxgA5z2R08I][Watch the video on YouTube!]]
 
-* Intro
+* 介绍
 
-When building a personal knowledge system, one of the most important things you can do is create an efficient workflow for capturing new information.
+构建个人知识体系时,您可以做的最重要的事情之一是创建一个高效的工作流程来捕获新信息。
 
-By the end of video you'll know how to create custom templates for capturing notes and project details into your Org Roam files.
+在视频结束时,您将知道如何为在 Org Roam 文件中捕获笔记和项目详细信息创建自定义模板。
 
 #+begin_cta
 #+end_cta
 
-* The need for a good capture workflow
+* 需要一个良好的捕获工作流程
 
-In the previous video, I gave an overview of using a package called Org Roam to build a personal knowledgebase in Org Mode.
+在前面的视频中,我概述了使用名为 Org Roam 的软件包在 Org Mode 中构建个人知识库。
 
-As you start to use Org Roam to store notes and information, it's useful to figure out the common details that you usually fill in for the things you capture and then create templates to streamline the process.
+当您开始使用 Org Roam 存储笔记和信息时,确定您通常填写的常见详细信息以及创建模板来简化该过程会很有帮助。
 
-For example, if you often capture detail about books or research papers, there's probably a few different types of information that you'll want to include when you create a new note:
+例如,如果您经常捕获有关书籍或研究论文的详细信息,在创建新笔记时,您可能需要包含几种不同类型的信息:
 
-- Summary of the content
-- Bibliographic information
-- Quotes you might want to use
-- Links to topic notes where you expand on ideas you gained
+- 内容摘要
+- 书目信息
+- 您可能想要使用的引语
+- 到主题笔记的链接,在那里您可以扩展获得的想法
 
-Org Roam provides a way to define templates for the information you capture so that you'll never forget the useful things you need to include in a new note.
+Org Roam 提供了一种定义您捕获的信息模板的方法,以便您永远不会忘记需要在新笔记中包含的有用事情。
 
-* How Org Roam note templates work
+* Org Roam 笔记模板的工作原理
 
-Org Roam includes its own specialization of Org Mode capture templates.  If you've never used capture templates before, don't worry, creating and using Org Roam templates is pretty straightforward.
+Org Roam 包含它自己的 Org Mode 捕获模板专业化版本。如果您以前从未使用过捕获模板,别担心,创建和使用 Org Roam 模板非常简单。
 
-The thing to understand about Org Roam's templates is that they're used when you create a new note.  In the last video I showed you how to create a new note with the =org-roam-node-find= command which we bound to ~C-c n f~.
+要理解 Org Roam 模板的东西是,它们在创建新笔记时使用。在上一个视频中,我向您展示了如何使用 =org-roam-node-find= 命令创建新笔记,我们将其绑定到 ~C-c n f~ 。
 
-By default when you create a new note with this command, Org Roam will automatically create a =.org= file with a title and some metadata but nothing else in it.
+默认情况下,当您使用此命令创建新笔记时,Org Roam 会自动创建一个只包含标题和一些元数据的 =.org= 文件,里面别无其他。
 
-But after you define your own custom note templates, you will be prompted for which template to use when you create a new note.  This is how you can decide what type of note will be created and the initial content that it contains!
+但是在您定义自己的自定义笔记模板之后,在创建新笔记时,系统会提示您选择要使用的模板。这就是您可以决定要创建何种类型的笔记以及其最初包含的内容的方式!
 
 [[https://www.orgroam.com/manual.html#The-Templating-System][Org Roam Manual: The Templating System]]
 
-* Understanding the default template
+* 理解默认模板
 
-To understand Org Roam templates, let's start by looking at the default capture template.  We'll do this by setting the =org-roam-capture-templates= variable in the Org Roam configuration that we built in the last video.
+要理解 Org Roam 模板,让我们首先查看默认捕获模板。我们将通过在上一个视频中构建的 Org Roam 配置中设置 =org-roam-capture-templates= 变量来实现这一目的。
 
-This variable stores the list of capture templates that are used when a new note is created.  If you set this variable, you'll have to copy over the default template, otherwise it won't be available anymore.  Read its documentation for more details about the format!
+此变量存储在创建新笔记时使用的捕获模板列表。如果设置此变量,您必须复制默认模板,否则它将不再可用。有关格式的更多详细信息,请阅读其文档!
 
-Here's what the default template looks like:
+默认模板如下所示:
 
 #+begin_src emacs-lisp
-
-  '(("d" "default" plain
+'(("d" "default" plain
      "%?"
      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
      :unnarrowed t))
-
 #+end_src
 
-Here's what it contains:
+它包含以下内容:
 
-- ="d"=: The "key", a letter that you press to choose the template
-- ="default"=: The full name of the template
-- =plain=: The type of text being inserted, always this value for note templates
-- ="%?"=: This is the text that will be inserted into the new note, can be anything!
-- =:if-new= : The list that follows this describes how the note file will be created
-- =:unnarrowed t= : Ensures that the full file will be displayed when captured (an Org thing)
+- ="d"=:模板的“键”,按字母选择模板
+- ="default"=:模板的完整名称
+- =plain=:插入的文本类型,对于笔记模板始终为此值
+- ="%?"=:这是将插入新笔记的文本,可以是任何内容!
+- =:if-new= : 以下列表描述了如何创建笔记文件
+- =:unnarrowed t= : 捕获时确保显示完整文件(Org 的内容)
 
-Aside from the template key and name, the two things you might be interested to change are the initial note text and the format of the filename that gets created, though I don't recommend changing the filename format!
+除模板键和名称外,您可能感兴趣更改的两个事项是初始笔记文本和创建的文件名格式,尽管我不建议更改文件名格式!
 
-The initial note text has its own special format which can be read about in the Org Mode documentation:
+初始笔记文本具有自己的特殊格式,可以在 Org Mode 文档中阅读:
 
 [[https://orgmode.org/manual/Template-expansion.html#Template-expansion][Org Mode Manual: Template Expansion]]
 
-** The complete starting configuration
+** 完整的初始配置
 
 #+begin_src emacs-lisp
 
@@ -96,30 +94,28 @@ The initial note text has its own special format which can be read about in the 
 
 #+end_src
 
-* Creating a topic-specific template
+* 创建主题特定模板
 
-Let's take a look at a simple example of how to create a new template.  We're going to continue with the notes we were using in the previous Org Roam video and add a template for capturing details about a programming language.
+让我们看一个简单的示例,了解如何创建新模板。我们将继续使用上一个 Org Roam 视频中的笔记,并添加一个用于捕获有关编程语言详细信息的模板。
 
 #+begin_src emacs-lisp
-
   ("l" "programming language" plain
    "* Characteristics\n\n- Family: %?\n- Inspired by: \n\n* Reference:\n\n"
    :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
    :unnarrowed t)
-
 #+end_src
 
-Now let's try creating a new node for "JavaScript" and select our new template.
+现在让我们尝试为“JavaScript”创建新节点并选择我们的新模板。
 
-The capture window that appears is filled with the format that we entered into the string!  We can type in all the details and save the note with ~C-c C-c~.
+出现的捕获窗口填充了我们输入到字符串中的格式!我们可以键入所有详细信息并使用 ~C-c C-c~ 保存笔记。
 
-* Creating a literature reference template
+* 创建文献引用模板
 
-We can add even more structure to our data entry by using Org Mode's template expansion syntax.
+我们可以通过使用 Org Mode 的模板扩展语法来为数据输入添加更多结构。
 
-The first example of a template we talked about in this video is one to capture details about literature material you read like a book.
+我们在本视频中讨论的第一个模板示例是一个用于捕获您读取的文献材料(如书籍)详细信息的模板。
 
-Let's create a template to capture some of the things we mentioned before.  This time, we're going to add custom prompts for certain details we want to fill in like the author and the year the book was published.
+让我们创建一个模板来捕获我们前面提到的一些内容。这次,我们将添加自定义提醒以填写某些我们想要填写的详细信息,比如作者和书籍出版年份。
 
 #+begin_src emacs-lisp
 
@@ -129,18 +125,16 @@ Let's create a template to capture some of the things we mentioned before.  This
    :unnarrowed t)
 
 #+end_src
+让我们使用此模板为“Dune”创建新笔记。我们将被要求提供作者和年份,这些信息将与我们已经键入的笔记标题一起插入捕获缓冲区!然后光标将跳转到摘要部分,以便我们可以键入有关这本书的笔记。
 
-Let's create a new note for "Dune" using this template.  We'll be prompted for Author and Year which will be inserted in the capture buffer along with the title of the note that we typed in already!  The cursor will then jump into the Summary section so that we can type our notes about the book.
-
-There are other interesting things you can do with template expansion prompts, so be sure to visit the Org Mode manual to see what else you might be able to use.
-
+模板扩展提示还有其他有趣的用途,所以请务必访问 Org Mode 手册以查看您可能还能使用的其他内容。
 [[https://orgmode.org/manual/Template-expansion.html#Template-expansion][Org Mode Manual: Template Expansion]]
 
-* Creating a project template
+* 创建项目模板
 
-Another useful template you might want to create is for capturing details about a new project that you've started, particularly the tasks, goals, and any important dates you might need to remember.
+您可能想要创建的另一个有用模板是用于捕获您开始的新项目的详细信息,特别是任务、目标和您可能需要记住的任何重要日期。
 
-Here's a template which sets up a new project file:
+这里是一个用于设置新项目文件的模板:
 
 #+begin_src emacs-lisp
 
@@ -150,21 +144,21 @@ Here's a template which sets up a new project file:
 
 #+end_src
 
-The new thing we've added this time is the =#+filetags: Project= configuration inside of the =file+head= section.  This part defines what information gets inserted in the header lines of the new file.
+我们这次新增的内容是 =file+head= 部分中的 =#+filetags: Project= 配置。该部分定义了插入新文件标题行的信息。
 
-What we've done here is add a =Project= tag to the file.  Tagging your note files gives you some extra benefits when you start using the Org Roam DB API to query your notes.  The tag may also show up in your completion list if you're using Vertico and Marginalia, [[https://www.youtube.com/watch?v=J0OaRy85MOo][check out my video on Vertico]] if you haven't seen it yet.
+我们在这里做的就是将 =Project= 标签添加到文件中。标记您的笔记文件会在您开始使用 Org Roam DB API 查询笔记时获得一些额外的好处。如果您使用 Vertico 和 Marginalia 该标签也可能出现在您的完成列表中，如果您还没有看到我的 Vertico 视频 [[https://www.youtube.com/watch?v=J0OaRy85MOo][[检查我的 Vertico 视频]]。
 
-An example I'll show you in a later video is how you can look up all your project notes using this tag and automatically build your Org Agenda list from that set of files!
+我将在稍后视频中向您展示的示例是如何使用此标签查找所有项目笔记,并从这组文件自动生成 Org Agenda 列表!
 
-* Storing templates in Org files
+* 将模板存储在 Org 文件中
 
-Let's talk about how you can write your capture templates in real Org files so that you don't have to edit strings inside of your Emacs configuration.
+让我们讨论如何在真实的 Org 文件中编写捕获模板,这样您就不必在 Emacs 配置内编辑字符串。
 
-It's actually pretty easy to do this!  Just create a new =.org= file containing the contents of the template string we created before and then clean it up so that it looks like a normal file.
+实际上这样做非常简单!只需创建一个包含我们之前创建的模板字符串内容的新 =.org= 文件,然后清理它,使其看起来像正常文件。
 
-Once you've saved the template file, you'll have to replace the string in the capture template with a =file= sub-list which includes the template file path.
+保存模板文件后,您需要用包含模板文件路径的 =file= 子列表替换捕获模板中的字符串。
 
-Here's how we would need to change the book notes template to refer to a template file instead:
+以下是我们需要如何更改书籍笔记模板以引用模板文件而不是字符串:
 
 #+begin_src emacs-lisp
 
@@ -174,11 +168,11 @@ Here's how we would need to change the book notes template to refer to a templat
 
 #+end_src
 
-* Customizing the default template
+* 自定义默认模板
 
-You can also customize the default template!
+您也可以自定义默认模板!
 
-Let's try to insert the date when the note was created.  We can do this by adding the string =#+date: %U= to the initial header string in the =file+head= configuration:
+让我们尝试插入创建笔记的日期。我们可以通过向 =file+head= 配置中的初始标题字符串添加 =#+date: %U= 来实现这一点:
 
 #+begin_src emacs-lisp
 
@@ -188,10 +182,10 @@ Let's try to insert the date when the note was created.  We can do this by addin
 
 #+end_src
 
-And like I mentioned earlier, you can change the naming of files Org Roam creates if you really want to, just change the first string in the =file+head= to contain the format you want where =${slug}= is the part of the filename that reflects the initial note title.
+如我之前提到的,如果您真的想要,可以更改 Org Roam 创建的文件的命名,只需将 =file+head= 中的第一个字符串更改为包含您想要的格式,其中 =${slug}= 是反映初始笔记标题的文件名的一部分。
 
-Keep in mind that you'll need to replicate your =:if-new= settings across all your templates if you want consistent file naming and header contents!
+请记住,如果您希望文件名和标题内容一致,需要在所有模板中复制 =:if-new= 设置!
 
-* What's next?
+* 下面是什么?
 
-Org Roam provides another useful feature for capturing thoughts and ideas that occur during the day called "dailies".  In the next video, I'll show you how you can use this feature for keeping a journal, a daily log of your work, and for any random things you want to remember!
+Org Roam 提供了另一个用于捕获一天中出现的思想和想法的有用功能,称为“dailies”。在下一视频中,我将向您展示如何使用此功能保存日志、每日工作日志以及您想要记住的任何随机内容!

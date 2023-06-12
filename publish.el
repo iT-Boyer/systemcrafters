@@ -74,8 +74,8 @@
 (defun dw/embed-video (video-id)
   (format yt-iframe-format video-id))
 
-(setq user-full-name "David Wilson")
-(setq user-mail-address "david@systemcrafters.net")
+(setq user-full-name "布衣男儿")
+(setq user-mail-address "itboyer@qq.com")
 
 (defvar dw/site-url (if (string-equal (getenv "CI") "true")
                         "https://it-boyer.github.io/systemcrafters"
@@ -126,12 +126,12 @@
                  (div (@ (class "site-masthead"))
                       (div (@ (class "container"))
                            (nav (@ (class "nav"))
-                                (a (@ (class "nav-link") (href "/")) "Home") " "
-                                (a (@ (class "nav-link") (href "/guides/")) "Guides") " "
-                                (a (@ (class "nav-link") (href "/news/")) "News") " "
-                                (a (@ (class "nav-link") (href "/community/")) "Community") " "
+                                (a (@ (class "nav-link") (href "/systemcrafters/")) "Home") " "
+                                (a (@ (class "nav-link") (href "/systemcrafters/guides/")) "Guides") " "
+                                (a (@ (class "nav-link") (href "/systemcrafters/news/")) "News") " "
+                                (a (@ (class "nav-link") (href "/systemcrafters/community/")) "Community") " "
                                 (a (@ (class "nav-link") (href "https://store.systemcrafters.net?utm_source=sc-site-nav")) "Store") " "
-                                (a (@ (class "nav-link") (href "/how-to-help/")) "How to Help")))))))
+                                (a (@ (class "nav-link") (href "/systemcrafters/how-to-help/")) "How to Help")))))))
 
 (defun dw/site-footer ()
   (list `(footer (@ (class "site-footer"))

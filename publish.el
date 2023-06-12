@@ -84,25 +84,25 @@
 
 (defun dw/embed-list-form ()
   `(div (@ (class "list-form center"))
-        (div (@ (class "list-form-title")) "Subscribe to the System Crafters Newsletter!")
+        (div (@ (class "list-form-title")) "订阅系统工匠通讯!")
         (form (@ (method "POST")
                  (action "https://www.simplelists.com/subscribe.php"))
               (input (@ (type "hidden") (name "format") (value "text")))
               (input (@ (type "hidden") (name "action") (value "subscribe")))
               (input (@ (type "hidden") (name "list") (value "news@lists.systemcrafters.net")))
               (div (@ (class "list-form-message"))
-                   "Stay up to date with the latest System Crafters news and updates!  Read the "
+                   "与最新的系统工匠新闻和更新保持同步! 阅读 "
                    (a (@ (href "/newsletter/")) "Newsletter")
-                   " page for more information.")
+                   " 浏览更多信息。")
               (div (@ (class "row"))
                    (div (@ (class "column"))
-                        (div (@ (class "row center list-form-label")) "Name (optional)")
+                        (div (@ (class "row center list-form-label")) "名称 (optional)")
                         (div (@ (class "row")) (input (@ (type "text") (name "name")))))
                    (div (@ (class "column"))
-                        (div (@ (class "row center list-form-label")) "Email Address")
+                        (div (@ (class "row center list-form-label")) "邮箱")
                         (div (@ (class "row")) (input (@ (type "text") (name "email"))))))
               (div nil
-                   (input (@ (type "submit") (value "Subscribe!")))))))
+                   (input (@ (type "submit") (value "订阅!")))))))
 
 (org-link-set-parameters
  "yt"
@@ -130,7 +130,7 @@
                                 (a (@ (class "nav-link") (href "/systemcrafters/guides/")) "指南") " "
                                 (a (@ (class "nav-link") (href "/systemcrafters/news/")) "动态") " "
                                 (a (@ (class "nav-link") (href "/systemcrafters/community/")) "社区") " "
-                                (a (@ (class "nav-link") (href "https://store.systemcrafters.net?utm_source=sc-site-nav")) "Store") " "
+                                (a (@ (class "nav-link") (href "https://store.systemcrafters.net?utm_source=sc-site-nav")) "商店") " "
                                 (a (@ (class "nav-link") (href "/systemcrafters/how-to-help/")) "帮助")))))))
 
 (defun dw/site-footer ()

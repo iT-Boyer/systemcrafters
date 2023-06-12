@@ -1,8 +1,11 @@
-#+title: Build a Second Brain in Emacs
+#+title: 在 emacs 中建立第二个大脑
 
-* Episodes
+* 集锦
 
-1. [[file:getting-started-with-org-roam.org][Getting Started with Org Roam]]
-2. [[file:capturing-notes-efficiently.org][Capturing Notes Efficiently with Org Roam]]
-3. [[file:keep-a-journal.org][Keep a Journal in Emacs with Org Roam]]
-4. [[file:5-org-roam-hacks.org][5 Org Roam Hacks for Better Productivity in Emacs]]
+1. [[file:getting-started-with-org-roam.org][Org Roam 入门]]
+2. [[file:capturing-notes-efficiently.org][使用 Org Roam 高效捕获笔记]]
+3. [[file:keep-a-journal.org][使用 Org Roam 在 Emacs 中记日记]]
+4. [[file:5-org-roam-hacks.org][5 个Org Roam 技巧提高Emacs 生产力]]
+
+
+Org Roam 是一个非常强大和有用的 Emacs 包,可以帮助您组织笔记、撰写日记、管理任务等。我希望这些教程能激发您学习 Emacs 和 Org Roam,从而利用它们提高自己的工作效率!

@@ -1,61 +1,61 @@
-#+title: Build a Second Brain in Emacs with Org Roam
+#+title: 用 org-roam 在 emacs 中构建第二个大脑
 
 [[yt:AyhPmypHDEw][Watch the video on YouTube!]]
 
 #+begin_cta
 #+end_cta
 
-* What is Org Roam?
+* Org Roam 是什么?
 
-Org Mode is known to be a great tool not just for writing and personal notes but also TODO lists, project planning, time tracking, and more.  Once you start to become really invested in Org Mode you'll eventually have to come up with a system for managing your Org files so that it's easy to store and find the information you need.
+Org Mode 不仅是一种很好的工具用于写作和个人笔记,还可以用于TODO列表、项目计划、时间跟踪等。一旦您真正投入使用 Org Mode,最终您将需要制定一个系统来管理 Org 文件,以便轻松存储和查找所需的信息。
 
-[[https://github.com/org-roam/org-roam][Org Roam]] is an extension to Org Mode which solves a couple of the biggest problems that I've personally had when using Org for personal notes:
+[[https://github.com/org-roam/org-roam][Org Roam]] 是 Org Mode 的一个扩展,它解决了我个人使用 Org 进行个人笔记时遇到的几个最大问题:
 
-- *How many Org files do I need?*
-- *How do I decide where to put things in my Org files?*
+- *我需要多少个 Org 文件?*
+- *我应该把东西放在 Org 文件中的什么位置?*
 
-Org Roam solves these problems by making it easy to create topic-focused Org Files and link them together so that you can treat the information as nodes in a network rather than as hierarchical documents.  You can think of it like a personal wiki!
+Org Roam 通过使创建专注于主题的 Org 文件变得容易,并将它们链接在一起,使您可以将信息视为网络中的节点而不是层次结构文档来解决这些问题。您可以把它看作是一个个人 Wiki!
 
-It's inspired by a program called [[https://roamresearch.com/][Roam]] and a note-taking strategy called [[https://www.orgroam.com/manual.html#A-Brief-Introduction-to-the-Zettelkasten-Method][Zettelkasten]] where the goal is to create many individual single-topic notes that are linked together to create a "networked" knowledge base.
+它的灵感来自一个名为 [[<https://roamresearch.com/>][Roam]] 的程序和一个名为 [[&lt;<https://www.orgroam.com/manual.html#A-Brief-Introduction>he-Zettelkasten-Method>][Zettelkasten]] 的笔记策略,其目标是创建许多单一主题的独立笔记,并将它们链接在一起以创建一个“网络”知识库。
 
-Many people consider this like creating a "second brain" because it can easily handle a huge amount of knowledge and remind you of connections between topics very effectively.
+许多人认为这就像创建一个“第二大脑”,因为它可以轻松处理大量知识,并非常有效地提醒您主题之间的联系。
 
-The major advantage of Org Roam over other similar note taking tools is that you get to use all of the other great features of Org Mode in a new way!
+与其他类似的笔记工具相比,Org Roam 的主要优点是您可以以新的方式使用 Org Mode 的所有其他优秀功能!
 
-* Prerequisites
+Org Roam 允许您在保留 Org Mode 的所有现有功能的同时,以网络方式组织笔记和思想。这种方法可以显著提高工作效率和创造力。
 
-Org Roam v2 depends on a customized build of the SQLite database tool to operate. Org Roam will take care of compiling this code for you as long as you have a compatible compiler installed!
+* 先决条件
 
-For Linux and macOS users, make sure you have a C/C++ compiler like =gcc= or =clang= installed.
+Org Roam v2 依赖于定制的 SQLite 数据库工具才能运行。Org Roam 将为您编译此代码,只要您安装了兼容的编译器!
 
-Windows users can follow [[https://www.orgroam.com/manual.html#C-Compiler][the instructions in the Org Roam manual]] to build the database program.
+Linux 和 macOS 用户请确保安装了 gcc 或 clang 等C/C++编译器。
 
-You may be wondering why Org Roam needs a database; the database enables Org Roam to keep track of all of the "nodes" that you create and the links between them *very* efficiently.  You can also use Org Roam's database to develop your own extensions!
+Windows 用户可以按照 Org Roam 手册中的说明编译数据库程序。
 
-* Installation
+您可能会疑惑为什么 Org Roam 需要数据库。数据库使 Org Roam 能够非常高效地跟踪您创建的所有“节点”及其之间的链接。您也可以使用 Org Roam 的数据库开发自己的扩展!
 
-Install the =org-roam= package from MELPA using =package.el=, =straight.el= or any other package manager you normally use to install packages.
+* 安装
 
-If you use =use-package= with =package.el=, add this to your configuration temporarily and execute it to install =org-roam=:
+从MELPA使用 package.el、straight.el 或您通常使用的任何其他包管理器安装 org-roam 包。
+
+如果您使用 use-package 和 package.el,请添加此内容并执行以安装 org-roam:
 
 #+begin_src emacs-lisp
-
   (use-package org-roam
     :ensure t)
-
 #+end_src
 
-After loading the package, you can check the variable =org-roam--sqlite-available-p= for a value of =t= to ensure that everything is set up correctly and ready to run.
+加载包后,您可以检查变量 =org-roam--sqlite-available-p= 的值是否为 ~t~,以确保一切设置正确并准备好运行。
 
-* Basic configuration
+* 基本配置
 
-After Org Roam has been installed, the most important thing to configure is the folder where your Org Roam files will be located.
+安装 Org Roam 后,最重要的配置是设置保存 Org Roam 文件的文件夹。
 
-By default, this will be a folder called =org-roam= in your =$HOME= directory but you will probably want to set this to something else.  No matter what path you use, things will be slightly easier if you create the folder in advance!
+默认情况下,这将是 =$HOME= 目录下名为 =org-roam= 的文件夹,但您可能会想将其设置为其他内容。无论使用什么路径,如果提前创建文件夹,事情会简单一些!
 
-*TIP:* Don't use your existing Org files folder for this!  Your existing files won't have the necessary metadata so they won't show up in Org Roam's database.
+*提示:* 不要使用现有的 Org 文件文件夹!现有的文件不会有必要的元数据,因此不会显示在 Org Roam 的数据库中。
 
-We'll also add some necessary key bindings and a call to =org-roam-setup= to make sure everything is ready to go.
+我们还将添加一些必要的键绑定和调用 =org-roam-setup= 的调用,以确保一切准备就绪。
 
 #+begin_src emacs-lisp
 
@@ -71,15 +71,15 @@ We'll also add some necessary key bindings and a call to =org-roam-setup= to mak
 
 #+end_src
 
-* Dealing with migration warnings
+* 处理迁移警告
 
-The first time you load the package, you will probably be presented with a message in the =*Warnings*= buffer about the need to migrate Org Roam v1 files to v2.
+第一次加载包时,您可能会在 =*Warnings*= 缓冲区中看到有关迁移 Org Roam v1 文件到 v2 的消息。
 
-If you've never used Org Roam before, you can set the variable =org-roam-v2-ack= to =t= in your configuration.
+如果您以前从未使用过 Org Roam,您可以在配置中将变量 =org-roam-v2-ack= 设置为 =t= 。
 
-*If you've been using Org Roam v1*, make sure to run =M-x org-roam-migrate-wizard= as suggested by the message!  Check out the [[https://github.com/org-roam/org-roam/wiki/Hitchhiker's-Rough-Guide-to-Org-roam-V2#migration-instructions][migration instructions]] in the wiki for more information.
+*如果您一直在使用 Org Roam v1*,请按消息中的提示执行 =M-x org-roam-migrate-wizard=!有关详细信息,请查看 wiki 中的 [[https://github.com/org-roam/org-roam/wiki/Hitchhiker's-Rough-Guide-to-Org-roam-V2#migration-instructions][迁移说明]]。
 
-Here's how to set the variable in your configuration so that you will no longer see this message:
+下面是如何在配置中设置变量,以便您不再看到此消息:
 
 #+begin_src emacs-lisp
 
@@ -90,52 +90,52 @@ Here's how to set the variable in your configuration so that you will no longer 
     :custom
     (org-roam-directory "~/RoamNotes")
     :bind (("C-c n l" . org-roam-buffer-toggle)
-           ("C-c n f" . org-roam-node-find)
-           ("C-c n i" . org-roam-node-insert))
-    :config
-    (org-roam-setup))
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n i" . org-roam-node-insert))
+     :config
+     (org-roam-setup))
 
 #+end_src
 
-* Creating your first node
+* 创建第一个节点
 
-Let's create our first node!  We can use the ~C-c n f~ binding to invoke =org-roam-node-find= which brings up a completion session to select or create a node.
+让我们创建第一个节点!我们可以使用 ~C-c n f~ 绑定来调用 =org-roam-node-find=,它会带来一个完成会话来选择或创建一个节点。
 
-Since we want to create a new node, we can type in the desired node name "Programming Languages" and press ~RET~ (Enter).
+因为我们想创建一个新节点,我们可以输入所需节点名称“Programming Languages”并按 ~RET~ (Enter)键。
 
-A new Org capture buffer will be created for the node.  Why a capture buffer?  Because Org Roam enables you to specify multiple capture templates for new notes in case you have different kinds of nodes you need to create!  We'll cover this in another video.
+为节点创建一个新的 Org 捕获缓冲区。为什么捕获缓冲区?因为 Org Roam 允许您指定多个捕获模板来创建不同种类的新笔记!我们将在另一个视频中介绍这一点。
 
-For now, we can add some text to the file and then press ~C-c C-c~ to confirm the capture to save the file.
+现在,我们可以在文件中添加一些文本,然后按 ~C-c C-c~ 确认捕获以保存文件。
 
-Let's follow the same process to create another node called "Emacs Lisp".
+让我们按相同的步骤创建另一个名为“Emacs Lisp”的节点。
 
-* They're just .org files!
+* 它们只是 .org 文件!
 
-These are just plain =.org= files inside of your notes folder!  You can check them into a Git repository or sync them with any other tool you like.  The database file that Org Roam creates *does not* need to be synced between machines because Org Roam can recreate it from existing .org files.
+这些只是您笔记文件夹中的普通 =.org= 文件!您可以将其检入 Git 仓库或使用任何其他工具进行同步。Org Roam 创建的数据库文件 *不需要* 在计算机之间同步,因为 Org Roam 可以从现有的 .org 文件重新创建它。
 
-* Inserting links to other nodes
+* 插入到其他节点的链接
 
-The real power of Org Roam begins when you start linking your node files together!  However, this works differently than normal Org links.
+Org Roam 的真正强大之处在于开始链接节点文件!但是,这与正常的 Org 链接工作方式不同。
 
-In an Org Roam buffer, we can use the ~C-c n i~ binding to invoke =org-roam-node-insert= which will bring up a completion list containing all of your nodes.  Selecting one of them will cause a link to that node to be inserted at the point in the current buffer.
+在 Org Roam 缓冲区中,我们可以使用 ~C-c n i~ 绑定调用 =org-roam-node-insert=,它会带来包含您所有节点的完成列表。选择其中一个将导致当前缓冲区中的链接指向那个节点。
 
-Let's use this command to insert a link to "Emacs Lisp" in the "Programming Languages" node.
+让我们使用此命令在“Programming Languages”节点中插入指向“Emacs Lisp”的链接。
 
-* Inserting links to nodes that don't exist yet
+* 插入尚未存在的节点链接
 
-You can also type the name of a node that doesn't exist yet and it will be created!  Once you use ~C-c C-c~ to confirm the capture buffer that appears for the new node, a link to that node will be inserted into the buffer you started from.
+您也可以键入一个尚不存在的节点名称,它将被创建!一旦使用 ~C-c C-c~ 确认出现的新节点的捕获缓冲区,指向该节点的链接将被插入到您开始的缓冲区中。
 
-Let's use ~C-c n i~ to insert a new node called "Scheme" to see how this works.
+让我们使用 ~C-c n i~ 插入一个名为“Scheme”的新节点,看看这是如何工作的。
 
-This makes it much faster to build out your node graph!
+这使得构建节点图变得更加迅速!
 
-* Inserting node links using completions
+* 使用自动补全插入节点链接
 
-You can also use =M-x completion-at-point= to complete the names of nodes inside of double-square brackets =[[]]=.  I've found that this doesn't work in some cases, though!
+您还可以使用 =M-x completion-at-point= 在双方括号 =[[]]= 内完成节点名称。不过,我发现这在某些情况下不起作用!
 
-If you'd like to complete names of nodes anywhere in an Org Roam file without using the brackets, set =org-roam-completion-everywhere= to =t=.  If you type a couple letters in your buffer and run =M-x completion-at-point=, a completion session will allow you to complete the name of the node.  Once you save the file, the =roam:Node= link syntax will be fixed!
+如果您想在 Org Roam 文件中的任何位置完成节点名称而不使用括号,请将 =org-roam-completion-everywhere= 设置为 =t= 。如果您在缓冲区中键入几个字母并运行 =M-x completion-at-point=,完成会话将允许您完成节点名称。保存文件后,=roam:Node= 链接语法将被修复!
 
-Here's an updated configuration that makes node completions easier:
+这里有一个更新的配置,可以更轻松地完成节点:
 
 #+begin_src emacs-lisp
 
@@ -156,48 +156,48 @@ Here's an updated configuration that makes node completions easier:
 
 #+end_src
 
-* Creating a heading node
+* 创建标题节点
 
-One of the new features of Org Roam v2 is the ability to turn a top-level heading inside of a node file into its own unique node.  This can be helpful if some nodes don't really deserve their own files but you still want to link to them!
+Org Roam v2 的新功能之一是 能够 =将节点文件中的顶级标题转换为其自己的唯一节点= 。如果某些节点不真正配得上自己的文件,但您仍然想链接到它们,这可能会很有帮助!
 
-When you have your cursor in a top-level header in an Org Roam node buffer, run =M-x org-id-get-create= to assign an Org ID to the header.  You will now see that header's name in the list of nodes displayed by ~C-c n f~.
+当您的光标位于 Org Roam 节点缓冲区中的顶级标题中时,运行 =M-x org-id-get-create= 为标题分配 Org ID。现在,您将在 ~C-c n f~ 显示的节点列表中看到该标题的名称。
 
-Let's create a top-level heading node called "Resources" in the "Emacs Lisp" node!
+让我们在“Emacs Lisp”节点中创建一个名为“资源”的顶级标题节点!
 
-* Creating aliases for nodes
+* 为节点创建别名
 
-What happens if you have top-level heading nodes in multiple files which have the same name?
+如果您在多个文件中的顶级标题节点具有相同的名称,会发生什么情况?
 
-Let's create another top-level heading node called "Resources" in the "Scheme" node and use =org-id-get-create= to give it an ID.
+让我们在“Scheme”节点中创建另一个名为“资源”的顶级标题节点,并使用 =org-id-get-create= 为其提供 ID。
 
-Now if we use ~C-c n f~ to list all nodes, we see two "Resources" nodes in the list!  How can we tell them apart?
+现在,如果我们使用 ~C-c n f~ 列出所有节点,我们会在列表中看到两个“资源”节点!我们怎么才能把它们区分开来?
 
-The way to solve this is to create an alias for one (or all) of the nodes with the same name.  If you put your cursor on a heading node or in a file node, you can run =M-x org-roam-alias-add=.  You will be prompted for the name of the alias to add.
+解决这个问题的方法是为具有相同名称的一个(或所有)节点创建别名。如果将光标置于标题节点或文件节点上,您可以运行 =M-x org-roam-alias-add= 。系统会提示您输入要添加的别名名称。
 
-If you check the node listing with ~C-c n f~ now, you will still see the duplicated "Resources" names, but the alias you added will also be in the list!
+现在如果检查节点列表(~C-c n f~),您仍然会看到重复的“资源”名称,但您添加的别名也将在列表中!
 
-If you need to, you can add multiple aliases for a single node.
+如果需要,您可以为单个节点添加多个别名。
 
-* Viewing backlinks for the current file
+* 查看当前文件的反向链接
 
-Once you've started creating a lot of nodes that are linked together, it might be very helpful to open the backlinks buffer to see which notes are linked to the node you are currently viewing.
+一旦您开始创建许多相互链接的节点,打开反向链接缓冲区以查看链接到您当前正在查看的节点的笔记可能会非常有帮助。
 
-Let's open the "Emacs Lisp" node and then press ~C-c n l~ to execute the =org-roam-buffer-toggle= command.  A new buffer called =*org-roam*= will be created in a new window.
+让我们打开“Emacs Lisp”节点,然后按 ~C-c n l~ 执行 =org-roam-buffer-toggle= 命令。一个名为 =*org-roam*= 的新缓冲区将在新窗口中创建。
 
-Now any time you select a buffer for an Org Roam node, you will see the list of references to that node from any other nodes.  Since we're looking at the "Emacs Lisp" node, we can see a reference from the "Programming Languages" node!
+现在,每次选择 Org Roam 节点的缓冲区时,您都会看到从任何其他节点到该节点的引用列表。由于我们正在查看“Emacs Lisp”节点,我们可以看到来自“Programming Languages”节点的引用!
 
-Let's create another node called "System Crafters" and add links to both "Programming" and "Emacs Lisp" to see how it looks in the backlinks buffer for those nodes.
+让我们创建另一个名为“System Crafters”的节点,并添加指向“Programming”和“Emacs Lisp”的链接,以查看这些节点的反向链接缓冲区中的情况。
 
-* What's next?
+* 下一步是什么?
 
-We've covered enough about Org Roam in this video so that you can start taking notes in a new way!  It's very satisfying to build up your personal knowledge base.
+我们在此视频中已经涵盖了足够的 Org Roam 知识,让您可以以新的方式开始记笔记!构建个人知识库非常令人满意。
 
-In later videos, we'll cover the following topics:
+在后续的视频中,我们将涵盖以下主题:
 
-- Using capture templates to create Org Roam nodes
-- Daily journalling and logging with the "dailies" feature
-- Populating the Org Agenda with Org Roam files
+- 使用捕获模板创建 Org Roam 节点
+- 使用“每日”功能进行每日日记和记录
+- 使用 Org Roam 文件填充 Org Agenda
 
-... and more as Org Roam v2 develops!
+...以及随着 Org Roam v2 的开发而增加的更多内容!
 
-In the meantime, check out the [[https://www.orgroam.com/manual.html][Org Roam Manual]] for more information on the features it provides.
+同时,请查看 [[https://www.orgroam.com/manual.html][Org Roam 手册]]以获取有关其提供的功能的更多信息。

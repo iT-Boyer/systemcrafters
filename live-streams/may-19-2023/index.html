@@ -1,6 +1,6 @@
-<!-- Generated from 838b11e on 2023-06-12 @ 10:13 with Emacs 27.2 (Org mode 9.4.4) -->
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>Exploring the Depths of Dired - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">Home</a> <a class="nav-link" href="/systemcrafters/guides/">Guides</a> <a class="nav-link" href="/systemcrafters/news/">News</a> <a class="nav-link" href="/systemcrafters/community/">Community</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/systemcrafters/how-to-help/">How to Help</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">Exploring the Depths of Dired</h1><p class="site-post-meta">May 19, 2023</p><div class="video">  <iframe src="https://www.youtube.com/embed/h6ZssDbEt4A" allowfullscreen></iframe></div><div id="content">
-<h2><a id="updates" class="anchor" href="#updates">¶</a>Updates</h2><div class="outline-text-2" id="text-orgc11c901">
+<!-- Generated from c3cd8a7 on 2023-06-12 @ 10:37 with Emacs 27.2 (Org mode 9.4.4) -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>Exploring the Depths of Dired - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">首页</a> <a class="nav-link" href="/systemcrafters/guides/">指南</a> <a class="nav-link" href="/systemcrafters/news/">动态</a> <a class="nav-link" href="/systemcrafters/community/">社区</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/systemcrafters/how-to-help/">帮助</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">Exploring the Depths of Dired</h1><p class="site-post-meta">May 19, 2023</p><div class="video">  <iframe src="https://www.youtube.com/embed/h6ZssDbEt4A" allowfullscreen></iframe></div><div id="content">
+<h2><a id="updates" class="anchor" href="#updates">¶</a>Updates</h2><div class="outline-text-2" id="text-org98bc8fc">
 <ul class="org-ul">
 <li><p>
 We&rsquo;re moving to Matrix and IRC!  Discord to close on July 1, 2023
@@ -37,7 +37,7 @@ Support my work!
 </ul>
 </div>
 
-<h2><a id="letrsquos-dive-into-dired" class="anchor" href="#letrsquos-dive-into-dired">¶</a>Let&rsquo;s dive into Dired!</h2><div class="outline-text-2" id="text-org08fc07c">
+<h2><a id="letrsquos-dive-into-dired" class="anchor" href="#letrsquos-dive-into-dired">¶</a>Let&rsquo;s dive into Dired!</h2><div class="outline-text-2" id="text-orgc76d8e5">
 <p>
 Dired is truly one of the great features of Emacs, but it can be hard to adopt at first because the interface is pretty bland and unhelpful.
 </p>
@@ -79,7 +79,7 @@ Any other suggestions?
 </p>
 </div>
 
-<h3><a id="notes" class="anchor" href="#notes">¶</a>Notes</h3><div class="outline-text-3" id="text-orga0632a1">
+<h3><a id="notes" class="anchor" href="#notes">¶</a>Notes</h3><div class="outline-text-3" id="text-orgc0f9f7f">
 <p>
 <code>(setq dired-dwim-target t)</code> to automatically pick the right target for copy/move operations based on another open Dired window.
 </p>
@@ -97,13 +97,13 @@ Interesting bindings under <code>%</code>:
 % r             dired-do-rename-regexp</pre>
 </div>
 
-<h4><a id="renaming-files-with-a-regular-expression" class="anchor" href="#renaming-files-with-a-regular-expression">¶</a>Renaming files with a regular expression:</h4><div class="outline-text-4" id="text-orgd42e928">
+<h4><a id="renaming-files-with-a-regular-expression" class="anchor" href="#renaming-files-with-a-regular-expression">¶</a>Renaming files with a regular expression:</h4><div class="outline-text-4" id="text-org67ad968">
 <p>
 <code>C-x C-q</code> then <code>C-M-%</code>, enter a regular expression like <code>\(.*\)-\([[:digit:]]\{4\}\) → \2-\1</code>
 </p>
 </div>
 
-<h3><a id="how-does-dirvish-work" class="anchor" href="#how-does-dirvish-work">¶</a>How does Dirvish work?</h3><div class="outline-text-3" id="text-org3c4beec">
+<h3><a id="how-does-dirvish-work" class="anchor" href="#how-does-dirvish-work">¶</a>How does Dirvish work?</h3><div class="outline-text-3" id="text-orgf4f5eeb">
 <p>
 Dirvish is a really elaborate package that builds on Dired to provide a polished experience!  How do they do it?
 </p>

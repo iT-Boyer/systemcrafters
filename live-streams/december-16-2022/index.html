@@ -1,6 +1,6 @@
-<!-- Generated from 838b11e on 2023-06-12 @ 10:13 with Emacs 27.2 (Org mode 9.4.4) -->
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>Learning to Use the Emacs Debugger - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">Home</a> <a class="nav-link" href="/systemcrafters/guides/">Guides</a> <a class="nav-link" href="/systemcrafters/news/">News</a> <a class="nav-link" href="/systemcrafters/community/">Community</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/systemcrafters/how-to-help/">How to Help</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">Learning to Use the Emacs Debugger</h1><p class="site-post-meta">December 16, 2022</p><div class="video">  <iframe src="https://www.youtube.com/embed/LfwSc-lfFxM" allowfullscreen></iframe></div><div id="content">
-<h2><a id="updates" class="anchor" href="#updates">¶</a>Updates</h2><div class="outline-text-2" id="text-orgc1d8ba3">
+<!-- Generated from c3cd8a7 on 2023-06-12 @ 10:37 with Emacs 27.2 (Org mode 9.4.4) -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>Learning to Use the Emacs Debugger - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">首页</a> <a class="nav-link" href="/systemcrafters/guides/">指南</a> <a class="nav-link" href="/systemcrafters/news/">动态</a> <a class="nav-link" href="/systemcrafters/community/">社区</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/systemcrafters/how-to-help/">帮助</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">Learning to Use the Emacs Debugger</h1><p class="site-post-meta">December 16, 2022</p><div class="video">  <iframe src="https://www.youtube.com/embed/LfwSc-lfFxM" allowfullscreen></iframe></div><div id="content">
+<h2><a id="updates" class="anchor" href="#updates">¶</a>Updates</h2><div class="outline-text-2" id="text-orgf842dbf">
 <ul class="org-ul">
 <li><p>
 Join the Emacs Mastodon instance! <a href="https://emacs.ch/">https://emacs.ch/</a>
@@ -18,7 +18,7 @@ When you&rsquo;re there, go reply to this post: <a href="https://fosstodon.org/@
 </ul>
 </div>
 
-<h2><a id="learning-to-use-the-emacs-debugger" class="anchor" href="#learning-to-use-the-emacs-debugger">¶</a>Learning To Use the Emacs Debugger</h2><div class="outline-text-2" id="text-org77c91cd">
+<h2><a id="learning-to-use-the-emacs-debugger" class="anchor" href="#learning-to-use-the-emacs-debugger">¶</a>Learning To Use the Emacs Debugger</h2><div class="outline-text-2" id="text-org3dac1ae">
 <p>
 One thing we haven&rsquo;t talked about much on this channel yet is how to diagnose problems in your Emacs configuration beyond just looking at the <code>*Messages*</code> buffer and hoping you can figure out the cryptic error message that appeared.
 </p>
@@ -34,7 +34,7 @@ We&rsquo;ll be using the <a href="https://www.gnu.org/software/emacs/manual/html
 <pre>(info <span class="org-string">"(elisp) Debugging"</span>)</pre>
 </div>
 
-<h2><a id="features-to-investigate" class="anchor" href="#features-to-investigate">¶</a>Features to Investigate</h2><h3><a id="debug" class="anchor" href="#debug">¶</a>debug</h3><h4><a id="entering-the-debugger" class="anchor" href="#entering-the-debugger">¶</a>Entering the debugger</h4><div class="outline-text-4" id="text-orgec413ed">
+<h2><a id="features-to-investigate" class="anchor" href="#features-to-investigate">¶</a>Features to Investigate</h2><h3><a id="debug" class="anchor" href="#debug">¶</a>debug</h3><h4><a id="entering-the-debugger" class="anchor" href="#entering-the-debugger">¶</a>Entering the debugger</h4><div class="outline-text-4" id="text-org8b8a692">
 <ul class="org-ul">
 <li><code>M-x toggle-debug-on-error</code></li>
 <li><code>M-x toggle-debug-on-quit</code></li>
@@ -45,7 +45,7 @@ We&rsquo;ll be using the <a href="https://www.gnu.org/software/emacs/manual/html
 </ul>
 </div>
 
-<h4><a id="inspecting-backtraces" class="anchor" href="#inspecting-backtraces">¶</a>Inspecting backtraces</h4><div class="outline-text-4" id="text-org8c08af6">
+<h4><a id="inspecting-backtraces" class="anchor" href="#inspecting-backtraces">¶</a>Inspecting backtraces</h4><div class="outline-text-4" id="text-org98bedc8">
 <p>
 When the <code>*Backtrace*</code> buffer appears, try these bindings:
 </p>
@@ -62,7 +62,7 @@ When the <code>*Backtrace*</code> buffer appears, try these bindings:
 </ul>
 </div>
 
-<h4><a id="debugger-commands" class="anchor" href="#debugger-commands">¶</a>Debugger commands</h4><div class="outline-text-4" id="text-org311fa0b">
+<h4><a id="debugger-commands" class="anchor" href="#debugger-commands">¶</a>Debugger commands</h4><div class="outline-text-4" id="text-orgbde0eef">
 <ul class="org-ul">
 <li><code>c</code> -&gt; Continue execution</li>
 <li><code>d</code> -&gt; Continue execution but stop again at the next function call</li>
@@ -74,7 +74,7 @@ When the <code>*Backtrace*</code> buffer appears, try these bindings:
 </ul>
 </div>
 
-<h3><a id="edebug" class="anchor" href="#edebug">¶</a>edebug</h3><div class="outline-text-3" id="text-org509b163">
+<h3><a id="edebug" class="anchor" href="#edebug">¶</a>edebug</h3><div class="outline-text-3" id="text-org4819a77">
 <p>
 One difference with edebug is that you can actually step through execution of a function!  The downside is that you have to explicitly instrument a function by evaluating it with <code>C-u C-M-x</code> or (<code>M-x edebug-eval-top-level-form</code>).
 </p>
@@ -90,7 +90,7 @@ Let&rsquo;s examine the Edebug manual to figure out what to try:
 <pre>(info <span class="org-string">"(elisp) Edebug Execution Modes"</span>)</pre>
 </div>
 
-<h2><a id="the-example" class="anchor" href="#the-example">¶</a>The Example</h2><div class="outline-text-2" id="text-org31a0199">
+<h2><a id="the-example" class="anchor" href="#the-example">¶</a>The Example</h2><div class="outline-text-2" id="text-orgf570fa2">
 <p>
 Here&rsquo;s the example I was using in the stream:
 </p>

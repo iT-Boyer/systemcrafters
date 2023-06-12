@@ -1,9 +1,9 @@
-<!-- Generated from 838b11e on 2023-06-12 @ 10:13 with Emacs 27.2 (Org mode 9.4.4) -->
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>用 org roam 在 emacs 中写日记 - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">Home</a> <a class="nav-link" href="/systemcrafters/guides/">Guides</a> <a class="nav-link" href="/systemcrafters/news/">News</a> <a class="nav-link" href="/systemcrafters/community/">Community</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/systemcrafters/how-to-help/">How to Help</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">用 org roam 在 emacs 中写日记</h1><p class="site-post-meta"></p><div id="content"><p>
+<!-- Generated from c3cd8a7 on 2023-06-12 @ 10:37 with Emacs 27.2 (Org mode 9.4.4) -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>用 org roam 在 emacs 中写日记 - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">首页</a> <a class="nav-link" href="/systemcrafters/guides/">指南</a> <a class="nav-link" href="/systemcrafters/news/">动态</a> <a class="nav-link" href="/systemcrafters/community/">社区</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/systemcrafters/how-to-help/">帮助</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">用 org roam 在 emacs 中写日记</h1><p class="site-post-meta"></p><div id="content"><p>
 <div class="video">  <iframe src="https://www.youtube.com/embed/3-sLBaJAtew" allowfullscreen></iframe></div>
 </p>
 
-<h2><a id="介绍" class="anchor" href="#介绍">¶</a>介绍</h2><div class="outline-text-2" id="text-orgc5f21ab">
+<h2><a id="介绍" class="anchor" href="#介绍">¶</a>介绍</h2><div class="outline-text-2" id="text-org82a9bab">
 <p>
 思考问题并解决问题的最佳方式之一是与自己进行书面对话。通过本视频,您将了解如何记录一天的想法,将其链接到现有笔记,并轻松查看任何一天的笔记,全部使用 Org Roam。
 </p>
@@ -13,7 +13,7 @@ If you find this guide helpful, please consider supporting System Crafters via t
 </div>
 </div>
 
-<h2><a id="开始配置" class="anchor" href="#开始配置">¶</a>开始配置</h2><div class="outline-text-2" id="text-org366e0e7">
+<h2><a id="开始配置" class="anchor" href="#开始配置">¶</a>开始配置</h2><div class="outline-text-2" id="text-orgd14408b">
 <p>
 在我们开始之前,请确保您已经设置了 Org Roam。
 </p>
@@ -49,7 +49,7 @@ If you find this guide helpful, please consider supporting System Crafters via t
   (org-roam-db-autosync-mode))</pre>
 </div>
 
-<h3><a id="配置说明" class="anchor" href="#配置说明">¶</a>配置说明</h3><div class="outline-text-3" id="text-org8001d6c">
+<h3><a id="配置说明" class="anchor" href="#配置说明">¶</a>配置说明</h3><div class="outline-text-3" id="text-org5ed8a35">
 <ul class="org-ul">
 <li>请确保更新 <code>org-roam-directory</code> 的值以指向要存储 Org Roam 文件的路径。在加载配置之前创建该目录!</li>
 
@@ -57,7 +57,7 @@ If you find this guide helpful, please consider supporting System Crafters via t
 </ul>
 </div>
 
-<h2><a id="创建日记条目文件夹" class="anchor" href="#创建日记条目文件夹">¶</a>创建日记条目文件夹</h2><div class="outline-text-2" id="text-orgc2c3d12">
+<h2><a id="创建日记条目文件夹" class="anchor" href="#创建日记条目文件夹">¶</a>创建日记条目文件夹</h2><div class="outline-text-2" id="text-org44274e7">
 <p>
 在我们可以创建和查看日记条目之前,我们首先需要确保文件夹存在。
 </p>
@@ -77,7 +77,7 @@ If you find this guide helpful, please consider supporting System Crafters via t
 </p>
 </div>
 
-<h2><a id="为今天创建日记条目" class="anchor" href="#为今天创建日记条目">¶</a>为今天创建日记条目</h2><div class="outline-text-2" id="text-orge47a2bf">
+<h2><a id="为今天创建日记条目" class="anchor" href="#为今天创建日记条目">¶</a>为今天创建日记条目</h2><div class="outline-text-2" id="text-org803a823">
 <p>
 配置 Org Roam 后,您可以运行命令 <code>org-roam-dailies-capture-today</code>,我们已将其绑定到 <code>C-c n d n</code> 。
 </p>
@@ -99,7 +99,7 @@ If you find this guide helpful, please consider supporting System Crafters via t
 </p>
 </div>
 
-<h2><a id="查看今天的日记条目" class="anchor" href="#查看今天的日记条目">¶</a>查看今天的日记条目</h2><div class="outline-text-2" id="text-org53c3c96">
+<h2><a id="查看今天的日记条目" class="anchor" href="#查看今天的日记条目">¶</a>查看今天的日记条目</h2><div class="outline-text-2" id="text-org4e952a4">
 <p>
 也许您想查看您今天已经写的日志条目。要实现这一点,可以运行命令 <code>org-roam-dailies-goto-today</code>,我们将其绑定为 <code>C-c n d d</code> 。
 </p>
@@ -113,7 +113,7 @@ If you find this guide helpful, please consider supporting System Crafters via t
 </p>
 </div>
 
-<h2><a id="创建和查看昨天或明天的条目" class="anchor" href="#创建和查看昨天或明天的条目">¶</a>创建和查看昨天或明天的条目</h2><div class="outline-text-2" id="text-org95153ba">
+<h2><a id="创建和查看昨天或明天的条目" class="anchor" href="#创建和查看昨天或明天的条目">¶</a>创建和查看昨天或明天的条目</h2><div class="outline-text-2" id="text-orgb7d1733">
 <p>
 您还可以从今天创建前一天或下一天的条目:
 </p>
@@ -137,7 +137,7 @@ If you find this guide helpful, please consider supporting System Crafters via t
 </ul>
 </div>
 
-<h2><a id="创建和查看特定日期的条目" class="anchor" href="#创建和查看特定日期的条目">¶</a>创建和查看特定日期的条目</h2><div class="outline-text-2" id="text-org556e5e6">
+<h2><a id="创建和查看特定日期的条目" class="anchor" href="#创建和查看特定日期的条目">¶</a>创建和查看特定日期的条目</h2><div class="outline-text-2" id="text-org7518753">
 <p>
 您可以使用以下命令创建或查看特定日期的笔记:
 </p>
@@ -161,7 +161,7 @@ If you find this guide helpful, please consider supporting System Crafters via t
 </ul>
 </div>
 
-<h2><a id="为每个条目添加时间" class="anchor" href="#为每个条目添加时间">¶</a>为每个条目添加时间</h2><div class="outline-text-2" id="text-orga4acaaf">
+<h2><a id="为每个条目添加时间" class="anchor" href="#为每个条目添加时间">¶</a>为每个条目添加时间</h2><div class="outline-text-2" id="text-org1be4ebd">
 <p>
 如果您想为捕获的条目添加更多信息,可以自定义默认的捕获模板:
 </p>
@@ -183,7 +183,7 @@ If you find this guide helpful, please consider supporting System Crafters via t
 </p>
 </div>
 
-<h2><a id="最终配置" class="anchor" href="#最终配置">¶</a>最终配置</h2><div class="outline-text-2" id="text-org95ef01c">
+<h2><a id="最终配置" class="anchor" href="#最终配置">¶</a>最终配置</h2><div class="outline-text-2" id="text-orgfea66ee">
 <p>
 以下是视频中显示的所有内容的最终配置:
 </p>

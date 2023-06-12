@@ -306,8 +306,9 @@ holding contextual information."
             block-type
             (or contents
                 (if (string= block-type "cta")
-                    "If you find this guide helpful, please consider supporting System Crafters via the links on the <a href=\"/how-to-help/#support-my-work\">How to Help</a> page!"
-                  "")))))
+                    "如果你觉得这个指南有帮助, 请考虑通过链接 <a href=\"/how-to-help/#support-my-work\">帮助</a> 页 支持系统工匠!"
+                  "")
+))))
 
 (org-export-define-derived-backend 'site-html 'html
   :translate-alist

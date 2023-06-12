@@ -16,7 +16,7 @@ Org Mode 不仅是一种很好的工具用于写作和个人笔记,还可以用�
 
 Org Roam 通过使创建专注于主题的 Org 文件变得容易,并将它们链接在一起,使您可以将信息视为网络中的节点而不是层次结构文档来解决这些问题。您可以把它看作是一个个人 Wiki!
 
-它的灵感来自一个名为 [[<https://roamresearch.com/>][Roam]] 的程序和一个名为 [[&lt;<https://www.orgroam.com/manual.html#A-Brief-Introduction>he-Zettelkasten-Method>][Zettelkasten]] 的笔记策略,其目标是创建许多单一主题的独立笔记,并将它们链接在一起以创建一个“网络”知识库。
+它的灵感来自一个名为 [[https://roamresearch.com/][Roam]] 的程序和一个名为 [[https://www.orgroam.com/manual.html#A-Brief-Introduction>he-Zettelkasten-Method][Zettelkasten]] 的笔记策略,其目标是创建许多单一主题的独立笔记,并将它们链接在一起以创建一个“网络”知识库。
 
 许多人认为这就像创建一个“第二大脑”,因为它可以轻松处理大量知识,并非常有效地提醒您主题之间的联系。
 

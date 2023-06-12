@@ -1,39 +1,39 @@
 #+title: Welcome!
 
-System Crafters is a community and learning resource for computer enthusiasts who are interested in crafting their computing experience to *increase their enjoyment and productivity*.
+System Crafters 是一个专门为那些有兴趣通过 *增加使用乐趣和生产力* 来设计自己的计算体验的计算机爱好者学习和资源社区。
 
-This website is intended to be the /most comprehensive/ reference on the internet for learning how to leverage tools like [[https://www.gnu.org/software/emacs/][GNU Emacs]], [[https://guix.gnu.org/][GNU Guix]], and [[https://en.wikipedia.org/wiki/Linux][GNU/Linux]] to craft a fully customized workflow using Free Software tools!
+这个网站旨在成为互联网上学习如何利用 [[https://www.gnu.org/software/emacs/][GNU Emacs]]、[[https://guix.gnu.org/][GNU Guix]] 和 [[https://en.wikipedia.org/wiki/Linux][GNU/Linux]] 等工具来使用自由软件工具完全定制工作流程的最全面参考资料!
 
-The [[https://youtube.com/@SystemCrafters][System Crafters YouTube channel]] also contains almost 200 videos and live stream recordings demonstrating and explaining these tools and broader topics!
+[[https://youtube.com/@SystemCrafters][System Crafters YouTube 频道]] 也包含近 200 个视频和现场流录制,演示和解释这些工具和更广泛的主题!
 
-* Start Here!
+* 开始!
 
-If you are just getting started with *GNU Emacs* and want to learn the basics, check out [[file:emacs-essentials/absolute-beginners-guide-to-emacs.org][The Absolute Beginner's Guide to Emacs]]!
+如果您刚开始使用 *GNU Emacs* 并想了解基础知识,请查看 [[file:emacs-essentials/absolute-beginners-guide-to-emacs.org][Emacs 绝对初学者指南]]!
 
-From there, check out the [[file:emacs-essentials.org][Emacs Essentials]] series to learn more about the basics of using Emacs and then follow the [[file:emacs-from-scratch.org][Emacs From Scratch]] series to learn how to build a modern Emacs configuration that you understand!
+从那里开始,查看 [[file:emacs-essentials.org][Emacs 要点]] 系列以了解使用 Emacs 的基础知识,然后按照 [[file:emacs-from-scratch.org][Emacs 白板]] 系列学习如何构建一个您理解的现代 Emacs 配置!
 
-Once you're comfortable using Emacs, learn how to use *GNU Guix* to craft a complete, reproducible system configuration by checking out the [[file:craft-your-system-with-guix.org][Craft Your System with GNU Guix]] series!
+一旦您熟悉使用 Emacs,请通过查看 [[file:craft-your-system-with-guix.org][用 GNU Guix 打造你的系统]] 系列学习如何使用 *GNU Guix* 来制作完整的、可重现的系统配置!
 
-You can also check out the many [[file:videos.org][video series]] I've created to help you learn these tools in depth.
+您还可以查看我创建的许多 [[file:videos.org][视频系列]] ,以帮助您深入学习这些工具。
 
-* Need Help?
+* 需要帮助?
 
-If you need help on specific topics, there are a few resources to consider:
+如果您需要帮助特定主题,有几个资源可以考虑:
 
-- The FAQ pages for various topics like [[file:faq/emacs.org][Emacs]] and [[file:faq/guix.org][Guix]]
-- Join the [[file:community.org][System Crafters chat]] and discuss it with the community
-- [[/how-to-help/#support-my-work][Patrons]] at the $5 level or higher can ask questions on a private discussion list!
+- 各种主题的常见问题解答页面,如 [[file:faq/emacs.org][Emacs]] 和 [[file:faq/guix.org][Guix]]
+- 加入 [[file:community.org][System Crafters 聊天]] 与社区讨论
+- [[/how-to-help/#support-my-work][每月捐赠者]] 5 美元或更高级别可以在专用讨论列表上提问!
 
-* Live Streams
+* 直播
 
-Join us *every Friday* for our weekly show *[[file:live-streams.org][System Crafters Live!]]* The stream is broadcast on both [[https://youtube.com/@SystemCrafters][YouTube]] and [[https://twitch.tv/SystemCrafters][Twitch]].
+加入我们 *每周五* 的常规节目 *[[file:live-streams.org][System Crafters Live!]]*。该流程在 [[https://youtube.com/@SystemCrafters][YouTube]] 和 [[https://twitch.tv/SystemCrafters][Twitch]] 上播出。
 
-In these streams we usually experiment with new packages, configurations, and customizations to understand the pros and cons of using them.  Other times we have philosophical discussions about software, computing, and productivity.  It's always a good time!
+在这些流程中,我们通常会尝试新的软件包,配置和定制,以了解使用它们的优点和缺点。其他时候,我们会对软件、计算和生产力进行哲学讨论。这总是很开心的时刻!
 
-[[https://time.is/compare/1800_in_Athens][Click here]] to see the stream time in your local time zone!
+[[https://time.is/compare/1800_in_Athens][点击这里]] 查看您当地时区的流时间!
 
-* Stay Up to Date!
+* 保持最新!
 
-Check out new [[/news][News page]] to see the latest updates for the website and community.  You can also subscribe to [[/rss][RSS Feeds]] for various parts of the site.
+查看最新的 [[/news][新闻页面]] 以查看网站和社区的最新更新。您也可以订阅网站各个部分的 [[/rss][RSS 源]]。
 
-A much better option is to subscribe to the [[file:newsletter.org][System Crafters Newsletter]] below!
+一个更好的选择是订阅下面的 [[file:newsletter.org][System Crafters 通讯]]!

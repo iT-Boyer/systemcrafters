@@ -1,60 +1,66 @@
-#+title: Join the Community!
+#+title: 加入社区吧!
 
-The System Crafters community meets in a few places online in case you want to engage with other people about your favorite tools and techniques!
+System Crafters 社区在线的几个地方会面,以便您可以与其他人交谈您喜欢的工具和技术!
 
-* Chat With Us
+* 与我们聊天
 
-If you'd like to chat with the community, you can join us both on IRC and Matrix!
+如果您想与社区聊天,您可以在 IRC 和 Matrix 上加入我们!
 
-- *IRC*: Join =irc.libera.chat= and join the =#systemcrafters= room ([[https://web.libera.chat/?channel=#systemcrafters][web chat]])
-- *Matrix*: Join the [[https://matrix.to/#/#systemcrafters-space:matrix.org][System Crafters Space]] on matrix.org
+- *IRC*:加入 =irc.libera.chat= 并加入 =#systemcrafters= 房间( [[https://web.libera.chat/?channel=#systemcrafters][web 聊天]])
+- *Matrix*:加入 matrix.org 上的 [[https://matrix.to/#/#systemcrafters-space:matrix.org][System Crafters 空间]]
 
-I recommend using the Matrix space with the official [[https://element.io/][Element]] client if you prefer a Discord or Slack style experience with chat history, embedded links, etc.  You can read more details about using the Libera.Chat IRC bridge to Matrix on [[https://libera.chat/guides/faq#can-i-connect-with-matrix][this page]].
+如果您更喜欢具有聊天历史记录、嵌入式链接等 Discord 或 Slack 风格的体验,我建议使用官方[[https://element.io/][Element]]客户端使用 Matrix 空间。您可以在 [[https://libera.chat/guides/faq#can-i-connect-with-matrix][这个页面]] 上阅读有关使用 Libera.Chat IRC 到 Matrix 的桥梁的更多详细信息。
 
-If you'd prefer to chat from inside of Emacs, the [[https://github.com/alphapapa/ement.el][ement.el]] Matrix client by [[https://github.com/alphapapa][Alphapapa]] is an excellent choice! I will soon be producing a video for how to use it.
+如果您更喜欢从 Emacs 内聊天, [[https://github.com/alphapapa][Alphapapa]] 的 [[https://github.com/alphapapa/ement.el][ement.el]] Matrix 客户端是一个优秀的选择!我很快就会制作有关如何使用它的视频。
 
-If you'd like a more classic experience, try the [[https://en.wikipedia.org/wiki/Internet_Relay_Chat][IRC]] channel!  If you've never used IRC before, check out the following videos:
+如果您更喜欢经典的体验,试试 [[https://en.wikipedia.org/wiki/Internet_Relay_Chat][IRC]] 频道!如果您以前从未使用过 IRC,请查看以下视频:
+
+- 使用 IRC - 入门指南:本视频介绍如何访问 IRC 网络,查找频道和加入频道。
+
+- 在 Emacs 中使用 IRC: 本视频介绍如何直接从 Emacs 使用 IRC,使用 Emacs 内置的 ERC 模式。
+
+请加入我们,开始与其他 System Crafters 社区成员聊天并分享您最喜欢的工具和技巧!
 
 - [[https://systemcrafters.net/chatting-with-emacs/irc-basics-with-erc/][Chatting in IRC using Emacs and ERC]]
 - [[https://systemcrafters.net/live-streams/june-04-2021/][Improving the IRC experience in ERC]]
 
-* Friday Streams
+* 星期五的直播
 
-Join us *every Friday* for our weekly show *[[file:../live-streams.org][System Crafters Live!]]* The stream is broadcast on both [[https://youtube.com/@SystemCrafters][YouTube]] and [[https://twitch.tv/SystemCrafters][Twitch]].
+加入我们 *每周五* 的常规节目 *[[file:../live-streams.org][System Crafters Live!]]*。该流程在 [[https://youtube.com/@SystemCrafters][YouTube]] 和 [[https://twitch.tv/SystemCrafters][Twitch]] 上播出。
 
-In these streams we usually experiment with new packages, configurations, and customizations to understand the pros and cons of using them.  Other times we have philosophical discussions about software, computing, and productivity.  It's always a good time!
+在这些流程中,我们通常会尝试新的软件包,配置和定制,以了解使用它们的优点和缺点。其他时候,我们会对软件、计算和生产力进行哲学讨论。这总是很开心的时刻!
 
-[[https://time.is/compare/1800_in_Athens][Click here]] to see the stream time in your local time zone!
+[[https://time.is/compare/1800_in_Athens][点击这里]] 查看您当地时区的流时间!
 
-* Community Projects
+* 社区项目
 
-We also have a growing set of community projects to which you can join and contribute!  If you want to learn more about GNU Emacs and GNU Guix, contributing to one of these projects is a great way to do that.
+我们还有一系列日益增长的社区项目,您可以加入和贡献!如果您想更深入地了解 GNU Emacs 和 GNU Guix,为这些项目中的一个做出贡献是一个很好的方法。
 
 #+begin_quote
-Have an idea for a community project?  Send me an e-mail: =david= at =systemcrafters.net=
+有社区项目想法吗?请发邮件给我: =david= at =systemcrafters.net=
 #+end_quote
 
 ** Crafted Emacs
 
-[[https://github.com/SystemCrafters/crafted-emacs/][Crafted Emacs]] is sensible base Emacs configuration created with the following goals:
+[[https://github.com/SystemCrafters/crafted-emacs/][Crafted Emacs]] 是一个经过精心设计的 Emacs 配置文件,旨在达到以下目标:
 
-- Helps you craft your own Emacs configuration faster by providing pre-configured modules for common tasks
-- The code of the configuration is a learning resource to help you understand Emacs Lisp better
-- Easy to remove from your configuration once you've finished crafting your own!
+- 通过提供常见任务的预配置模块,帮助您更快地构建自己的 Emacs 配置
+- 该配置的代码是帮助您更好理解 Emacs Lisp 的学习资源
+- 一旦您完成自己的定制,很容易从您的配置中删除!
 
-This project is maintained by [[https://github.com/jeffbowman][Jeff Bowman]].  You can read [[https://jeffbowman.writeas.com/][Jeff's blog]] for more information about the project!
+这个项目由 [[https://github.com/jeffbowman][Jeff Bowman]] 维护。您可以阅读 [[https://jeffbowman.writeas.com/][Jeff 的博客]] 以获取有关该项目的更多信息!
 
 ** dotcrafter.el
 
-[[https://github.com/daviwil/dotcrafter.el][dotcrafter.el]] is a project I started while creating the [[https://systemcrafters.net/learning-emacs-lisp/][Learning Emacs Lisp]] video series.  It is meant to help you manage your dotfiles using an Emacs package, including the job of "tangling" your [[https://systemcrafters.net/emacs-from-scratch/configure-everything-with-org-babel/][literate Org Mode configuration]] to the necessary output files.
+[[https://github.com/daviwil/dotcrafter.el][dotcrafter.el]] 是一个项目,我在创作 [[https://systemcrafters.net/learning-emacs-lisp/][学习 Emacs Lisp]] 视频系列时开始的。它旨在帮助您使用 Emacs 包管理 dotfiles,包括“编织”您的 [[https://systemcrafters.net/emacs-from-scratch/configure-everything-with-org-babel/][文学 Org Mode 配置]] 到必要的输出文件这项工作。
 
-This project has been dormant for a while, I'd be happy if someone wanted to contribute and move it forward!
+这个项目已经静止了一段时间,如果有人想做出贡献并推进它,我会很高兴!
 
-** Guix Installer and Live CD Images
+** Guix 安装程序和 Live CD 镜像
 
-I've used GitHub Actions to automatically produce up-to-date installation images and Live CDs for GNU Guix using the full Linux kernel from the [[https://gitlab.com/nonguix/nonguix][Nonguix]] channel:
+我使用 GitHub Actions 自动生成 GNU Guix 的最新安装镜像和 Live CD,使用来自 [[https://gitlab.com/nonguix/nonguix][Nonguix]] 渠道的完整 Linux 内核:
 
 - https://github.com/SystemCrafters/guix-installer
 - https://github.com/SystemCrafters/guix-live-image
 
-If you have ideas for how to improve these, please feel free to send a PR!
+如果您有改进这些的想法,请随时提交 PR!

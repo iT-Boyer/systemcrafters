@@ -126,12 +126,12 @@
                  (div (@ (class "site-masthead"))
                       (div (@ (class "container"))
                            (nav (@ (class "nav"))
-                                (a (@ (class "nav-link") (href "/systemcrafters/")) "Home") " "
-                                (a (@ (class "nav-link") (href "/systemcrafters/guides/")) "Guides") " "
-                                (a (@ (class "nav-link") (href "/systemcrafters/news/")) "News") " "
-                                (a (@ (class "nav-link") (href "/systemcrafters/community/")) "Community") " "
+                                (a (@ (class "nav-link") (href "/systemcrafters/")) "首页") " "
+                                (a (@ (class "nav-link") (href "/systemcrafters/guides/")) "指南") " "
+                                (a (@ (class "nav-link") (href "/systemcrafters/news/")) "动态") " "
+                                (a (@ (class "nav-link") (href "/systemcrafters/community/")) "社区") " "
                                 (a (@ (class "nav-link") (href "https://store.systemcrafters.net?utm_source=sc-site-nav")) "Store") " "
-                                (a (@ (class "nav-link") (href "/systemcrafters/how-to-help/")) "How to Help")))))))
+                                (a (@ (class "nav-link") (href "/systemcrafters/how-to-help/")) "帮助")))))))
 
 (defun dw/site-footer ()
   (list `(footer (@ (class "site-footer"))

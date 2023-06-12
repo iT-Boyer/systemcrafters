@@ -1,4 +1,4 @@
-#+title: 用org roam在emacs中写日记
+#+title: 用 org roam 在 emacs 中写日记
 
 [[yt:3-sLBaJAtew][Watch the video on YouTube!]]
 

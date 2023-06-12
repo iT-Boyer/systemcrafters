@@ -1,25 +1,25 @@
-#+title: 5 Org Roam Hacks for Better Productivity in Emacs
+#+title: 5 个 Org Roam 技巧提高 Emacs 生产力
 
 [[yt:CUkuyW6hr18][Watch the video on YouTube!]]
 
-* Intro
+* 简介
 
-Org Roam is an excellent tool for writing and organizing your thoughts, but when you leverage more of the functions it provides, you can create highly efficient custom workflows for common tasks.
+Org Roam 是一种非常好的工具,可以编写和组织您的想法,但是当您利用 Org Roam 提供的更多功能时,您可以为常见任务创建高效的自定义工作流程。
 
-In this video, I'm going to show you 5 hacks to optimize your note taking and project management workflows using the features of Org Roam and Org Mode!
+在本视频中,我将向您展示 5 个在 Org Roam 和 Org Mode 特性的帮助下优化笔记记录和项目管理工作流程的技巧。
 
 #+begin_cta
 #+end_cta
 
-* The starting configuration
+* 开始配置
 
-Before we start, make sure you've got Org Roam set up already.
+开始之前,请确保您已经设置好 Org Roam。
 
-You can get started quickly by copying the configuration below, but you'll learn more if you watch the previous videos in the Org Roam series first:
+您可以通过复制以下配置快速入手,但是如果首先观看 Org Roam 系列的上一集视频,您会学到更多内容:
 
-- [[https://youtu.be/AyhPmypHDEw][Getting Started with Org Roam]]
-- [[https://youtu.be/YxgA5z2R08I][Capturing Notes Efficiently with Org Roam]]
-- [[https://www.youtube.com/watch?v=3-sLBaJAtew][Org Roam: The Best Way to Keep a Journal in Emacs]]
+- [[https://youtu.be/AyhPmypHDEw][开始使用 Org Roam]]
+- [[https://youtu.be/YxgA5z2R08I][使用 Org Roam 有效地捕获笔记]]
+- [[https://www.youtube.com/watch?v=3-sLBaJAtew][Org Roam:在 Emacs 中记录日志的最佳方式]]
 
 #+begin_src emacs-lisp
 
@@ -46,27 +46,27 @@ You can get started quickly by copying the configuration below, but you'll learn
 
 #+end_src
 
-* Lots of code ahead!
+* 有很多代码要展示!
 
-In this video, I'm going to show you a lot of custom code that I wrote to produce these workflow improvements.  If you haven't studied Emacs Lisp much yet some of it might not be 100% clear, but that is OK!
+在本视频中,我将向您展示许多自定义代码,这些代码产生了这些工作流程改进。如果您目前还没有深入研究 Emacs Lisp,其中有些内容可能不完全清晰,但这没关系!
 
-All of the code is meant to be taken and dropped into your configuration so you don't need to understand how it works as long as it does work!
+所有代码均可取并放入您的配置中,只要它正常工作,您无需理解其工作原理!
 
-If you do want to learn though, I'd recommend reading over the code and using =M-x describe-function= and =M-x describe-variable= to read the documentation strings.  You can also watch my [[https://www.youtube.com/watch?v=RQK_DaaX34Q&list=PLEoMzSkcN8oPQtn7FQEF3D7sroZbXuPZ7][Learning Emacs Lisp series]] if you want a more complete tutorial!
+如果您确实想学习,我建议阅读代码并使用 =M-x describe-function= 和 =M-x describe-variable= 阅读文档字符串。如果您想要一个更完整的教程,也可以观看我的 [[https://www.youtube.com/watch?v=RQK_DaaX34Q&list=PLEoMzSkcN8oPQtn7FQEF3D7sroZbXuPZ7][学习 Emacs Lisp 系列]]!
 
-Please feel free to ask any questions in the comments and I'll try to clarify things!
+请在评论中提出任何疑问,我将尽力澄清!
 
-* Fast note insertion for a smoother writing flow
+* 更快速地插入笔记以实现更流畅的写作
 
-Sometimes while writing, you'll want to create a new node in your Org Roam notes without interrupting your writing flow!  Typically you would use =org-roam-node-insert=, but when you create a new note with this command, it will open the new note after it gets created.
+有时在写作时,您可能希望在 Org Roam 笔记中创建一个新节点而不中断写作流程!通常您将使用 =org-roam-node-insert=,但当您使用此命令创建新笔记时,该新笔记将在创建后打开。
 
-We can define a function that enables you to create a new note and insert a link in the current document without opening the new note's buffer.
+我们可以定义一个函数,使您可以创建新笔记并在当前文档中插入链接,而不打开新笔记的缓冲区。
 
-This will allow you to quickly create new notes for topics you're mentioning while writing so that you can go back later and fill those notes in with more details!
+这将使您能够在写作时快速为您提到的主题创建新笔记,以便以后可以在这些笔记中填写更多细节!
 
 #+begin_src emacs-lisp
 
-  ;; Bind this to C-c n I
+  ;; 将此绑定为 C-c n I
   (defun org-roam-node-insert-immediate (arg &rest args)
     (interactive "P")
     (let ((args (cons arg args))
@@ -76,22 +76,22 @@ This will allow you to quickly create new notes for topics you're mentioning whi
 
 #+end_src
 
-This function takes the first capture template in =org-roam-capture-templates= (usually the "default" template) and adds the =:immediate-finish t= [[https://orgmode.org/manual/Template-elements.html#Template-elements][capture property]] to prevent the note buffer from being loaded once capture finishes:
+此函数采取 =org-roam-capture-templates= 中的第一个捕获模板(通常是“默认”模板),并向其添加 =:immediate-finish t= [[https://orgmode.org/manual/Template-elements.html#Template-elements][捕获属性]],以在捕获完成后防止加载笔记缓冲区:
 
-Thanks to [[https://www.youtube.com/watch?v=AyhPmypHDEw&lc=Ugw7bYrPOc6oy_UBmPZ4AaABAg][Umar Ahmad]] for the snippet!
+感谢 [[https://www.youtube.com/watch?v=AyhPmypHDEw&lc=Ugw7bYrPOc6oy_UBmPZ4AaABAg][Umar Ahmad]] 提供的代码片段!
 
-* Build your Org agenda from Org Roam notes
+* 从 Org Roam 笔记构建 Org 议程
 
-One of the most useful features of Org Mode is the agenda view.  You can actually use your Org Roam notes as the source for this view!
+Org Mode 最有用的功能之一是议程视图。实际上,您可以使用 Org Roam 笔记作为此视图的源!
 
-Typically you won't want to pull in *all* of your Org Roam notes, so we'll only use the notes with a specific tag like =Project=.
+通常,您不会希望拉入 *所有* Org Roam 笔记,因此我们只使用具有特定标签(如 =Project=)的笔记。
 
-Here is a snippet that will find all the notes with a specific tag and then set your =org-agenda-list= with the corresponding note files.
+下面是一个代码片段,它将找到具有特定标签的所有笔记,然后使用相应的笔记文件设置您的 =org-agenda-list= 。
 
 #+begin_src emacs-lisp
 
-  ;; The buffer you put this code in must have lexical-binding set to t!
-  ;; See the final configuration at the end for more details.
+ ;; 包含此代码的缓冲区必须将 lexical-binding 设置为 t!
+ ;; 有关更多详细信息,请参阅最终配置。
 
   (defun my/org-roam-filter-by-tag (tag-name)
     (lambda (node)
@@ -107,20 +107,20 @@ Here is a snippet that will find all the notes with a specific tag and then set 
     (interactive)
     (setq org-agenda-files (my/org-roam-list-notes-by-tag "Project")))
 
-  ;; Build the agenda list the first time for the session
+  ;; 首次为会话生成议程列表
   (my/org-roam-refresh-agenda-list)
 
 #+end_src
 
-Check out the Org agenda now by running =M-x org-agenda= and press =a= to see the daily schedule or =d= for the list of all =TODOs= in your project files.
+现在运行 =M-x org-agenda= 查看 org 议程,然后按 =a= 查看每日时间表或按 =d= 查看项目文件中的所有 =TODO= 列表。
 
-For best results, make sure to add the desired tag to new note files as part of your capture template (=Project= in this case).  Just remember to call =my/org-roam-refresh-agenda-list= to refresh the list after creating a new note with that tag!
+为了获得最佳结果,请确保将所需的标签(在本例中为 =Project=)添加到作为捕获模板的一部分的新笔记文件。只记住在使用该标签创建新笔记后调用 =my/org-roam-refresh-agenda-list= 来刷新列表!
 
-*NOTE*: I couldn't find a reliable, efficient way to pull dailies into the agenda yet!  As soon as I do, I might make another video on it.
+*注意*:我还没有找到可靠而有效的方法将日常事项拉入议程!一旦找到,我可能会制作另一个视频。
 
-** TIP: Improving the appearance of notes in the agenda view
+** 提示:改善议程视图中笔记的外观
 
-You may notice that the agenda lines that come from your Org Roam files look a little unattractive due to the timestamped file names.  We can fix this by adding a =category= to the header lines of one of our project files like so:
+您可能会注意到,来自您的 Org Roam 文件的议程行由于带时间戳的文件名而看起来有点难看。我们可以通过在项目文件之一的标题行添加 =category= 来修复此问题,如下所示:
 
 #+begin_src
 
@@ -130,7 +130,7 @@ You may notice that the agenda lines that come from your Org Roam files look a l
 
 #+end_src
 
-Typically you will want to have the category contain the same name as the note so we can update our Project template from [[https://youtu.be/YxgA5z2R08I][Org Roam Episode 2]] to include it automatically:
+通常,您会希望类别包含与笔记相同的名称,以便我们可以更新来自 [[https://youtu.be/YxgA5z2R08I][Org Roam 第2集]] 的 Project 模板以自动包含它:
 
 #+begin_src emacs-lisp
 
@@ -140,35 +140,37 @@ Typically you will want to have the category contain the same name as the note s
 
 #+end_src
 
-* Selecting from a list of notes with a specific tag
+这会将标题和类别设置为新笔记文件的名称,从而在议程视图中产生更清晰的条目。
 
-The =org-roam-node-find= function gives us the ability to filter the list of notes that get displayed for selection.
 
-We can define our own function that shows a selection list for notes that have a specific tag like =Project= which we talked about before.  This can be useful to set up a keybinding to quickly select from a specific set of notes!
+* 从具有特定标签的笔记列表中选择
 
-One added benefit is that we can override the set of capture templates that get used when a new note gets created.
+=org-roam-node-find= 函数给了我们过滤显示用于选择的笔记列表的能力。
 
-This means that we can automatically create a new note with our project capture template if the note doesn't already exist!
+我们可以定义自己的函数,为具有特定标签(如我们之前讨论过的 =Project=)的笔记显示选择列表。这对于设置快速选择特定笔记集的键绑定很有用!
+
+一个额外的好处是我们可以覆盖创建新笔记时使用的捕获模板集。
+
+这意味着如果笔记尚不存在,我们可以自动使用项目捕获模板创建新笔记!
 
 #+begin_src emacs-lisp
 
   (defun my/org-roam-project-finalize-hook ()
-    "Adds the captured project file to `org-agenda-files' if the
-  capture was not aborted."
-    ;; Remove the hook since it was added temporarily
+    "如果捕获未被中止,则将捕获的项目文件添加到`org-agenda-files'中。"
+    ;; 由于临时添加了钩子,所以删除钩子
     (remove-hook 'org-capture-after-finalize-hook #'my/org-roam-project-finalize-hook)
 
-    ;; Add project file to the agenda list if the capture was confirmed
+    ;; 如果确认捕获,则将项目文件添加到议程列表中
     (unless org-note-abort
       (with-current-buffer (org-capture-get :buffer)
         (add-to-list 'org-agenda-files (buffer-file-name)))))
 
   (defun my/org-roam-find-project ()
     (interactive)
-    ;; Add the project file to the agenda after capture is finished
+    ;; 捕获完成后,将项目文件添加到议程中
     (add-hook 'org-capture-after-finalize-hook #'my/org-roam-project-finalize-hook)
 
-    ;; Select a project file to open, creating it if necessary
+    ;; 选择要打开的项目文件,如有必要则创建项目文件
     (org-roam-node-find
      nil
      nil
@@ -176,27 +178,27 @@ This means that we can automatically create a new note with our project capture 
      :templates
      '(("p" "project" plain "* Goals\n\n%?\n\n* Tasks\n\n** TODO Add initial tasks\n\n* Dates\n\n"
         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: Project")
-        :unnarrowed t))))
+        :unnarrowed t))))  
 
   (global-set-key (kbd "C-c n p") #'my/org-roam-find-project)
 
 #+end_src
 
-One useful aspect of this snippet is that the =org-capture-after-finalize-hook= allows us to ensure a new project note is automatically added to the Org agenda by calling the =my/org-roam-project-finalize-hook= function we defined earlier!
+此代码片段的一个有用方面是 =org-capture-after-finalize-hook= 允许我们确保新的项目笔记通过调用我们之前定义的 =my/org-roam-project-finalize-hook= 函数自动添加到 Org 议程中!
 
-* Streamlined custom capture for tasks and notes
+* 简化自定义捕获任务和笔记
 
-Org Roam provides a low-level function called =org-roam-capture-= (yes, the hyphen is there!) which allows you to invoke note capture functionality in a very flexible way.  More information can be found in the Org Roam manual: [[https://www.orgroam.com/manual.html#Extending-the-Capture-System][Extending the Capture System]].
+Org Roam 提供了一个名为 =org-roam-capture-= 的低级函数(是的,有连字符!),允许您以非常灵活的方式调用笔记捕获功能。更多信息可以在 Org Roam 手册中找到:[[https://www.orgroam.com/manual.html#Extending-the-Capture-System][扩展捕获系统]]。
 
-We can use this function to optimize specific parts of our capture workflow!
+我们可以使用此函数来优化捕获工作流程的特定部分!
 
-Here are a couple of ways you might use it:
+这里有一些您可能使用它的方式:
 
-** Keep an inbox of notes and tasks
+** 保留笔记和任务的收件箱
 
-If you want to quickly capture new notes and tasks with a single keybinding into a place that you can review later, we can use =org-roam-capture-= to capture to a single-specific file like =Inbox.org=!
+如果您想使用单个键绑定快速捕获新笔记和任务,以便稍后审查,我们可以使用 =org-roam-capture-= 将其捕获到单个特定文件,如 =Inbox.org=!
 
-Even though this file won't have the timestamped filename, it will still be treated as a node in your Org Roam notes.
+即使此文件不会有时间戳文件名,它也仍然会被视为 Org Roam 笔记中的节点。
 
 #+begin_src emacs-lisp
 
@@ -207,23 +209,23 @@ Even though this file won't have the timestamped filename, it will still be trea
                                     :if-new (file+head "Inbox.org" "#+title: Inbox\n")))))
 
   (global-set-key (kbd "C-c n b") #'my/org-roam-capture-inbox)
-  
+
 #+end_src
 
-** Capture a task directly into a specific project
+** 直接捕获任务到特定项目
 
-If you've set up project note files like we mentioned earlier, you can set up a capture template that allows you to quickly capture tasks for any project.
+如果您设置了之前提到的项目笔记文件,您可以设置一个捕获模板,让您快速为任何项目捕获任务。
 
-Much like the example before, we can either select a project that exists or automatically create a project note when it doesn't exist yet!
+与前面的示例一样,我们可以选择已存在的项目,或者在项目笔记不存在时自动创建项目笔记!
 
 #+begin_src emacs-lisp
 
   (defun my/org-roam-capture-task ()
     (interactive)
-    ;; Add the project file to the agenda after capture is finished
+    ;; 捕获完成后,将项目文件添加到议程中
     (add-hook 'org-capture-after-finalize-hook #'my/org-roam-project-finalize-hook)
 
-    ;; Capture the new task, creating the project file if necessary
+    ;; 如有必要,捕获新任务并创建项目文件
     (org-roam-capture- :node (org-roam-node-read
                               nil
                               (my/org-roam-filter-by-tag "Project"))
@@ -231,28 +233,26 @@ Much like the example before, we can either select a project that exists or auto
                                      :if-new (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org"
                                                             "#+title: ${title}\n#+category: ${title}\n#+filetags: Project"
                                                             ("Tasks"))))))
-
   (global-set-key (kbd "C-c n t") #'my/org-roam-capture-task)
-
 #+end_src
 
-One important thing to point out here is that we're using =file+head+olp= in the capture template so that we can drop the new task entry under the "Tasks" heading.
+要注意的一点是,我们在捕获模板中使用 =file+head+olp=,这样我们就可以将新任务条目放在"Tasks"标题下。
 
-We're also using the =my/org-roam-project-finalize-hook= function we defined earlier so that any new project gets added to the Org agenda!
+我们还使用之前定义的 =my/org-roam-project-finalize-hook= 函数,以便任何新项目都会被添加到 Org 议程中!
 
-* Automatically copy (or move) completed tasks to dailies
+* 自动将完成的任务复制(或移动)到每日文件
 
-One interesting use for daily files is to keep a log of tasks that were completed on that particular day.  What if we could automatically copy completed tasks in *any* Org Mode file to today's daily file?
+每日文件一个有趣的用途是保留完成任务的记录。如果我们可以自动将任何 Org 模式文件中的完成任务复制到当天的每日文件,那会怎么样?
 
-We can do this by adding some custom code!
+我们可以通过添加一些自定义代码来实现这一目的!
 
-The following snippet sets up a hook for all Org task state changes and then copies the completed (=DONE=) entry to today's note file:
+以下代码段为所有 Org 任务状态更改设置了一个钩子,然后将完成的(=DONE=)条目复制到当天的笔记文件:
 
 #+begin_src emacs-lisp
 
   (defun my/org-roam-copy-todo-to-today ()
     (interactive)
-    (let ((org-refile-keep t) ;; Set this to nil to delete the original!
+    (let ((org-refile-keep t) ;; 将此设置为 nil 以删除原件!
           (org-roam-dailies-capture-templates
             '(("t" "tasks" entry "%?"
                :if-new (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n" ("Tasks")))))
@@ -264,7 +264,7 @@ The following snippet sets up a hook for all Org task state changes and then cop
         (setq today-file (buffer-file-name))
         (setq pos (point)))
 
-      ;; Only refile if the target file is different than the current file
+      ;; 仅在目标文件与当前文件不同时重新归档
       (unless (equal (file-truename today-file)
                      (file-truename (buffer-file-name)))
         (org-refile nil nil (list "Tasks" today-file nil pos)))))
@@ -276,21 +276,21 @@ The following snippet sets up a hook for all Org task state changes and then cop
 
 #+end_src
 
-If you want to move the completed task instead, set =org-refile-keep= in this code to =nil=!
+如果要移动完成的任务而不是复制它,请在此代码中将 =org-refile-keep= 设置为 =nil=!
 
-This code is a little more advanced, so consult the next section to learn more about how it works!
+此代码较高级,因此请参阅下一节以了解其工作原理!
 
-** How it works
+** 工作原理
 
-To be notified on changes to =TODO= item states, we add the =my/org-roam-copy-todo-to-today= function to the =org-after-todo-state-change-hook= list.
+为了在 =TODO= 项状态更改时收到通知,我们将 =my/org-roam-copy-todo-to-today= 函数添加到 =org-after-todo-state-change-hook= 列表中。
 
-When the user completes a task, this function will set up a "daily" temporary capture template which will jump to a heading called "Tasks" in the file for today's date.  This is wrapped in a =save-window-excursion= call to ensure that the capture job won't change your window configuration and current buffer.
+当用户完成一个任务时,此函数将设置一个"日常"临时捕获模板,它将跳转到当天日期文件中的"Tasks"标题下。这被包装在 =save-window-excursion= 调用中,以确保捕获作业不会更改您的窗口配置和当前缓冲区。
 
-If the file being captured to is not the file for the current date, we call =org-refile= to copy (or move if =org-refile-keep= is =nil=) the item to the new location!  This avoids moving a completed task back into the file it already lives in (this will raise an error!)
+如果捕获目标文件不是当前日期的文件,我们调用 =org-refile= 以将项目复制(或在 =org-refile-keep= 为 =nil= 时移动)到新位置!这避免了将完成的任务移动回它已经存在的文件中(这会引发错误!)。
 
-* The final configuration
+* 最终配置
 
-*Very important note!*  Make sure that the configuration file where you use this code has the following line at the very top!
+*非常重要的注意事项!*  确保使用此代码的配置文件顶部有以下行!
 
 #+begin_src emacs-lisp
 
@@ -298,7 +298,9 @@ If the file being captured to is not the file for the current date, we call =org
 
 #+end_src
 
-This line enables lexical binding which ensures that the =my/org-roam-filter-by-tag= function works correctly.
+这可以确保在评估此配置之前加载 Org Roam,这对我们编写的自定义代码正常工作很重要。
+
+此行启用词法绑定,可以确保 =my/org-roam-filter-by-tag= 函数正确工作。
 
 #+begin_src emacs-lisp
 

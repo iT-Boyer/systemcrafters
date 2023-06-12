@@ -1,9 +1,9 @@
-<!-- Generated from 83cf183 on 2023-06-12 @ 08:55 with Emacs 27.2 (Org mode 9.4.4) -->
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://systemcrafters.net/rss/news.xml"/><link rel="stylesheet" href="https://systemcrafters.net/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://systemcrafters.net/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://systemcrafters.net/css/code.css"/><link rel="stylesheet" href="https://systemcrafters.net/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>Introduction to Emacs Lisp - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://systemcrafters.net/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/">Home</a> <a class="nav-link" href="/guides/">Guides</a> <a class="nav-link" href="/news/">News</a> <a class="nav-link" href="/community/">Community</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/how-to-help/">How to Help</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">Introduction to Emacs Lisp</h1><p class="site-post-meta"></p><div id="content"><p>
+<!-- Generated from 5103a0b on 2023-06-12 @ 09:14 with Emacs 27.2 (Org mode 9.4.4) -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>Introduction to Emacs Lisp - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/">Home</a> <a class="nav-link" href="/guides/">Guides</a> <a class="nav-link" href="/news/">News</a> <a class="nav-link" href="/community/">Community</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/how-to-help/">How to Help</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">Introduction to Emacs Lisp</h1><p class="site-post-meta"></p><div id="content"><p>
 <div class="video">  <iframe src="https://www.youtube.com/embed/RQK_DaaX34Q" allowfullscreen></iframe></div>
 </p>
 
-<h2><a id="我们将涵盖什么" class="anchor" href="#我们将涵盖什么">¶</a>我们将涵盖什么?</h2><div class="outline-text-2" id="text-org8331666">
+<h2><a id="我们将涵盖什么" class="anchor" href="#我们将涵盖什么">¶</a>我们将涵盖什么?</h2><div class="outline-text-2" id="text-orgcf54cb3">
 <p>
 这是一个实用系列!
 </p>
@@ -27,7 +27,7 @@ If you find this guide helpful, please consider supporting System Crafters via t
 </div>
 </div>
 
-<h2><a id="这个系列面向谁" class="anchor" href="#这个系列面向谁">¶</a>这个系列面向谁?</h2><div class="outline-text-2" id="text-org3fe464c">
+<h2><a id="这个系列面向谁" class="anchor" href="#这个系列面向谁">¶</a>这个系列面向谁?</h2><div class="outline-text-2" id="text-orgfdad2b8">
 <ul class="org-ul">
 <li>不仅仅是面向程序员!</li>
 <li>每个人都应该有机会享受 Emacs hack</li>
@@ -38,7 +38,7 @@ If you find this guide helpful, please consider supporting System Crafters via t
 </p>
 </div>
 
-<h2><a id="lisp-是什么" class="anchor" href="#lisp-是什么">¶</a>Lisp 是什么?</h2><div class="outline-text-2" id="text-org8d40b7b">
+<h2><a id="lisp-是什么" class="anchor" href="#lisp-是什么">¶</a>Lisp 是什么?</h2><div class="outline-text-2" id="text-org7ef15ed">
 <ul class="org-ul">
 <li>那门语言有大量令人讨厌的多余括号</li>
 <li>一门基于交互性理念的语言和环境</li>
@@ -47,7 +47,7 @@ If you find this guide helpful, please consider supporting System Crafters via t
 </ul>
 </div>
 
-<h2><a id="emacs-lisp" class="anchor" href="#emacs-lisp">¶</a>Emacs Lisp</h2><div class="outline-text-2" id="text-org309e7ea">
+<h2><a id="emacs-lisp" class="anchor" href="#emacs-lisp">¶</a>Emacs Lisp</h2><div class="outline-text-2" id="text-orgf3d14dd">
 <ul class="org-ul">
 <li>Emacs 配置和扩展的 Lisp 方言</li>
 <li>Emacs 内置的大部分功能都是用它编写的!</li>
@@ -60,7 +60,7 @@ If you find this guide helpful, please consider supporting System Crafters via t
 </p>
 </div>
 
-<h2><a id="lisp-语法" class="anchor" href="#lisp-语法">¶</a>Lisp 语法</h2><div class="outline-text-2" id="text-orgc7c2043">
+<h2><a id="lisp-语法" class="anchor" href="#lisp-语法">¶</a>Lisp 语法</h2><div class="outline-text-2" id="text-orgb0a9322">
 <p>
 Lisp 的魅力来自于其语法的简单性!
 </p>
@@ -86,13 +86,13 @@ Lisp 语法主要由列表(lists)、符号(Symbols)和值(values)组成。
 </p>
 </div>
 
-<h2><a id="值-values-or-ldquoobjectsrdquo" class="anchor" href="#值-values-or-ldquoobjectsrdquo">¶</a>值 Values (or &ldquo;Objects&rdquo;)</h2><div class="outline-text-2" id="text-org6aab979">
+<h2><a id="值-values-or-ldquoobjectsrdquo" class="anchor" href="#值-values-or-ldquoobjectsrdquo">¶</a>值 Values (or &ldquo;Objects&rdquo;)</h2><div class="outline-text-2" id="text-org1f4c680">
 <p>
 任何值或对象都有一个类型。它还有一种文本表达式,这种表示方式可能是“可读的”,也可能不是“可读的”!
 </p>
 </div>
 
-<h3><a id="emacs-lisp-有许多内置类型" class="anchor" href="#emacs-lisp-有许多内置类型">¶</a>Emacs Lisp 有许多内置类型</h3><div class="outline-text-3" id="text-org7935ac7">
+<h3><a id="emacs-lisp-有许多内置类型" class="anchor" href="#emacs-lisp-有许多内置类型">¶</a>Emacs Lisp 有许多内置类型</h3><div class="outline-text-3" id="text-org1d1d00d">
 <ul class="org-ul">
 <li>数值:整数、浮点数</li>
 <li>字符串:在双引号中</li>
@@ -138,7 +138,7 @@ Lisp 语法主要由列表(lists)、符号(Symbols)和值(values)组成。
 </p>
 </div>
 
-<h3><a id="emacs-types" class="anchor" href="#emacs-types">¶</a>Emacs Types</h3><div class="outline-text-3" id="text-orgc78b33b">
+<h3><a id="emacs-types" class="anchor" href="#emacs-types">¶</a>Emacs Types</h3><div class="outline-text-3" id="text-org2b9dbca">
 <p>
 Emacs Lisp 还有许多专用于 Emacs 的类型,其中大多数类型没有代码表达式:
 </p>
@@ -234,13 +234,13 @@ Emacs Lisp 还有许多专用于 Emacs 的类型,其中大多数类型没有代�
 </div>
 
 
-<h2><a id="forms-和运算" class="anchor" href="#forms-和运算">¶</a>Forms 和运算</h2><div class="outline-text-2" id="text-orgfa76323">
+<h2><a id="forms-和运算" class="anchor" href="#forms-和运算">¶</a>Forms 和运算</h2><div class="outline-text-2" id="text-org03de1e3">
 <p>
 “Form”是任何可以求值的 lisp 对象。
 </p>
 </div>
 
-<h3><a id="评估的工作原理" class="anchor" href="#评估的工作原理">¶</a>评估的工作原理</h3><div class="outline-text-3" id="text-org5911b9c">
+<h3><a id="评估的工作原理" class="anchor" href="#评估的工作原理">¶</a>评估的工作原理</h3><div class="outline-text-3" id="text-org275058d">
 <p>
 当您在 Emacs 中按下 Enter 键或调用 <code>eval-defun</code> 等命令时,就会发生评估。
 </p>
@@ -275,7 +275,7 @@ Emacs Lisp 还有许多专用于 Emacs 的类型,其中大多数类型没有代�
 </p>
 </div>
 
-<h4><a id="对不同类型的对象评估的工作方式有所不同" class="anchor" href="#对不同类型的对象评估的工作方式有所不同">¶</a>对不同类型的对象,评估的工作方式有所不同:</h4><div class="outline-text-4" id="text-org4860db6">
+<h4><a id="对不同类型的对象评估的工作方式有所不同" class="anchor" href="#对不同类型的对象评估的工作方式有所不同">¶</a>对不同类型的对象,评估的工作方式有所不同:</h4><div class="outline-text-4" id="text-org8ca5243">
 <ul class="org-ul">
 <li>列表:每个元素都会递归地评估</li>
 <li>符号:会查找其绑定的值</li>
@@ -338,7 +338,7 @@ Emacs Lisp 还有许多专用于 Emacs 的类型,其中大多数类型没有代�
 </p>
 </div>
 
-<h3><a id="the-ldquoenvironmentrdquo" class="anchor" href="#the-ldquoenvironmentrdquo">¶</a>The &ldquo;Environment&rdquo;</h3><div class="outline-text-3" id="text-org431f078">
+<h3><a id="the-ldquoenvironmentrdquo" class="anchor" href="#the-ldquoenvironmentrdquo">¶</a>The &ldquo;Environment&rdquo;</h3><div class="outline-text-3" id="text-org06588d3">
 <p>
 Everything is evaluated in terms of Emacs Lisp&rsquo;s global environment!
 </p>
@@ -349,7 +349,7 @@ Cons: your environment might get &ldquo;dirty&rdquo; over time in your Emacs ses
 </p>
 </div>
 
-<h3><a id="环境" class="anchor" href="#环境">¶</a>“环境”</h3><div class="outline-text-3" id="text-orga25d00d">
+<h3><a id="环境" class="anchor" href="#环境">¶</a>“环境”</h3><div class="outline-text-3" id="text-org754ec76">
 <p>
 在 Emacs Lisp 中,一切都是相对于全局环境进行评估的!
 </p>
@@ -405,7 +405,7 @@ Cons: your environment might get &ldquo;dirty&rdquo; over time in your Emacs ses
 </p>
 </div>
 
-<h3><a id="expressions" class="anchor" href="#expressions">¶</a>Expressions</h3><div class="outline-text-3" id="text-org52077f2">
+<h3><a id="expressions" class="anchor" href="#expressions">¶</a>Expressions</h3><div class="outline-text-3" id="text-orgfbe43dc">
 <p>
 Lisp 是一门基于表达式的语言,几乎所有的表格都返回一个值。
 </p>
@@ -447,7 +447,7 @@ Lisp 是一门基于表达式的语言,几乎所有的表格都返回一个值�
 </p>
 </div>
 
-<h2><a id="symbols" class="anchor" href="#symbols">¶</a>Symbols</h2><div class="outline-text-2" id="text-org30c6c4b">
+<h2><a id="symbols" class="anchor" href="#symbols">¶</a>Symbols</h2><div class="outline-text-2" id="text-orgc4f460a">
 <p>
 符号也是一种对象类型,但它不是自我评估的!
 </p>
@@ -520,7 +520,7 @@ buffer-file-name</pre>
 </p>
 </div>
 
-<h2><a id="中序-vs-前序" class="anchor" href="#中序-vs-前序">¶</a>中序 VS 前序</h2><div class="outline-text-2" id="text-orgf1965e0">
+<h2><a id="中序-vs-前序" class="anchor" href="#中序-vs-前序">¶</a>中序 VS 前序</h2><div class="outline-text-2" id="text-orga9af543">
 <p>
 Lisp 表达式使用“prefix”前缀表示法:
 </p>
@@ -582,7 +582,7 @@ Lisp 表达式使用“prefix”前缀表示法:
 </p>
 </div>
 
-<h2><a id="练习" class="anchor" href="#练习">¶</a>练习</h2><div class="outline-text-2" id="text-org1bcc128">
+<h2><a id="练习" class="anchor" href="#练习">¶</a>练习</h2><div class="outline-text-2" id="text-org013cc4d">
 <p>
 打开 <code>*scratch*</code> 缓冲区,尝试编写简单的表达式。在每个表达式的末尾使用 <code>C-x C-e</code> (<code>eval-last-sexp</code>)来对其求值。
 </p>
@@ -655,4 +655,4 @@ Lisp 表达式使用“prefix”前缀表示法:
 我希望这个练习能帮助您掌握表达式、函数、变量和其他 Emacs Lisp 概念。不要犹豫,在练习中随意提问 - 我很乐意提供更多解释和示例。
 </p>
 </div>
-</div></div><div class="list-form center"><div class="list-form-title">Subscribe to the System Crafters Newsletter!</div><form method="POST" action="https://www.simplelists.com/subscribe.php"><input type="hidden" name="format" value="text"/><input type="hidden" name="action" value="subscribe"/><input type="hidden" name="list" value="news@lists.systemcrafters.net"/><div class="list-form-message">Stay up to date with the latest System Crafters news and updates!  Read the <a href="/newsletter/">Newsletter</a> page for more information.</div><div class="row"><div class="column"><div class="row center list-form-label">Name (optional)</div><div class="row"><input type="text" name="name"/></div></div><div class="column"><div class="row center list-form-label">Email Address</div><div class="row"><input type="text" name="email"/></div></div></div><div><input type="submit" value="Subscribe!"/></div></form></div></div><footer class="site-footer"><div class="container"><div class="row"><div class="column"><p><a href="https://systemcrafters.net/privacy-policy/">Privacy Policy</a> · <a href="https://systemcrafters.net/credits/">Credits</a> · <a href="https://systemcrafters.net/rss/">RSS Feeds</a> · <a rel="me" href="https://fosstodon.org/@daviwil">Fediverse</a></p><p>© 2021-2023 System Crafters LLC</p></div><div class="column align-right"><p><a href="https://codeberg.org/SystemCrafters/systemcrafters.net"><img src="https://systemcrafters.net/img/codeberg.png" style="width: 120px" alt="Contribute on Codeberg"/></a></p></div></div></div></footer></body></html>
+</div></div><div class="list-form center"><div class="list-form-title">Subscribe to the System Crafters Newsletter!</div><form method="POST" action="https://www.simplelists.com/subscribe.php"><input type="hidden" name="format" value="text"/><input type="hidden" name="action" value="subscribe"/><input type="hidden" name="list" value="news@lists.systemcrafters.net"/><div class="list-form-message">Stay up to date with the latest System Crafters news and updates!  Read the <a href="/newsletter/">Newsletter</a> page for more information.</div><div class="row"><div class="column"><div class="row center list-form-label">Name (optional)</div><div class="row"><input type="text" name="name"/></div></div><div class="column"><div class="row center list-form-label">Email Address</div><div class="row"><input type="text" name="email"/></div></div></div><div><input type="submit" value="Subscribe!"/></div></form></div></div><footer class="site-footer"><div class="container"><div class="row"><div class="column"><p><a href="https://it-boyer.github.io/systemcrafters/privacy-policy/">Privacy Policy</a> · <a href="https://it-boyer.github.io/systemcrafters/credits/">Credits</a> · <a href="https://it-boyer.github.io/systemcrafters/rss/">RSS Feeds</a> · <a rel="me" href="https://fosstodon.org/@daviwil">Fediverse</a></p><p>© 2021-2023 System Crafters LLC</p></div><div class="column align-right"><p><a href="https://codeberg.org/SystemCrafters/systemcrafters.net"><img src="https://it-boyer.github.io/systemcrafters/img/codeberg.png" style="width: 120px" alt="Contribute on Codeberg"/></a></p></div></div></div></footer></body></html>

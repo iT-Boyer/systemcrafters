@@ -1,0 +1,658 @@
+<!-- Generated from 83cf183 on 2023-06-12 @ 08:55 with Emacs 27.2 (Org mode 9.4.4) -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://systemcrafters.net/rss/news.xml"/><link rel="stylesheet" href="https://systemcrafters.net/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://systemcrafters.net/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://systemcrafters.net/css/code.css"/><link rel="stylesheet" href="https://systemcrafters.net/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>Introduction to Emacs Lisp - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://systemcrafters.net/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/">Home</a> <a class="nav-link" href="/guides/">Guides</a> <a class="nav-link" href="/news/">News</a> <a class="nav-link" href="/community/">Community</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/how-to-help/">How to Help</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">Introduction to Emacs Lisp</h1><p class="site-post-meta"></p><div id="content"><p>
+<div class="video">  <iframe src="https://www.youtube.com/embed/RQK_DaaX34Q" allowfullscreen></iframe></div>
+</p>
+
+<h2><a id="我们将涵盖什么" class="anchor" href="#我们将涵盖什么">¶</a>我们将涵盖什么?</h2><div class="outline-text-2" id="text-org8331666">
+<p>
+这是一个实用系列!
+</p>
+
+<ul class="org-ul">
+<li>Emacs Lisp 基础知识</li>
+<li>关于函数和变量的全部内容</li>
+<li>操纵 Emacs</li>
+<li>处理系统</li>
+<li>创建和使用可扩展性点</li>
+<li>编写宏</li>
+<li>发布到MELPA</li>
+</ul>
+
+<p>
+我们将至少以一个新包为例进行工作!
+</p>
+
+<div class="cta center">
+If you find this guide helpful, please consider supporting System Crafters via the links on the <a href="/how-to-help/#support-my-work">How to Help</a> page!
+</div>
+</div>
+
+<h2><a id="这个系列面向谁" class="anchor" href="#这个系列面向谁">¶</a>这个系列面向谁?</h2><div class="outline-text-2" id="text-org3fe464c">
+<ul class="org-ul">
+<li>不仅仅是面向程序员!</li>
+<li>每个人都应该有机会享受 Emacs hack</li>
+</ul>
+
+<p>
+如果您对 Lisp 很熟悉,不要担心如果我跳过某些概念!
+</p>
+</div>
+
+<h2><a id="lisp-是什么" class="anchor" href="#lisp-是什么">¶</a>Lisp 是什么?</h2><div class="outline-text-2" id="text-org8d40b7b">
+<ul class="org-ul">
+<li>那门语言有大量令人讨厌的多余括号</li>
+<li>一门基于交互性理念的语言和环境</li>
+<li>语法可以定义新的语言结构</li>
+<li>最终的黑客语言!</li>
+</ul>
+</div>
+
+<h2><a id="emacs-lisp" class="anchor" href="#emacs-lisp">¶</a>Emacs Lisp</h2><div class="outline-text-2" id="text-org309e7ea">
+<ul class="org-ul">
+<li>Emacs 配置和扩展的 Lisp 方言</li>
+<li>Emacs 内置的大部分功能都是用它编写的!</li>
+<li>具有专注于发现性和可扩展性的核心特性</li>
+<li>用于许多 Emacs 专有类型(缓冲区、窗口等)的API和数据类型</li>
+</ul>
+
+<p>
+我们将在此视频中关注核心概念!
+</p>
+</div>
+
+<h2><a id="lisp-语法" class="anchor" href="#lisp-语法">¶</a>Lisp 语法</h2><div class="outline-text-2" id="text-orgc7c2043">
+<p>
+Lisp 的魅力来自于其语法的简单性!
+</p>
+
+<p>
+Lisp 语法主要由列表(lists)、符号(Symbols)和值(values)组成。
+</p>
+
+<pre>(<span class="org-keyword">defun</span> <span class="org-function-name">the-meaning-of-life</span> (answer)
+  (message <span class="org-string">"The answer is %s"</span> answer))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#21015;&#34920;&#20013;&#30340;&#25442;&#34892;&#31526;&#21644;&#31354;&#26684;&#21487;&#20197;&#38543;&#22788;&#28155;&#21152;</span>
+(list 1 2 3
+      4 5 6
+      7 8 9)</pre>
+
+<p>
+代码也可以被视为数据!
+</p>
+
+<p>
+您不应害怕编辑带有括号的代码,因为有相关包可以解决这个问题:)
+</p>
+</div>
+
+<h2><a id="值-values-or-ldquoobjectsrdquo" class="anchor" href="#值-values-or-ldquoobjectsrdquo">¶</a>值 Values (or &ldquo;Objects&rdquo;)</h2><div class="outline-text-2" id="text-org6aab979">
+<p>
+任何值或对象都有一个类型。它还有一种文本表达式,这种表示方式可能是“可读的”,也可能不是“可读的”!
+</p>
+</div>
+
+<h3><a id="emacs-lisp-有许多内置类型" class="anchor" href="#emacs-lisp-有许多内置类型">¶</a>Emacs Lisp 有许多内置类型</h3><div class="outline-text-3" id="text-org7935ac7">
+<ul class="org-ul">
+<li>数值:整数、浮点数</li>
+<li>字符串:在双引号中</li>
+<li>符号:以冒号开头</li>
+<li>列表:以括号表示,包含其他 Emacs Lisp 对象</li>
+<li>向量:类似列表但使用方括号</li>
+<li>布尔值:t 和 nil</li>
+<li>函数:可以调用的对象</li>
+<li>宏:用来生成代码的函数</li>
+<li>关键字:以冒号开头的符号,用作参数</li>
+</ul>
+
+<p>
+例如:
+</p>
+<pre><span class="linenr">1: </span>42      <span class="org-comment-delimiter">; </span><span class="org-comment">&#25972;&#25968;(&#25968;&#20540;)</span>
+<span class="linenr">2: </span><span class="org-string">"Hello"</span> <span class="org-comment-delimiter">; </span><span class="org-comment">&#23383;&#31526;&#20018;</span>
+<span class="linenr">3: </span><span class="org-builtin">:symbol</span> <span class="org-comment-delimiter">; </span><span class="org-comment">&#31526;&#21495;</span>
+<span class="linenr">4: </span>(1 2 3) <span class="org-comment-delimiter">; </span><span class="org-comment">&#21015;&#34920;</span>
+<span class="linenr">5: </span>[1 2 3] <span class="org-comment-delimiter">; </span><span class="org-comment">&#21521;&#37327;</span>
+<span class="linenr">6: </span>t       <span class="org-comment-delimiter">; </span><span class="org-comment">&#30495;&#20540;(&#24067;&#23572;&#20540;)</span>
+<span class="linenr">7: </span>nil     <span class="org-comment-delimiter">; </span><span class="org-comment">&#20551;&#20540;(&#24067;&#23572;&#20540;)</span>
+<span class="linenr">8: </span>(<span class="org-keyword">lambda</span> () (message <span class="org-string">"Hello!"</span>)) <span class="org-comment-delimiter">; </span><span class="org-comment">&#20989;&#25968;</span></pre>
+
+<p>
+并非所有这些值都具有“可读”的文本表示。例如,函数和宏的实现细节通常隐藏在模糊表示之下。这样可以抽象语义,而不是表示方式。
+</p>
+
+<p>
+然而,Emacs Lisp 还提供了一种机制,允许您查看任何对象的底层表示 - 这就是`macroexpand-all`。使用它,您可以查看函数、宏和其他对象的“展开”表示。
+</p>
+
+<p>
+所以虽然不是所有的 Emacs Lisp 值都可读,但语言本身确实提供了方法来理解它们的表示和内部构造。这使其成为一门非常透明的语言!
+</p>
+
+<p>
+总之,理解 Emacs Lisp 中的类型和值是掌握语言的重要一步。我希望这个概述能给您一个很好的起点。请随时提出任何问题!
+</p>
+
+<p>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Programming-Types.html#Programming-Types">https://www.gnu.org/software/emacs/manual/html_node/elisp/Programming-Types.html#Programming-Types</a>
+</p>
+</div>
+
+<h3><a id="emacs-types" class="anchor" href="#emacs-types">¶</a>Emacs Types</h3><div class="outline-text-3" id="text-orgc78b33b">
+<p>
+Emacs Lisp 还有许多专用于 Emacs 的类型,其中大多数类型没有代码表达式:
+</p>
+
+<ul class="org-ul">
+<li>缓冲区:文件/文本的内存表示</li>
+<li>窗口:Emacs 屏幕上的视图</li>
+<li>布局:窗口的排列方式</li>
+<li>键绑定:键与命令的映射</li>
+<li>面板:特殊的显示区域</li>
+<li>监视器:用于跟踪变量/缓冲区的工具</li>
+<li>日志缓冲区:用于消息/日志的特殊缓冲区</li>
+<li>Frames</li>
+<li>Threads</li>
+<li>等等</li>
+</ul>
+
+<p>
+使用这些 Emacs 专用类型,我们可以影响 Emacs 界面：
+</p>
+<pre><span class="org-comment-delimiter">;; </span><span class="org-comment">Get the previous buffer and switch to it</span>
+(switch-to-buffer (other-buffer))</pre>
+
+<p>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Editing-Types.html#Editing-Types">https://www.gnu.org/software/emacs/manual/html_node/elisp/Editing-Types.html#Editing-Types</a>
+例如:
+</p>
+
+<ul class="org-ul">
+<li>我们可以创建、删除、重命名和修改缓冲区来打开/关闭文件并编辑文本。</li>
+<li>我们可以创建、删除和排列窗口来组织我们的屏幕布局。</li>
+<li>我们可以定义键绑定来为键盘快捷键分配命令。</li>
+<li>我们可以使用面板显示定制数据和接口。</li>
+<li>我们可以使用日志缓冲区在 Emacs 中显示消息和其他信息。</li>
+</ul>
+
+<p>
+等等。
+</p>
+
+<p>
+所以虽然我们无法直接访问这些类型的底层表示,但我们可以充分利用它们在 Emacs Lisp 层公开的接口来构建界面和用户体验。
+</p>
+
+<p>
+举个例子,考虑一个包,它在启动时打开4个窗口:
+</p>
+
+<ul class="org-ul">
+<li>一个编辑文件</li>
+<li>一个显示文档</li>
+<li>一个运行REPL</li>
+<li>一个显示日志消息</li>
+</ul>
+
+<p>
+它还可以:
+</p>
+
+<ul class="org-ul">
+<li>为一些键绑定命令来导航这些窗口</li>
+<li>在日志窗口中打印状态消息</li>
+<li>当文件保存时刷新文档窗口</li>
+</ul>
+
+<p>
+等等。
+</p>
+
+<p>
+所以尽管这个包无法访问窗口、缓冲区、面板和键绑定的内部构造,它仍然可以构建一个定制的多窗口界面与复杂的用户交互。
+</p>
+
+<p>
+这些类型使用 Emacs C核心库定义和实现。 Emacs Lisp 层只暴露它们的接口,以供配置和扩展 Emacs。
+</p>
+
+<p>
+举个例子,缓冲区是一种非常重要的类型,用于表示打开的文件或文本。但是在 Emacs Lisp 中,一个缓冲区只是一个对象 - 您可以获取其属性,将其作为参数传递给函数,等等。实际的数据和行为是在 Emacs C层实现的。
+</p>
+
+<p>
+所以对于这些类型,我们通常只能使用和操纵它们在 Emacs Lisp 层公开的接口。我们无法访问或更改它们的底层表示。
+</p>
+
+<p>
+这为 Emacs Lisp 带来了一定的抽象,同时也限制了我们对 Emacs 核心的访问。但是,公开的接口通常已经足够丰富,可以实现非常强大和复杂的自定义功能!
+</p>
+
+<p>
+所以不要太担心这些类型缺乏代码表示 - 您可以通过 Emacs Lisp 层与它们进行充分交互,这就足够了。如果确实需要更底层的访问,则需要编写C代码和 Emacs 模块来扩展核心。
+</p>
+</div>
+
+
+<h2><a id="forms-和运算" class="anchor" href="#forms-和运算">¶</a>Forms 和运算</h2><div class="outline-text-2" id="text-orgfa76323">
+<p>
+“Form”是任何可以求值的 lisp 对象。
+</p>
+</div>
+
+<h3><a id="评估的工作原理" class="anchor" href="#评估的工作原理">¶</a>评估的工作原理</h3><div class="outline-text-3" id="text-org5911b9c">
+<p>
+当您在 Emacs 中按下 Enter 键或调用 <code>eval-defun</code> 等命令时,就会发生评估。
+</p>
+
+<p>
+评估的工作原理如下:
+</p>
+
+<ol class="org-ol">
+<li>Emacs 会找出当前的“表格” - 这可能是:
+
+<ul class="org-ul">
+<li>您刚刚输入的表达式</li>
+<li>函数内的表达式</li>
+<li>让我们假设它是 <code>(+ 1 2)</code></li>
+</ul></li>
+
+<li>Emacs 会调用 Lisp 求值器来对表格求值。它会检查表格的第一个元素, 在这种情况下是符号 <code>+</code> 。</li>
+<li>Emacs查找 <code>+</code> 的定义,并调用它。由于 <code>+</code> 是一个内置函数,所以它执行加法运算。</li>
+<li><code>+</code> 函数对其参数 <code>1</code> 和 <code>2</code> 进行求值,得到两个数值。</li>
+<li><code>+</code> 函数将这些数值相加,得出结果 <code>3</code> 。</li>
+<li>这个结果 <code>3</code> 成为整个表格 <code>(+ 1 2)</code> 的值。它被“返回”给调用方。</li>
+<li>如果这表格是来自REPL或函数,那么结果会打印在 Echo Area 中。如果来自键绑定,则可能会影响 Emacs。</li>
+</ol>
+
+<p>
+所以总的来说,评估通过查找表格中的每个元素的定义并递归地对其求值来工作。它会一直重复此过程,直到得到一个结果值。
+</p>
+
+<p>
+这意味着表格可以包含其他表格,并且一切都可以互相嵌套 - 这使 Lisp 成为一门非常表达的语言,可以表示复杂的概念。
+</p>
+</div>
+
+<h4><a id="对不同类型的对象评估的工作方式有所不同" class="anchor" href="#对不同类型的对象评估的工作方式有所不同">¶</a>对不同类型的对象,评估的工作方式有所不同:</h4><div class="outline-text-4" id="text-org4860db6">
+<ul class="org-ul">
+<li>列表:每个元素都会递归地评估</li>
+<li>符号:会查找其绑定的值</li>
+<li>所有其他类型的对象:通常是自我评估的,意味着它们返回自己的值</li>
+</ul>
+
+<p>
+某些对象是<a href="https://www.gnu.org/%3Eare/emacs/manual/html_node/elisp/Self_002dEvaluating-Forms.html#Self_002dEvaluating-Forms">自我评估的</a>,意味着它们返回其自己的值:
+</p>
+
+<pre><span class="linenr"> 1: </span><span class="org-comment-delimiter">;; </span><span class="org-comment">Primitives are usually self-evaluating</span>
+<span class="linenr"> 2: </span>42      <span class="org-comment-delimiter">; </span><span class="org-comment">&#33258;&#25105;&#35780;&#20272;&#30340; - &#36820;&#22238;42</span>
+<span class="linenr"> 3: </span><span class="org-string">"hello"</span> <span class="org-comment-delimiter">; </span><span class="org-comment">&#33258;&#25105;&#35780;&#20272;&#30340; - &#36820;&#22238;"hello"</span>
+<span class="linenr"> 4: </span>[1 2 (+ 1 2)]
+<span class="linenr"> 5: </span>
+<span class="linenr"> 6: </span>'(1 2 3) <span class="org-comment-delimiter">; </span><span class="org-comment">&#38750;&#33258;&#25105;&#35780;&#20272;&#30340; - &#35780;&#20272;&#27599;&#20010;&#20803;&#32032;</span>
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span class="org-comment-delimiter">;; </span><span class="org-comment">Not self-evaluating!</span>
+<span class="linenr"> 9: </span>buffer-file-name
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span class="org-comment-delimiter">;; </span><span class="org-comment">Evaluates a function!</span>
+<span class="linenr">12: </span>(+ 300 11)
+<span class="linenr">13: </span>
+<span class="linenr">14: </span>(300 100)
+<span class="linenr">15: </span>
+<span class="linenr">16: </span><span class="org-comment-delimiter">;; </span><span class="org-comment">Some representations can't be evaluated!</span>
+<span class="linenr">17: </span>#&lt;buffer Emacs-Lisp-01.org&gt;
+<span class="linenr">18: </span>
+<span class="linenr">19: </span></pre>
+
+<p>
+所以,更具体地:
+</p>
+
+<ul class="org-ul">
+<li>列表:递归评估每个元素,最终返回最后一个元素的值。</li>
+<li>符号:查找其值并返回它。如果未绑定,则引发错误。</li>
+<li>数值/字符串/向量/布尔值:自我评估的,返回自身。</li>
+<li>函数:调用该函数并返回其返回值。</li>
+</ul>
+
+<p>
+而对于那些没有代码表示的 Emacs 类型(如缓冲区、窗口等),如果它们出现在一个表格中,通常会引发错误,因为我们无法对它们求值。
+</p>
+
+<p>
+所以总的来说,对于任何对象,Emacs 会尝试通过以下方式之一来对其求值:
+</p>
+
+<ol class="org-ol">
+<li>如果它是自我评估的,则直接返回其值</li>
+<li>如果它是列表,则递归地对每个元素求值</li>
+<li>如果它是符号,则查找其值</li>
+<li>如果它是函数,则调用它</li>
+<li>否则,引发错误</li>
+</ol>
+
+<p>
+我希望这有助于澄清 Emacs Lisp 中各种类型的评估方式之间的差异。一旦您理解了求值器如何处理每个类型,许多 Lisp 的奥秘就会显现。
+</p>
+</div>
+
+<h3><a id="the-ldquoenvironmentrdquo" class="anchor" href="#the-ldquoenvironmentrdquo">¶</a>The &ldquo;Environment&rdquo;</h3><div class="outline-text-3" id="text-org431f078">
+<p>
+Everything is evaluated in terms of Emacs Lisp&rsquo;s global environment!
+</p>
+
+<p>
+Pros: you can change anything in the environment as you go
+Cons: your environment might get &ldquo;dirty&rdquo; over time in your Emacs session
+</p>
+</div>
+
+<h3><a id="环境" class="anchor" href="#环境">¶</a>“环境”</h3><div class="outline-text-3" id="text-orga25d00d">
+<p>
+在 Emacs Lisp 中,一切都是相对于全局环境进行评估的!
+</p>
+
+<p>
+优点:您可以在运行时更改环境中的任何内容
+缺点:您的 Emacs 会话中,环境可能随着时间的推移变得“脏乱”
+</p>
+
+<pre><span class="org-comment-delimiter">;; </span><span class="org-comment">&#35774;&#32622;&#21021;&#22987;&#20540;</span>
+(<span class="org-keyword">setq</span> efs/our-nice-variable <span class="org-string">"Hello System Crafters!"</span>)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#23558;&#20854;&#26356;&#25913;&#20026;&#20854;&#20182;&#20869;&#23481;(&#29978;&#33267;&#26159;&#19981;&#21516;&#30340;&#31867;&#22411;!)</span>
+(<span class="org-keyword">setq</span> efs/our-nice-variable 1337)</pre>
+
+
+<p>
+全局环境包含:
+</p>
+
+<ul class="org-ul">
+<li>所有已定义的函数和变量</li>
+<li>所有的键绑定和其他设置</li>
+<li>所有加载的包提供的绑定</li>
+<li>等等</li>
+</ul>
+
+<p>
+所以当您对某个表格求值时,Emacs 会在这个环境中查找其元素的定义和值。
+</p>
+
+<p>
+这意味着您可以在REPL中定义一些内容,然后立即在另一个缓冲区中使用它 - 因为两者共享同一个环境。
+</p>
+
+<p>
+但是,这也意味着您在会话的不同阶段定义的内容会相互影响。如果您定义一个变量,然后在几个小时后忘记它,并再次使用相同的名称,这可能会导致问题。
+</p>
+
+<p>
+为解决此问题,Emacs 提供了几种“隔离”环境的方法:
+</p>
+
+<ul class="org-ul">
+<li>使用 `let` 创建新绑定,它们仅在 `let` 表格内可见。</li>
+<li>使用策略像“命名空间”来阻止相互影响的包之间的名称冲突。</li>
+<li>重启 Emacs 以清除环境并从头开始。</li>
+<li>在单独的 Emacs 实例中评估代码。</li>
+</ul>
+
+<p>
+所以,总体而言,全局环境的概念为 Emacs Lisp 带来了强大的动态性,但也增加了管理环境变化的复杂性。您需要理解作用域规则,并采取措施来避免不同部分之间的相互影响。
+</p>
+</div>
+
+<h3><a id="expressions" class="anchor" href="#expressions">¶</a>Expressions</h3><div class="outline-text-3" id="text-org52077f2">
+<p>
+Lisp 是一门基于表达式的语言,几乎所有的表格都返回一个值。
+</p>
+
+<pre><span class="org-comment-delimiter">;; </span><span class="org-comment">&#19968;&#20010;&#38750;&#24120;&#26377;&#29992;&#30340;&#20989;&#25968;...</span>
+(<span class="org-keyword">defun</span> <span class="org-function-name">add-42</span> (num)
+  (+ num 42))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#23427;&#36820;&#22238;&#32467;&#26524;</span>
+(add-42 58)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#22312;&#21478;&#19968;&#20010;&#35843;&#29992;&#20013;&#20351;&#29992;&#32467;&#26524;</span>
+(* (add-42 58) 100)</pre>
+
+<p>
+这个简单的示例演示了几个重要的方面:
+</p>
+
+<ol class="org-ol">
+<li><code>(defun add-42 ...)</code> 定义一个函数,名称为 <code>add-42</code> 。</li>
+<li>调用 <code>add-42</code> 时,Lisp会对其参数 <code>num</code> 求值(此处为 58),将其传递给函数。</li>
+<li><code>add-42</code> 函数对其参数求值,得到 `58`。它然后将 `42` 相加,得到 <code>100</code> 。</li>
+<li><code>add-42</code> 函数的调用表达式 <code>(add-42 58)</code> 返回函数调用的结果 <code>100</code> 。</li>
+<li>我们可以使用这个结果作为另一个函数 <code>*</code> 的参数。它将 <code>100</code> 与 <code>100</code> 相乘,得到最终结果 <code>10000</code> 。</li>
+</ol>
+
+<p>
+所以这展示了 Lisp 中表达式和求值之间的关系:
+</p>
+
+<ul class="org-ul">
+<li>几乎每个表达式都返回一个值。</li>
+<li>这个值可以用作其他表达式的一部分。</li>
+<li>通过这种方式,我们可以构建复杂的表达式来表示各种概念。</li>
+</ul>
+
+<p>
+这使 Lisp 变成一门非常表达的语言。我们可以表达复杂的算法和逻辑,而它们仍然可以像简单的算术表达式一样易于理解。
+</p>
+</div>
+
+<h2><a id="symbols" class="anchor" href="#symbols">¶</a>Symbols</h2><div class="outline-text-2" id="text-org30c6c4b">
+<p>
+符号也是一种对象类型,但它不是自我评估的!
+</p>
+
+<p>
+符号可以包含字母数字字符以及许多其他字符:
+</p>
+
+<pre><span class="org-comment-delimiter"># </span><span class="org-comment">&#21487;&#33021;&#30340;&#31526;&#21495;&#23383;&#31526;</span>
+- + = * / _ ~ ! @ $ % ^ &amp; : &lt; &gt; { } ?</pre>
+
+<p>
+这使您能够根据符号中包含的字符来为符号赋予含义。
+一些例子:
+</p>
+
+<ul class="org-ul">
+<li><code>bui-keyword-&gt;symbol</code> - 从一种类型转换为另一种类型</li>
+<li><code>efs/some-name</code> - 为符号定义一个“命名空间”</li>
+<li><code>*pcache-repositories*</code> - 表示全局变量(在 Emacs Lisp 中不常见)</li>
+<li><code>string=</code> - 检查某物是否等于某物</li>
+<li>函数名不可以这样求值:</li>
+</ul>
+
+<p>
+当对符号求值时,它返回与该绑定相关联的变量值:
+</p>
+
+<pre><span class="org-comment-delimiter">;; </span><span class="org-comment">&#25105;&#20204;&#20043;&#21069;&#30475;&#21040;&#30340;&#31034;&#20363;</span>
+buffer-file-name</pre>
+
+<p>
+但是函数名不能像这样求值:
+</p>
+
+<pre>get-file-buffer</pre>
+
+<p>
+我们将在未来的一集中进一步讨论此点。
+</p>
+
+<p>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Symbol-Type.html#Symbol-Type">https://www.gnu.org/software/emacs/manual/html_node/elisp/Symbol-Type.html#Symbol-Type</a>
+</p>
+
+<p>
+所以,总结一下:
+</p>
+
+<ul class="org-ul">
+<li>符号是 Emacs Lisp 中的对象类型,但不是自我评估的。</li>
+<li>它们可以包含各种字符以表示其含义。</li>
+<li>当对符号求值时,Emacs 会查找其变量绑定并返回其值。如果未找到绑定,则引发错误。</li>
+<li>函数和宏的名称也是符号,但不能直接求值。我们必须使用 <code>(函数名 参数)</code> 的形式调用它们。</li>
+</ul>
+
+<p>
+符号是 Emacs Lisp 中一个非常重要的概念。它们用来:
+</p>
+
+<ul class="org-ul">
+<li>命名变量、函数、宏等</li>
+<li>表示关键字和其他标识符</li>
+<li>引用和查找各种绑定</li>
+<li>等等</li>
+</ul>
+
+<p>
+所以理解符号以及如何在 Emacs Lisp 中使用和评估它们是掌握语言的关键。
+</p>
+</div>
+
+<h2><a id="中序-vs-前序" class="anchor" href="#中序-vs-前序">¶</a>中序 VS 前序</h2><div class="outline-text-2" id="text-orgf1965e0">
+<p>
+Lisp 表达式使用“prefix”前缀表示法:
+</p>
+
+<pre>(+ 300 (- 12 1))</pre>
+
+<p>
+这为什么有用呢?因为它使所有函数和运算符具有相同的重要性,甚至包括您定义的函数!
+</p>
+
+<p>
+大多数语言使用中序表示法,如:
+</p>
+
+<pre><span class="linenr">1: </span>300 + (12 - 1)</pre>
+
+<p>
+中序表示法需要定义运算符的优先级和结合性,以确定表达式的求值顺序。这使其对阅读和解析变得复杂。
+</p>
+
+<p>
+相比之下,前序表示法将运算符视为普通的函数调用。每个子表达式都作为一个参数提供给其相关运算符:
+</p>
+<pre>(+ 300 (- 12 1))</pre>
+
+<p>
+这意味着:
+</p>
+
+<ol class="org-ol">
+<li>求值始终从左到右进行</li>
+<li>您可以为任何运算符(除了构造函数)定义函数</li>
+<li>用户定义的函数与内置函数具有相同的语义</li>
+</ol>
+
+<p>
+所以前序表示法简化了 Emacs Lisp 语言的语法和求值规则。我们不需要考虑运算符优先级或结合性 - 我们只需要从左到右顺序地求值每个子表达式。
+</p>
+
+<p>
+此外,前序表示法还意味着我们可以轻易地为任何运算符定义函数,包括:
+</p>
+
+<ul class="org-ul">
+<li><code>+</code></li>
+<li><code>*</code></li>
+<li><code>/</code></li>
+<li><code>and</code></li>
+<li><code>or</code></li>
+<li>等等</li>
+</ul>
+
+<p>
+这使 Emacs Lisp 变成一门非常可扩展的语言。我们可以轻松地自定义语言的各个方面。
+</p>
+
+<p>
+总而言之,前序表示法是 Lisp 家族语言的一项关键特征,为其带来许多实用性和表达能力。一旦您习惯了它,您将开始欣赏其简洁性和一致性。
+</p>
+</div>
+
+<h2><a id="练习" class="anchor" href="#练习">¶</a>练习</h2><div class="outline-text-2" id="text-org1bcc128">
+<p>
+打开 <code>*scratch*</code> 缓冲区,尝试编写简单的表达式。在每个表达式的末尾使用 <code>C-x C-e</code> (<code>eval-last-sexp</code>)来对其求值。
+</p>
+
+<p>
+这里有一些您可以尝试的:
+</p>
+
+<pre>42
+
+(* 42 10)
+
+(concat <span class="org-string">"Hello "</span> <span class="org-string">"Emacs!"</span>)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#31616;&#21333;&#21015;&#34920;</span>
+'(1 2 3)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#21019;&#24314;&#21015;&#34920;&#30340;&#21478;&#19968;&#31181;&#26041;&#24335;</span>
+(list 1 2 3)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#33719;&#21462;&#21015;&#34920;&#20013;&#31532;&#20108;&#20010;&#20803;&#32032;</span>
+(car (cdr '(1 2 3)))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#19968;&#20010;&#21521;&#37327;</span>
+[1 2 3]</pre>
+
+<p>
+此外,还要去看看您的 Emacs 配置,现在可以识别其中的哪些内容!
+</p>
+
+<p>
+这是一个很好的练习来加深您对 Emacs Lisp 的理解。我鼓励您尝试:
+</p>
+
+<ul class="org-ul">
+<li>评估不同类型的表格(数字、字符串、列表、向量等)</li>
+<li>使用不同的内置函数(如 <code>concat</code> 、~list~ 、 <code>car</code> 等)</li>
+<li>定义一些简单的函数和变量</li>
+<li>尝试使用键绑定、菜单和其他命令</li>
+<li>检查初始化文件以了解更多配置选项</li>
+</ul>
+
+<p>
+一些其他您可以尝试的内容:
+</p>
+<pre><span class="linenr"> 1: </span>(<span class="org-keyword">defun</span> <span class="org-function-name">square</span> (x) (* x x))  <span class="org-comment-delimiter">; </span><span class="org-comment">&#23450;&#20041;&#19968;&#20010; square &#20989;&#25968;</span>
+<span class="linenr"> 2: </span>(square 3)                  <span class="org-comment-delimiter">; </span><span class="org-comment">&#35843;&#29992;&#23427;</span>
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span>(<span class="org-keyword">setq</span> name <span class="org-string">"John"</span>)         <span class="org-comment-delimiter">; </span><span class="org-comment">&#32465;&#23450;&#19968;&#20010;&#21464;&#37327;</span>
+<span class="linenr"> 5: </span>name                         <span class="org-comment-delimiter">; </span><span class="org-comment">&#26597;&#30475;&#20854;&#20540;</span>
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span>(<span class="org-keyword">if</span> (<span class="org-type">&amp;gt</span><span class="org-comment-delimiter">; </span><span class="org-comment">5 4)</span>
+<span class="linenr"> 8: </span>    <span class="org-string">"Yes"</span>
+<span class="linenr"> 9: </span>  <span class="org-string">"No"</span>)                    <span class="org-comment-delimiter">; </span><span class="org-comment">&#20351;&#29992; if &#27979;&#35797;</span>
+<span class="linenr">10: </span>
+<span class="linenr">11: </span>(<span class="org-keyword">when</span> (<span class="org-type">&amp;gt</span><span class="org-comment-delimiter">; </span><span class="org-comment">5 4)</span>
+<span class="linenr">12: </span>  (message <span class="org-string">"5 is greater than 4!"</span>)) <span class="org-comment-delimiter">; </span><span class="org-comment">&#20351;&#29992; when</span>
+<span class="linenr">13: </span>
+<span class="linenr">14: </span>(<span class="org-keyword">progn</span>
+<span class="linenr">15: </span>  (message <span class="org-string">"Hello"</span>)
+<span class="linenr">16: </span>  (message <span class="org-string">"World!"</span>))     <span class="org-comment-delimiter">; </span><span class="org-comment">&#20351;&#29992; progn &#25191;&#34892;&#22810;&#26465;&#35821;&#21477;</span>
+<span class="linenr">17: </span>
+<span class="linenr">18: </span>[1 (2 3) <span class="org-string">"four"</span> ]        <span class="org-comment-delimiter">; </span><span class="org-comment">&#19968;&#20010;&#21521;&#37327;</span>
+<span class="linenr">19: </span>
+<span class="linenr">20: </span>(length [1 2 3])         <span class="org-comment-delimiter">; </span><span class="org-comment">&#33719;&#21462;&#21521;&#37327;&#30340;&#38271;&#24230;</span>
+<span class="linenr">21: </span>
+<span class="linenr">22: </span>(aref [1 2 3] 1)         <span class="org-comment-delimiter">; </span><span class="org-comment">&#32034;&#24341;&#35775;&#38382;&#21521;&#37327;&#20803;&#32032;</span></pre>
+
+<p>
+我希望这个练习能帮助您掌握表达式、函数、变量和其他 Emacs Lisp 概念。不要犹豫,在练习中随意提问 - 我很乐意提供更多解释和示例。
+</p>
+</div>
+</div></div><div class="list-form center"><div class="list-form-title">Subscribe to the System Crafters Newsletter!</div><form method="POST" action="https://www.simplelists.com/subscribe.php"><input type="hidden" name="format" value="text"/><input type="hidden" name="action" value="subscribe"/><input type="hidden" name="list" value="news@lists.systemcrafters.net"/><div class="list-form-message">Stay up to date with the latest System Crafters news and updates!  Read the <a href="/newsletter/">Newsletter</a> page for more information.</div><div class="row"><div class="column"><div class="row center list-form-label">Name (optional)</div><div class="row"><input type="text" name="name"/></div></div><div class="column"><div class="row center list-form-label">Email Address</div><div class="row"><input type="text" name="email"/></div></div></div><div><input type="submit" value="Subscribe!"/></div></form></div></div><footer class="site-footer"><div class="container"><div class="row"><div class="column"><p><a href="https://systemcrafters.net/privacy-policy/">Privacy Policy</a> · <a href="https://systemcrafters.net/credits/">Credits</a> · <a href="https://systemcrafters.net/rss/">RSS Feeds</a> · <a rel="me" href="https://fosstodon.org/@daviwil">Fediverse</a></p><p>© 2021-2023 System Crafters LLC</p></div><div class="column align-right"><p><a href="https://codeberg.org/SystemCrafters/systemcrafters.net"><img src="https://systemcrafters.net/img/codeberg.png" style="width: 120px" alt="Contribute on Codeberg"/></a></p></div></div></div></footer></body></html>

@@ -1,0 +1,328 @@
+<!-- Generated from 83cf183 on 2023-06-12 @ 08:55 with Emacs 27.2 (Org mode 9.4.4) -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://systemcrafters.net/rss/news.xml"/><link rel="stylesheet" href="https://systemcrafters.net/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://systemcrafters.net/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://systemcrafters.net/css/code.css"/><link rel="stylesheet" href="https://systemcrafters.net/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>使用 github 或 SourceHut 自动化 Org Mode 网站发布 - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://systemcrafters.net/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/">Home</a> <a class="nav-link" href="/guides/">Guides</a> <a class="nav-link" href="/news/">News</a> <a class="nav-link" href="/community/">Community</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/how-to-help/">How to Help</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">使用 github 或 SourceHut 自动化 Org Mode 网站发布</h1><p class="site-post-meta"></p><div id="content"><p>
+<div class="video">  <iframe src="https://www.youtube.com/embed/za99DwdZEyg" allowfullscreen></iframe></div>
+</p>
+
+<h2><a id="介绍" class="anchor" href="#介绍">¶</a>介绍</h2><div class="outline-text-2" id="text-org8511b5a">
+<p>
+一旦您开始使用 Org Mode 的发布系统生成静态网站,您下一个想知道的事情可能是如何发布网站,以便其他人可以查看它。
+</p>
+
+<p>
+在此视频中,您将学习如何在每次将提交推送到 Git 存储库时自动发布 Org Mode 网站。
+</p>
+
+<div class="cta center">
+If you find this guide helpful, please consider supporting System Crafters via the links on the <a href="/how-to-help/#support-my-work">How to Help</a> page!
+</div>
+</div>
+
+<h2><a id="入门" class="anchor" href="#入门">¶</a>入门</h2><div class="outline-text-2" id="text-org399c50a">
+<p>
+要开始,请确保您有以下我们今天要讨论的网站之一的帐户:GitHub 或 SourceHut。
+</p>
+
+<p>
+在 GitHub 上,创建帐户和我们在此视频中要讨论的所有内容都是免费的。您可以在这里创建帐户:
+</p>
+
+<p>
+<a href="https://github.com/join">https://github.com/join</a>
+</p>
+
+<p>
+在 SourceHut 上创建帐户也是免费的,但 <a href="https://man.sr.ht/ops/builds.sr.ht-migration.md">他们最近不得不要求支付</a> 才能使用他们的构建服务,因为加密货币矿工让每个人的派对变得糟糕。 幸运的是,您可以以每月至少2美元的价格注册“维护人”帐户:
+</p>
+
+<p>
+<a href="https://meta.sr.ht/register/step2">https://meta.sr.ht/register/step2</a>
+</p>
+
+<p>
+有其他方法可以在 SourceHut 上获得免费服务,请查看 <a href="https://man.sr.ht/billing-faq.md#i-dont-think-i-can-pay-for-it">这个条目</a>中的计费常见问题解答。
+</p>
+</div>
+
+<h3><a id="我应该选择哪一个" class="anchor" href="#我应该选择哪一个">¶</a>我应该选择哪一个?</h3><div class="outline-text-3" id="text-org49fb16b">
+<p>
+这两个选项都很好,在每个选项上发布网站的难易程度大致相同。
+</p>
+
+<p>
+GitHub 是知名的主流选项,拥有一个帐户无伤大雅。
+</p>
+
+<p>
+SourceHut 是一个更注重黑客的网站,采用完全不同的哲学,您可能会欣赏。您可以通过查看他们的网站<a href="https://sourcehut.org/">http://sourcehut.org|sourcehut.org</a>了解更多信息。请注意,在 SourceHut 页面上发布的内容有<a href="https://srht.site/limitations">一些限制</a>!
+</p>
+</div>
+
+<h2><a id="准备本地存储库以托管您的网站" class="anchor" href="#准备本地存储库以托管您的网站">¶</a>准备本地存储库以托管您的网站</h2><div class="outline-text-2" id="text-org43cab59">
+<p>
+无论在哪个托管网站上,您都需要一个存储库来存储您的 Org Mode 网站的内容文件和我们在此系列视频的上一段中创建的构建脚本。如果您还没看过,可以在这里查看:
+</p>
+
+<ul class="org-ul">
+<li><a href="https://youtu.be/AfkrzFodoNw">使用Org Mode构建您的网站</a></li>
+</ul>
+
+<p>
+我们将从该视频中的<a href="https://github.com/SystemCrafters/org-website-example">org-website-example repository</a>中的代码开始,所以您可能需要克隆该存储库,在文件系统上创建一个新文件夹,并将这些网站文件复制到其中以做为起点。
+</p>
+</div>
+
+<h3><a id="快速设置存储库" class="anchor" href="#快速设置存储库">¶</a>快速设置存储库</h3><div class="outline-text-3" id="text-org7462d4c">
+<p>
+我不会在此集中深入讨论如何使用 Git,但我会简要概述您需要了解的命令,以将您的网站文件转化为 Git 存储库并“提交”更改:
+</p>
+
+<pre><span class="org-comment-delimiter"># </span><span class="org-comment">&#22797;&#21046;&#36215;&#28857;&#25991;&#20214;</span>
+git clone https://github.com/SystemCrafters/org-website-example
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#21019;&#24314;&#26412;&#22320;&#23384;&#20648;&#24211;&#25991;&#20214;&#22841;</span>
+mkdir my-org-site
+<span class="org-builtin">cd</span> my-org-site
+cp -R ../org-website-example/* .
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#21021;&#22987;&#21270;Git&#23384;&#20648;&#24211;&#24182;&#25191;&#34892;&#31532;&#19968;&#27425;&#25552;&#20132;</span>
+git init
+git add -A
+git commit -m <span class="org-string">"&#25105;&#30340;&#31532;&#19968;&#20010;&#25552;&#20132;!"</span></pre>
+
+<p>
+现在,每次对网站进行更改,您都可以转到 <code>my-org-site</code> 文件夹并运行以下命令:
+</p>
+
+<pre>git add -A
+git commit -m <span class="org-string">"&#26356;&#26032;&#32593;&#31449;&#25991;&#20214;"</span>
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#25105;&#20204;&#23558;&#22312;&#31245;&#21518;&#35752;&#35770;&#27492;&#27493;&#39588;</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">git push origin master</span></pre>
+
+<p>
+如果您是 Git 的初学者并想了解更多如何使用它的信息,我建议阅读 <a href="https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository">Git Book</a>。
+</p>
+</div>
+
+<h2><a id="为网站发布创建托管存储库" class="anchor" href="#为网站发布创建托管存储库">¶</a>为网站发布创建托管存储库</h2><h3><a id="github" class="anchor" href="#github">¶</a>GitHub</h3><div class="outline-text-3" id="text-org92d10e1">
+<p>
+要使用 GitHub Pages 发布网站,您需要创建一个具有特定名称的存储库:
+</p>
+
+<p>
+<code>yourusername.github.io</code>
+您可以转到 <a href="https://github.com/new">https://github.com/new</a> 并使用您的实际 GitHub 用户名创建此名称的公共存储库!不要选择任何复选框,我们将在创建 GitHub 存储库后推送我们自己的存储库。
+</p>
+
+<p>
+现在存储库已创建,您可以复制他们提供的链接,以便您可以配置本地存储库以推送到那里:
+</p>
+
+<pre><span class="org-comment-delimiter"># </span><span class="org-comment">&#20351;&#29992;HTTPS</span>
+git remote add origin https://github.com/yourusername/yourusername.github.io.git
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#22914;&#26524;&#24744;&#35774;&#32622;&#20102;&#20844;&#38053;,&#35831;&#20351;&#29992;SSH</span>
+git remote add origin git@github.com:yourusername/yourusername.github.io.git</pre>
+
+<p>
+如果您以前从未尝试过,向 GitHub 验证身份可能有点棘手,请参阅此文档页面以获取更多详细信息!
+<a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github#authenticating-with-the-command-line">https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github#authenticating-with-the-command-line</a>
+</p>
+
+<p>
+创建存储库后,您可以使用 <code>git push</code> 将本地存储库推送到那里:
+</p>
+
+<pre>git push origin master</pre>
+
+<p>
+每次提交更改后,您都需要运行此命令,以便更改提交到托管存储库!
+</p>
+</div>
+
+<h3><a id="sourcehut" class="anchor" href="#sourcehut">¶</a>SourceHut</h3><div class="outline-text-3" id="text-org8841bdd">
+<p>
+在 SourceHut 上,您可以通过转到以下链接来创建一个新存储库。它不需要特定的名称!
+</p>
+
+<p>
+<a href="https://git.sr.ht/create">https://git.sr.ht/create</a>
+</p>
+
+<p>
+只需要确保首先设置<a href="https://man.sr.ht/meta.sr.ht/#keys">SSH 密钥</a>,因为这是向 <code>git.sr.ht</code> 验证身份的唯一方式。
+</p>
+
+<p>
+创建存储库后,您可以将其配置为本地存储库的远程存储库:
+</p>
+
+<pre>git remote add origin git@git.sr.ht:~yourusername/my-org-site
+git push origin master</pre>
+
+<p>
+SourceHut 允许您为个人网站(<code>yourusername.srht.site</code>)或使用简单的HTTP API的任何自定义域发布页面。
+</p>
+
+<p>
+可以在 <a href="https://srht.site/quickstart">快速入门说明</a> 和 <a href="https://srht.site/">文档</a> 中找到更多详细信息。
+</p>
+</div>
+
+<h2><a id="制作构建配置" class="anchor" href="#制作构建配置">¶</a>制作构建配置</h2><div class="outline-text-2" id="text-org5ed4e85">
+<p>
+现在我们可以设置一个构建配置,以便每次向其存储库推送提交时,它都会自动发布您的网站!
+</p>
+
+<p>
+这是通过使用像 <a href="https://github.com/features/actions">GitHub Actions</a> 或 <a href="https://man.sr.ht/builds.sr.ht/">SourceHut Builds</a> 这样的“持续集成”服务实现的。此类型的服务使您能够在云中的计算机上为存储库运行构建脚本,以便您可以执行诸如对代码运行测试或发布网站之类的操作。
+</p>
+
+<p>
+我将向您展示 GitHub 和 SourceHut 的示例构建配置,您可以复制和粘贴以开始使用,如果决定使用 SourceHut,只需要做几个细微调整。
+</p>
+</div>
+
+<h3><a id="github-actions" class="anchor" href="#github-actions">¶</a>GitHub Actions</h3><div class="outline-text-3" id="text-org12d89a4">
+<p>
+此文件应放置在存储库中的 <code>.github/workflows/publish.yml</code> 。它做的事情如下:
+</p>
+
+<ul class="org-ul">
+<li>配置构建以在 <code>master</code> 分支上触发提交(如果您的分支名称为 <code>main</code>,请更改分支名称)!</li>
+<li>设置 Ubuntu VM 来运行构建</li>
+<li>检出此存储库的代码</li>
+<li>安装 <code>emacs-nox</code> (没有图形界面)- 视频录制时的26.3版本</li>
+<li>运行我们的 <code>build.sh</code> 脚本来构建网站</li>
+<li>使用自定义操作将网站发布到 <code>gh-pages</code> 分支</li>
+</ul>
+
+<pre>name: Publish to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v1
+
+      - name: Install Emacs
+        run: sudo apt install emacs-nox --yes
+
+      - name: Build the site
+        run: ./build.sh
+
+      - name: Publish generated content to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: public</pre>
+
+<p>
+将此文件添加到存储库文件夹,提交并使用我之前向您展示的命令将其推送到 GitHub 存储库。
+</p>
+
+<p>
+您可以从存储库的 <b>Actions</b> 选项卡监视 “Publish to GitHub Pages” 操作的进度。
+完成后,网站仍不会发布,因为我们需要采取最后一步来配置网站!单击存储库上的 <b>Settings</b> 选项卡,单击设置页面左侧的 <b>Pages</b> 选项卡,然后将源分支更改为 <code>gh-pages</code> 并单击 <b>Save</b> 。
+</p>
+
+<p>
+一两分钟后,您的网站现已上线!
+</p>
+</div>
+
+<h3><a id="buildssrht" class="anchor" href="#buildssrht">¶</a>builds.sr.ht</h3><div class="outline-text-3" id="text-org5f8e54f">
+<p>
+此文件应放置在存储库中的 <code>.build.yml</code> 。它做的事情如下:
+</p>
+
+<ul class="org-ul">
+<li>设置 Arch Linux VM来运行构建</li>
+<li>运行VM后安装 <code>emacs-nox</code> 软件包</li>
+<li>使用 <code>oauth</code> 字段自动获取发布网站的令牌</li>
+<li>指定要克隆的源存储库(可以有多个)</li>
+<li>设置包含网站名称的环境变量</li>
+</ul>
+
+<p>
+<b>您必须更改这些内容:</b>
+</p>
+
+<ul class="org-ul">
+<li><code>sources</code>: 使用存储库的正确URL</li>
+<li><code>site:</code> 更新URL以使用您的用户名</li>
+<li><code>build:</code> 更新 <code>cd my-org-site</code> 以引用存储库的名称</li>
+</ul>
+
+<pre>image: archlinux
+packages:
+  - emacs-nox
+oauth: pages.sr.ht/PAGES:RW
+sources:
+  - https://git.sr.ht/~username/my-org-site
+environment:
+  site: username.srht.site
+tasks:
+  - build: |
+      # 生成网站文件(请确保更新文件夹名称!)
+      cd my-org-site
+      ./build.sh
+
+      # 捆绑网站
+      cd public
+      tar -czf /home/build/html.tar.gz .
+  - upload: |
+      tar -ztvf html.tar.gz
+      acurl --fail-with-body https://pages.sr.ht/publish/$site -Fcontent=@html.tar.gz</pre>
+<p>
+提交此文件并将其推送到 SourceHut 存储库后,您可以通过转到帐户的构建页面来监视构建:
+</p>
+
+<p>
+<a href="https://builds.sr.ht">https://builds.sr.ht</a>
+</p>
+
+<p>
+构建完成后,您可以在<a href="https://yourusername.sr.ht.site">https://yourusername.sr.ht.site</a> 访问您的网站!它可能需要一分钟左右才会显示。
+</p>
+
+<p>
+如果构建失败,请仔细检查 <code>.build.yml</code> 文件中的所有信息,确保您没有遗漏任何内容!
+</p>
+</div>
+
+<h2><a id="为您的网站设置自定义域名" class="anchor" href="#为您的网站设置自定义域名">¶</a>为您的网站设置自定义域名</h2><div class="outline-text-2" id="text-org5e7be2f">
+<p>
+我不会在这里详细介绍,因为 GitHub 和 SourceHut 的文档页面已经很好地介绍了这一点。
+</p>
+
+<p>
+可以为这两个平台上的网站设置自定义域名!
+</p>
+
+<ul class="org-ul">
+<li><a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">GitHub Pages 的说明</a></li>
+<li><a href="https://srht.site/custom-domains">SourceHut 的说明</a></li>
+</ul>
+
+<p>
+如果您的网站还没有域名,可以使用我的<a href="https://namecheap.pxf.io/NK0yXK">Namecheap的推广链接</a>同时获得域名和支持该频道!
+</p>
+</div>
+
+<h2><a id="欣赏您的新网站" class="anchor" href="#欣赏您的新网站">¶</a>欣赏您的新网站!</h2><div class="outline-text-2" id="text-orgffb6475">
+<p>
+希望这些说明能帮助您使用 Emacs、Org Mode 和 Git 运行新的网站。
+</p>
+
+<p>
+在本系列的未来视频中,我们将学习如何定制 Org Mode 网站的样式,并添加有用的功能,例如RSS种子和网站地图!
+</p>
+</div>
+</div></div><div class="list-form center"><div class="list-form-title">Subscribe to the System Crafters Newsletter!</div><form method="POST" action="https://www.simplelists.com/subscribe.php"><input type="hidden" name="format" value="text"/><input type="hidden" name="action" value="subscribe"/><input type="hidden" name="list" value="news@lists.systemcrafters.net"/><div class="list-form-message">Stay up to date with the latest System Crafters news and updates!  Read the <a href="/newsletter/">Newsletter</a> page for more information.</div><div class="row"><div class="column"><div class="row center list-form-label">Name (optional)</div><div class="row"><input type="text" name="name"/></div></div><div class="column"><div class="row center list-form-label">Email Address</div><div class="row"><input type="text" name="email"/></div></div></div><div><input type="submit" value="Subscribe!"/></div></form></div></div><footer class="site-footer"><div class="container"><div class="row"><div class="column"><p><a href="https://systemcrafters.net/privacy-policy/">Privacy Policy</a> · <a href="https://systemcrafters.net/credits/">Credits</a> · <a href="https://systemcrafters.net/rss/">RSS Feeds</a> · <a rel="me" href="https://fosstodon.org/@daviwil">Fediverse</a></p><p>© 2021-2023 System Crafters LLC</p></div><div class="column align-right"><p><a href="https://codeberg.org/SystemCrafters/systemcrafters.net"><img src="https://systemcrafters.net/img/codeberg.png" style="width: 120px" alt="Contribute on Codeberg"/></a></p></div></div></div></footer></body></html>

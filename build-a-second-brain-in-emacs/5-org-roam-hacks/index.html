@@ -1,0 +1,483 @@
+<!-- Generated from 83cf183 on 2023-06-12 @ 08:55 with Emacs 27.2 (Org mode 9.4.4) -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://systemcrafters.net/rss/news.xml"/><link rel="stylesheet" href="https://systemcrafters.net/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://systemcrafters.net/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://systemcrafters.net/css/code.css"/><link rel="stylesheet" href="https://systemcrafters.net/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>5 个 Org Roam 技巧提高 Emacs 生产力 - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://systemcrafters.net/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/">Home</a> <a class="nav-link" href="/guides/">Guides</a> <a class="nav-link" href="/news/">News</a> <a class="nav-link" href="/community/">Community</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/how-to-help/">How to Help</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">5 个 Org Roam 技巧提高 Emacs 生产力</h1><p class="site-post-meta"></p><div id="content"><p>
+<div class="video">  <iframe src="https://www.youtube.com/embed/CUkuyW6hr18" allowfullscreen></iframe></div>
+</p>
+
+<h2><a id="简介" class="anchor" href="#简介">¶</a>简介</h2><div class="outline-text-2" id="text-orga698ef6">
+<p>
+Org Roam 是一种非常好的工具,可以编写和组织您的想法,但是当您利用 Org Roam 提供的更多功能时,您可以为常见任务创建高效的自定义工作流程。
+</p>
+
+<p>
+在本视频中,我将向您展示 5 个在 Org Roam 和 Org Mode 特性的帮助下优化笔记记录和项目管理工作流程的技巧。
+</p>
+
+<div class="cta center">
+If you find this guide helpful, please consider supporting System Crafters via the links on the <a href="/how-to-help/#support-my-work">How to Help</a> page!
+</div>
+</div>
+
+<h2><a id="开始配置" class="anchor" href="#开始配置">¶</a>开始配置</h2><div class="outline-text-2" id="text-orgb499651">
+<p>
+开始之前,请确保您已经设置好 Org Roam。
+</p>
+
+<p>
+您可以通过复制以下配置快速入手,但是如果首先观看 Org Roam 系列的上一集视频,您会学到更多内容:
+</p>
+
+<ul class="org-ul">
+<li><a href="https://youtu.be/AyhPmypHDEw">开始使用 Org Roam</a></li>
+<li><a href="https://youtu.be/YxgA5z2R08I">使用 Org Roam 有效地捕获笔记</a></li>
+<li><a href="https://www.youtube.com/watch?v=3-sLBaJAtew">Org Roam:在 Emacs 中记录日志的最佳方式</a></li>
+</ul>
+
+<pre>(<span class="org-keyword">use-package</span> <span class="org-constant">org-roam</span>
+  <span class="org-builtin">:ensure</span> t
+  <span class="org-builtin">:init</span>
+  (<span class="org-keyword">setq</span> org-roam-v2-ack t)
+  <span class="org-builtin">:custom</span>
+  (org-roam-directory <span class="org-string">"~/RoamNotes"</span>)
+  (org-roam-completion-everywhere t)
+  <span class="org-builtin">:bind</span> ((<span class="org-string">"C-c n l"</span> . org-roam-buffer-toggle)
+         (<span class="org-string">"C-c n f"</span> . org-roam-node-find)
+         (<span class="org-string">"C-c n i"</span> . org-roam-node-insert)
+         <span class="org-builtin">:map</span> org-mode-map
+         (<span class="org-string">"C-M-i"</span> . completion-at-point)
+         <span class="org-builtin">:map</span> org-roam-dailies-map
+         (<span class="org-string">"Y"</span> . org-roam-dailies-capture-yesterday)
+         (<span class="org-string">"T"</span> . org-roam-dailies-capture-tomorrow))
+  <span class="org-builtin">:bind-keymap</span>
+  (<span class="org-string">"C-c n d"</span> . org-roam-dailies-map)
+  <span class="org-builtin">:config</span>
+  (<span class="org-keyword">require</span> '<span class="org-constant">org-roam-dailies</span>) <span class="org-comment-delimiter">;; </span><span class="org-comment">Ensure the keymap is available</span>
+  (org-roam-db-autosync-mode))</pre>
+</div>
+
+<h2><a id="有很多代码要展示" class="anchor" href="#有很多代码要展示">¶</a>有很多代码要展示!</h2><div class="outline-text-2" id="text-orga0799ec">
+<p>
+在本视频中,我将向您展示许多自定义代码,这些代码产生了这些工作流程改进。如果您目前还没有深入研究 Emacs Lisp,其中有些内容可能不完全清晰,但这没关系!
+</p>
+
+<p>
+所有代码均可取并放入您的配置中,只要它正常工作,您无需理解其工作原理!
+</p>
+
+<p>
+如果您确实想学习,我建议阅读代码并使用 <code>M-x describe-function</code> 和 <code>M-x describe-variable</code> 阅读文档字符串。如果您想要一个更完整的教程,也可以观看我的 <a href="https://www.youtube.com/watch?v=RQK_DaaX34Q&amp;list=PLEoMzSkcN8oPQtn7FQEF3D7sroZbXuPZ7">学习 Emacs Lisp 系列</a>!
+</p>
+
+<p>
+请在评论中提出任何疑问,我将尽力澄清!
+</p>
+</div>
+
+<h2><a id="更快速地插入笔记以实现更流畅的写作" class="anchor" href="#更快速地插入笔记以实现更流畅的写作">¶</a>更快速地插入笔记以实现更流畅的写作</h2><div class="outline-text-2" id="text-orgf449f9e">
+<p>
+有时在写作时,您可能希望在 Org Roam 笔记中创建一个新节点而不中断写作流程!通常您将使用 <code>org-roam-node-insert</code>,但当您使用此命令创建新笔记时,该新笔记将在创建后打开。
+</p>
+
+<p>
+我们可以定义一个函数,使您可以创建新笔记并在当前文档中插入链接,而不打开新笔记的缓冲区。
+</p>
+
+<p>
+这将使您能够在写作时快速为您提到的主题创建新笔记,以便以后可以在这些笔记中填写更多细节!
+</p>
+
+<pre><span class="org-comment-delimiter">;; </span><span class="org-comment">&#23558;&#27492;&#32465;&#23450;&#20026; C-c n I</span>
+(<span class="org-keyword">defun</span> <span class="org-function-name">org-roam-node-insert-immediate</span> (arg <span class="org-type">&amp;rest</span> args)
+  (<span class="org-keyword">interactive</span> <span class="org-string">"P"</span>)
+  (<span class="org-keyword">let</span> ((args (cons arg args))
+        (org-roam-capture-templates (list (append (car org-roam-capture-templates)
+                                                  '(<span class="org-builtin">:immediate-finish</span> t)))))
+    (apply #'org-roam-node-insert args)))</pre>
+
+<p>
+此函数采取 <code>org-roam-capture-templates</code> 中的第一个捕获模板(通常是“默认”模板),并向其添加 <code>:immediate-finish t</code> <a href="https://orgmode.org/manual/Template-elements.html#Template-elements">捕获属性</a>,以在捕获完成后防止加载笔记缓冲区:
+</p>
+
+<p>
+感谢 <a href="https://www.youtube.com/watch?v=AyhPmypHDEw&amp;lc=Ugw7bYrPOc6oy_UBmPZ4AaABAg">Umar Ahmad</a> 提供的代码片段!
+</p>
+</div>
+
+<h2><a id="从-org-roam-笔记构建-org-议程" class="anchor" href="#从-org-roam-笔记构建-org-议程">¶</a>从 Org Roam 笔记构建 Org 议程</h2><div class="outline-text-2" id="text-org443034b">
+<p>
+Org Mode 最有用的功能之一是议程视图。实际上,您可以使用 Org Roam 笔记作为此视图的源!
+</p>
+
+<p>
+通常,您不会希望拉入 <b>所有</b> Org Roam 笔记,因此我们只使用具有特定标签(如 <code>Project</code>)的笔记。
+</p>
+
+<p>
+下面是一个代码片段,它将找到具有特定标签的所有笔记,然后使用相应的笔记文件设置您的 <code>org-agenda-list</code> 。
+</p>
+
+<pre><span class="org-comment-delimiter">;; </span><span class="org-comment">&#21253;&#21547;&#27492;&#20195;&#30721;&#30340;&#32531;&#20914;&#21306;&#24517;&#39035;&#23558; lexical-binding &#35774;&#32622;&#20026; t!</span>
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#26377;&#20851;&#26356;&#22810;&#35814;&#32454;&#20449;&#24687;,&#35831;&#21442;&#38405;&#26368;&#32456;&#37197;&#32622;&#12290;</span>
+
+ (<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-filter-by-tag</span> (tag-name)
+   (<span class="org-keyword">lambda</span> (node)
+     (member tag-name (org-roam-node-tags node))))
+
+ (<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-list-notes-by-tag</span> (tag-name)
+   (mapcar #'org-roam-node-file
+           (seq-filter
+            (my/org-roam-filter-by-tag tag-name)
+            (org-roam-node-list))))
+
+ (<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-refresh-agenda-list</span> ()
+   (<span class="org-keyword">interactive</span>)
+   (<span class="org-keyword">setq</span> org-agenda-files (my/org-roam-list-notes-by-tag <span class="org-string">"Project"</span>)))
+
+ <span class="org-comment-delimiter">;; </span><span class="org-comment">&#39318;&#27425;&#20026;&#20250;&#35805;&#29983;&#25104;&#35758;&#31243;&#21015;&#34920;</span>
+ (my/org-roam-refresh-agenda-list)</pre>
+
+<p>
+现在运行 <code>M-x org-agenda</code> 查看 org 议程,然后按 <code>a</code> 查看每日时间表或按 <code>d</code> 查看项目文件中的所有 <code>TODO</code> 列表。
+</p>
+
+<p>
+为了获得最佳结果,请确保将所需的标签(在本例中为 <code>Project</code>)添加到作为捕获模板的一部分的新笔记文件。只记住在使用该标签创建新笔记后调用 <code>my/org-roam-refresh-agenda-list</code> 来刷新列表!
+</p>
+
+<p>
+<b>注意</b>:我还没有找到可靠而有效的方法将日常事项拉入议程!一旦找到,我可能会制作另一个视频。
+</p>
+</div>
+
+<h3><a id="提示改善议程视图中笔记的外观" class="anchor" href="#提示改善议程视图中笔记的外观">¶</a>提示:改善议程视图中笔记的外观</h3><div class="outline-text-3" id="text-org1d01a7c">
+<p>
+您可能会注意到,来自您的 Org Roam 文件的议程行由于带时间戳的文件名而看起来有点难看。我们可以通过在项目文件之一的标题行添加 <code>category</code> 来修复此问题,如下所示:
+</p>
+
+<pre>#+title: Mesche
+#+category: Mesche
+#+filetags: Project</pre>
+
+<p>
+通常,您会希望类别包含与笔记相同的名称,以便我们可以更新来自 <a href="https://youtu.be/YxgA5z2R08I">Org Roam 第2集</a> 的 Project 模板以自动包含它:
+</p>
+
+<pre>(<span class="org-string">"p"</span> <span class="org-string">"project"</span> plain <span class="org-string">"* Goals\n\n%?\n\n* Tasks\n\n** TODO Add initial tasks\n\n* Dates\n\n"</span>
+ <span class="org-builtin">:if-new</span> (file+head <span class="org-string">"%&lt;%Y%m%d%H%M%S&gt;-${slug}.org"</span> <span class="org-string">"#+title: ${title}\n#+category: ${title}\n#+filetags: Project"</span>)
+ <span class="org-builtin">:unnarrowed</span> t)</pre>
+
+<p>
+这会将标题和类别设置为新笔记文件的名称,从而在议程视图中产生更清晰的条目。
+</p>
+</div>
+
+
+<h2><a id="从具有特定标签的笔记列表中选择" class="anchor" href="#从具有特定标签的笔记列表中选择">¶</a>从具有特定标签的笔记列表中选择</h2><div class="outline-text-2" id="text-orga7b4768">
+<p>
+<code>org-roam-node-find</code> 函数给了我们过滤显示用于选择的笔记列表的能力。
+</p>
+
+<p>
+我们可以定义自己的函数,为具有特定标签(如我们之前讨论过的 <code>Project</code>)的笔记显示选择列表。这对于设置快速选择特定笔记集的键绑定很有用!
+</p>
+
+<p>
+一个额外的好处是我们可以覆盖创建新笔记时使用的捕获模板集。
+</p>
+
+<p>
+这意味着如果笔记尚不存在,我们可以自动使用项目捕获模板创建新笔记!
+</p>
+
+<pre>(<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-project-finalize-hook</span> ()
+  <span class="org-doc">"&#22914;&#26524;&#25429;&#33719;&#26410;&#34987;&#20013;&#27490;,&#21017;&#23558;&#25429;&#33719;&#30340;&#39033;&#30446;&#25991;&#20214;&#28155;&#21152;&#21040;`</span><span class="org-doc"><span class="org-constant">org-agenda-files</span></span><span class="org-doc">'&#20013;&#12290;"</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">&#30001;&#20110;&#20020;&#26102;&#28155;&#21152;&#20102;&#38057;&#23376;,&#25152;&#20197;&#21024;&#38500;&#38057;&#23376;</span>
+  (remove-hook 'org-capture-after-finalize-hook #'my/org-roam-project-finalize-hook)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">&#22914;&#26524;&#30830;&#35748;&#25429;&#33719;,&#21017;&#23558;&#39033;&#30446;&#25991;&#20214;&#28155;&#21152;&#21040;&#35758;&#31243;&#21015;&#34920;&#20013;</span>
+  (<span class="org-keyword">unless</span> org-note-abort
+    (<span class="org-keyword">with-current-buffer</span> (org-capture-get <span class="org-builtin">:buffer</span>)
+      (add-to-list 'org-agenda-files (buffer-file-name)))))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-find-project</span> ()
+  (<span class="org-keyword">interactive</span>)
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">&#25429;&#33719;&#23436;&#25104;&#21518;,&#23558;&#39033;&#30446;&#25991;&#20214;&#28155;&#21152;&#21040;&#35758;&#31243;&#20013;</span>
+  (add-hook 'org-capture-after-finalize-hook #'my/org-roam-project-finalize-hook)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">&#36873;&#25321;&#35201;&#25171;&#24320;&#30340;&#39033;&#30446;&#25991;&#20214;,&#22914;&#26377;&#24517;&#35201;&#21017;&#21019;&#24314;&#39033;&#30446;&#25991;&#20214;</span>
+  (org-roam-node-find
+   nil
+   nil
+   (my/org-roam-filter-by-tag <span class="org-string">"Project"</span>)
+   <span class="org-builtin">:templates</span>
+   '((<span class="org-string">"p"</span> <span class="org-string">"project"</span> plain <span class="org-string">"* Goals\n\n%?\n\n* Tasks\n\n** TODO Add initial tasks\n\n* Dates\n\n"</span>
+      <span class="org-builtin">:if-new</span> (file+head <span class="org-string">"%&lt;%Y%m%d%H%M%S&gt;-${slug}.org"</span> <span class="org-string">"#+title: ${title}\n#+category: ${title}\n#+filetags: Project"</span>)
+      <span class="org-builtin">:unnarrowed</span> t))))  
+
+(global-set-key (kbd <span class="org-string">"C-c n p"</span>) #'my/org-roam-find-project)</pre>
+
+<p>
+此代码片段的一个有用方面是 <code>org-capture-after-finalize-hook</code> 允许我们确保新的项目笔记通过调用我们之前定义的 <code>my/org-roam-project-finalize-hook</code> 函数自动添加到 Org 议程中!
+</p>
+</div>
+
+<h2><a id="简化自定义捕获任务和笔记" class="anchor" href="#简化自定义捕获任务和笔记">¶</a>简化自定义捕获任务和笔记</h2><div class="outline-text-2" id="text-org12f18c6">
+<p>
+Org Roam 提供了一个名为 <code>org-roam-capture-</code> 的低级函数(是的,有连字符!),允许您以非常灵活的方式调用笔记捕获功能。更多信息可以在 Org Roam 手册中找到:<a href="https://www.orgroam.com/manual.html#Extending-the-Capture-System">扩展捕获系统</a>。
+</p>
+
+<p>
+我们可以使用此函数来优化捕获工作流程的特定部分!
+</p>
+
+<p>
+这里有一些您可能使用它的方式:
+</p>
+</div>
+
+<h3><a id="保留笔记和任务的收件箱" class="anchor" href="#保留笔记和任务的收件箱">¶</a>保留笔记和任务的收件箱</h3><div class="outline-text-3" id="text-org7973a8c">
+<p>
+如果您想使用单个键绑定快速捕获新笔记和任务,以便稍后审查,我们可以使用 <code>org-roam-capture-</code> 将其捕获到单个特定文件,如 <code>Inbox.org</code>!
+</p>
+
+<p>
+即使此文件不会有时间戳文件名,它也仍然会被视为 Org Roam 笔记中的节点。
+</p>
+
+<pre>(<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-capture-inbox</span> ()
+  (<span class="org-keyword">interactive</span>)
+  (org-roam-capture- <span class="org-builtin">:node</span> (org-roam-node-create)
+                     <span class="org-builtin">:templates</span> '((<span class="org-string">"i"</span> <span class="org-string">"inbox"</span> plain <span class="org-string">"* %?"</span>
+                                  <span class="org-builtin">:if-new</span> (file+head <span class="org-string">"Inbox.org"</span> <span class="org-string">"#+title: Inbox\n"</span>)))))
+
+(global-set-key (kbd <span class="org-string">"C-c n b"</span>) #'my/org-roam-capture-inbox)</pre>
+</div>
+
+<h3><a id="直接捕获任务到特定项目" class="anchor" href="#直接捕获任务到特定项目">¶</a>直接捕获任务到特定项目</h3><div class="outline-text-3" id="text-org54247a6">
+<p>
+如果您设置了之前提到的项目笔记文件,您可以设置一个捕获模板,让您快速为任何项目捕获任务。
+</p>
+
+<p>
+与前面的示例一样,我们可以选择已存在的项目,或者在项目笔记不存在时自动创建项目笔记!
+</p>
+
+<pre>(<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-capture-task</span> ()
+  (<span class="org-keyword">interactive</span>)
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">&#25429;&#33719;&#23436;&#25104;&#21518;,&#23558;&#39033;&#30446;&#25991;&#20214;&#28155;&#21152;&#21040;&#35758;&#31243;&#20013;</span>
+  (add-hook 'org-capture-after-finalize-hook #'my/org-roam-project-finalize-hook)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">&#22914;&#26377;&#24517;&#35201;,&#25429;&#33719;&#26032;&#20219;&#21153;&#24182;&#21019;&#24314;&#39033;&#30446;&#25991;&#20214;</span>
+  (org-roam-capture- <span class="org-builtin">:node</span> (org-roam-node-read
+                            nil
+                            (my/org-roam-filter-by-tag <span class="org-string">"Project"</span>))
+                     <span class="org-builtin">:templates</span> '((<span class="org-string">"p"</span> <span class="org-string">"project"</span> plain <span class="org-string">"* TODO %?"</span>
+                                   <span class="org-builtin">:if-new</span> (file+head+olp <span class="org-string">"%&lt;%Y%m%d%H%M%S&gt;-${slug}.org"</span>
+                                                          <span class="org-string">"#+title: ${title}\n#+category: ${title}\n#+filetags: Project"</span>
+                                                          (<span class="org-string">"Tasks"</span>))))))
+(global-set-key (kbd <span class="org-string">"C-c n t"</span>) #'my/org-roam-capture-task)</pre>
+
+<p>
+要注意的一点是,我们在捕获模板中使用 <code>file+head+olp</code>,这样我们就可以将新任务条目放在&ldquo;Tasks&rdquo;标题下。
+</p>
+
+<p>
+我们还使用之前定义的 <code>my/org-roam-project-finalize-hook</code> 函数,以便任何新项目都会被添加到 Org 议程中!
+</p>
+</div>
+
+<h2><a id="自动将完成的任务复制或移动到每日文件" class="anchor" href="#自动将完成的任务复制或移动到每日文件">¶</a>自动将完成的任务复制(或移动)到每日文件</h2><div class="outline-text-2" id="text-org596f169">
+<p>
+每日文件一个有趣的用途是保留完成任务的记录。如果我们可以自动将任何 Org 模式文件中的完成任务复制到当天的每日文件,那会怎么样?
+</p>
+
+<p>
+我们可以通过添加一些自定义代码来实现这一目的!
+</p>
+
+<p>
+以下代码段为所有 Org 任务状态更改设置了一个钩子,然后将完成的(<code>DONE</code>)条目复制到当天的笔记文件:
+</p>
+
+<pre>(<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-copy-todo-to-today</span> ()
+  (<span class="org-keyword">interactive</span>)
+  (<span class="org-keyword">let</span> ((org-refile-keep t) <span class="org-comment-delimiter">;; </span><span class="org-comment">&#23558;&#27492;&#35774;&#32622;&#20026; nil &#20197;&#21024;&#38500;&#21407;&#20214;!</span>
+        (org-roam-dailies-capture-templates
+          '((<span class="org-string">"t"</span> <span class="org-string">"tasks"</span> entry <span class="org-string">"%?"</span>
+             <span class="org-builtin">:if-new</span> (file+head+olp <span class="org-string">"%&lt;%Y-%m-%d&gt;.org"</span> <span class="org-string">"#+title: %&lt;%Y-%m-%d&gt;\n"</span> (<span class="org-string">"Tasks"</span>)))))
+        (org-after-refile-insert-hook #'save-buffer)
+        today-file
+        pos)
+    (<span class="org-keyword">save-window-excursion</span>
+      (org-roam-dailies--capture (current-time) t)
+      (<span class="org-keyword">setq</span> today-file (buffer-file-name))
+      (<span class="org-keyword">setq</span> pos (point)))
+
+    <span class="org-comment-delimiter">;; </span><span class="org-comment">&#20165;&#22312;&#30446;&#26631;&#25991;&#20214;&#19982;&#24403;&#21069;&#25991;&#20214;&#19981;&#21516;&#26102;&#37325;&#26032;&#24402;&#26723;</span>
+    (<span class="org-keyword">unless</span> (equal (file-truename today-file)
+                   (file-truename (buffer-file-name)))
+      (org-refile nil nil (list <span class="org-string">"Tasks"</span> today-file nil pos)))))
+
+(add-to-list 'org-after-todo-state-change-hook
+             (<span class="org-keyword">lambda</span> ()
+               (<span class="org-keyword">when</span> (equal org-state <span class="org-string">"DONE"</span>)
+                 (my/org-roam-copy-todo-to-today))))</pre>
+
+<p>
+如果要移动完成的任务而不是复制它,请在此代码中将 <code>org-refile-keep</code> 设置为 <code>nil</code>!
+</p>
+
+<p>
+此代码较高级,因此请参阅下一节以了解其工作原理!
+</p>
+</div>
+
+<h3><a id="工作原理" class="anchor" href="#工作原理">¶</a>工作原理</h3><div class="outline-text-3" id="text-org31e99bc">
+<p>
+为了在 <code>TODO</code> 项状态更改时收到通知,我们将 <code>my/org-roam-copy-todo-to-today</code> 函数添加到 <code>org-after-todo-state-change-hook</code> 列表中。
+</p>
+
+<p>
+当用户完成一个任务时,此函数将设置一个&ldquo;日常&rdquo;临时捕获模板,它将跳转到当天日期文件中的&ldquo;Tasks&rdquo;标题下。这被包装在 <code>save-window-excursion</code> 调用中,以确保捕获作业不会更改您的窗口配置和当前缓冲区。
+</p>
+
+<p>
+如果捕获目标文件不是当前日期的文件,我们调用 <code>org-refile</code> 以将项目复制(或在 <code>org-refile-keep</code> 为 <code>nil</code> 时移动)到新位置!这避免了将完成的任务移动回它已经存在的文件中(这会引发错误!)。
+</p>
+</div>
+
+<h2><a id="最终配置" class="anchor" href="#最终配置">¶</a>最终配置</h2><div class="outline-text-2" id="text-orgd2069db">
+<p>
+<b>非常重要的注意事项!</b>  确保使用此代码的配置文件顶部有以下行!
+</p>
+
+<pre><span class="org-comment-delimiter">;; </span><span class="org-comment">-*- lexical-binding: t; -*-</span></pre>
+
+<p>
+这可以确保在评估此配置之前加载 Org Roam,这对我们编写的自定义代码正常工作很重要。
+</p>
+
+<p>
+此行启用词法绑定,可以确保 <code>my/org-roam-filter-by-tag</code> 函数正确工作。
+</p>
+
+<pre>(<span class="org-keyword">use-package</span> <span class="org-constant">org-roam</span>
+  <span class="org-builtin">:ensure</span> t
+  <span class="org-builtin">:demand</span> t  <span class="org-comment-delimiter">;; </span><span class="org-comment">Ensure org-roam is loaded by default</span>
+  <span class="org-builtin">:init</span>
+  (<span class="org-keyword">setq</span> org-roam-v2-ack t)
+  <span class="org-builtin">:custom</span>
+  (org-roam-directory <span class="org-string">"~/RoamNotes"</span>)
+  (org-roam-completion-everywhere t)
+  <span class="org-builtin">:bind</span> ((<span class="org-string">"C-c n l"</span> . org-roam-buffer-toggle)
+         (<span class="org-string">"C-c n f"</span> . org-roam-node-find)
+         (<span class="org-string">"C-c n i"</span> . org-roam-node-insert)
+         (<span class="org-string">"C-c n I"</span> . org-roam-node-insert-immediate)
+         (<span class="org-string">"C-c n p"</span> . my/org-roam-find-project)
+         (<span class="org-string">"C-c n t"</span> . my/org-roam-capture-task)
+         (<span class="org-string">"C-c n b"</span> . my/org-roam-capture-inbox)
+         <span class="org-builtin">:map</span> org-mode-map
+         (<span class="org-string">"C-M-i"</span> . completion-at-point)
+         <span class="org-builtin">:map</span> org-roam-dailies-map
+         (<span class="org-string">"Y"</span> . org-roam-dailies-capture-yesterday)
+         (<span class="org-string">"T"</span> . org-roam-dailies-capture-tomorrow))
+  <span class="org-builtin">:bind-keymap</span>
+  (<span class="org-string">"C-c n d"</span> . org-roam-dailies-map)
+  <span class="org-builtin">:config</span>
+  (<span class="org-keyword">require</span> '<span class="org-constant">org-roam-dailies</span>) <span class="org-comment-delimiter">;; </span><span class="org-comment">Ensure the keymap is available</span>
+  (org-roam-db-autosync-mode))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">org-roam-node-insert-immediate</span> (arg <span class="org-type">&amp;rest</span> args)
+  (<span class="org-keyword">interactive</span> <span class="org-string">"P"</span>)
+  (<span class="org-keyword">let</span> ((args (<span class="org-keyword">push</span> arg args))
+        (org-roam-capture-templates (list (append (car org-roam-capture-templates)
+                                                  '(<span class="org-builtin">:immediate-finish</span> t)))))
+    (apply #'org-roam-node-insert args)))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-filter-by-tag</span> (tag-name)
+  (<span class="org-keyword">lambda</span> (node)
+    (member tag-name (org-roam-node-tags node))))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-list-notes-by-tag</span> (tag-name)
+  (mapcar #'org-roam-node-file
+          (seq-filter
+           (my/org-roam-filter-by-tag tag-name)
+           (org-roam-node-list))))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-refresh-agenda-list</span> ()
+  (<span class="org-keyword">interactive</span>)
+  (<span class="org-keyword">setq</span> org-agenda-files (my/org-roam-list-notes-by-tag <span class="org-string">"Project"</span>)))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Build the agenda list the first time for the session</span>
+(my/org-roam-refresh-agenda-list)
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-project-finalize-hook</span> ()
+  <span class="org-doc">"Adds the captured project file to `</span><span class="org-doc"><span class="org-constant">org-agenda-files</span></span><span class="org-doc">' if the</span>
+<span class="org-doc">capture was not aborted."</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Remove the hook since it was added temporarily</span>
+  (remove-hook 'org-capture-after-finalize-hook #'my/org-roam-project-finalize-hook)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Add project file to the agenda list if the capture was confirmed</span>
+  (<span class="org-keyword">unless</span> org-note-abort
+    (<span class="org-keyword">with-current-buffer</span> (org-capture-get <span class="org-builtin">:buffer</span>)
+      (add-to-list 'org-agenda-files (buffer-file-name)))))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-find-project</span> ()
+  (<span class="org-keyword">interactive</span>)
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Add the project file to the agenda after capture is finished</span>
+  (add-hook 'org-capture-after-finalize-hook #'my/org-roam-project-finalize-hook)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Select a project file to open, creating it if necessary</span>
+  (org-roam-node-find
+   nil
+   nil
+   (my/org-roam-filter-by-tag <span class="org-string">"Project"</span>)
+   <span class="org-builtin">:templates</span>
+   '((<span class="org-string">"p"</span> <span class="org-string">"project"</span> plain <span class="org-string">"* Goals\n\n%?\n\n* Tasks\n\n** TODO Add initial tasks\n\n* Dates\n\n"</span>
+      <span class="org-builtin">:if-new</span> (file+head <span class="org-string">"%&lt;%Y%m%d%H%M%S&gt;-${slug}.org"</span> <span class="org-string">"#+title: ${title}\n#+category: ${title}\n#+filetags: Project"</span>)
+      <span class="org-builtin">:unnarrowed</span> t))))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-capture-inbox</span> ()
+  (<span class="org-keyword">interactive</span>)
+  (org-roam-capture- <span class="org-builtin">:node</span> (org-roam-node-create)
+                     <span class="org-builtin">:templates</span> '((<span class="org-string">"i"</span> <span class="org-string">"inbox"</span> plain <span class="org-string">"* %?"</span>
+                                  <span class="org-builtin">:if-new</span> (file+head <span class="org-string">"Inbox.org"</span> <span class="org-string">"#+title: Inbox\n"</span>)))))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-capture-task</span> ()
+  (<span class="org-keyword">interactive</span>)
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Add the project file to the agenda after capture is finished</span>
+  (add-hook 'org-capture-after-finalize-hook #'my/org-roam-project-finalize-hook)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Capture the new task, creating the project file if necessary</span>
+  (org-roam-capture- <span class="org-builtin">:node</span> (org-roam-node-read
+                            nil
+                            (my/org-roam-filter-by-tag <span class="org-string">"Project"</span>))
+                     <span class="org-builtin">:templates</span> '((<span class="org-string">"p"</span> <span class="org-string">"project"</span> plain <span class="org-string">"** TODO %?"</span>
+                                   <span class="org-builtin">:if-new</span> (file+head+olp <span class="org-string">"%&lt;%Y%m%d%H%M%S&gt;-${slug}.org"</span>
+                                                          <span class="org-string">"#+title: ${title}\n#+category: ${title}\n#+filetags: Project"</span>
+                                                          (<span class="org-string">"Tasks"</span>))))))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">my/org-roam-copy-todo-to-today</span> ()
+  (<span class="org-keyword">interactive</span>)
+  (<span class="org-keyword">let</span> ((org-refile-keep t) <span class="org-comment-delimiter">;; </span><span class="org-comment">Set this to nil to delete the original!</span>
+        (org-roam-dailies-capture-templates
+          '((<span class="org-string">"t"</span> <span class="org-string">"tasks"</span> entry <span class="org-string">"%?"</span>
+             <span class="org-builtin">:if-new</span> (file+head+olp <span class="org-string">"%&lt;%Y-%m-%d&gt;.org"</span> <span class="org-string">"#+title: %&lt;%Y-%m-%d&gt;\n"</span> (<span class="org-string">"Tasks"</span>)))))
+        (org-after-refile-insert-hook #'save-buffer)
+        today-file
+        pos)
+    (<span class="org-keyword">save-window-excursion</span>
+      (org-roam-dailies--capture (current-time) t)
+      (<span class="org-keyword">setq</span> today-file (buffer-file-name))
+      (<span class="org-keyword">setq</span> pos (point)))
+
+    <span class="org-comment-delimiter">;; </span><span class="org-comment">Only refile if the target file is different than the current file</span>
+    (<span class="org-keyword">unless</span> (equal (file-truename today-file)
+                   (file-truename (buffer-file-name)))
+      (org-refile nil nil (list <span class="org-string">"Tasks"</span> today-file nil pos)))))
+
+(add-to-list 'org-after-todo-state-change-hook
+             (<span class="org-keyword">lambda</span> ()
+               (<span class="org-keyword">when</span> (equal org-state <span class="org-string">"DONE"</span>)
+                 (my/org-roam-copy-todo-to-today))))</pre>
+</div>
+</div></div><div class="list-form center"><div class="list-form-title">Subscribe to the System Crafters Newsletter!</div><form method="POST" action="https://www.simplelists.com/subscribe.php"><input type="hidden" name="format" value="text"/><input type="hidden" name="action" value="subscribe"/><input type="hidden" name="list" value="news@lists.systemcrafters.net"/><div class="list-form-message">Stay up to date with the latest System Crafters news and updates!  Read the <a href="/newsletter/">Newsletter</a> page for more information.</div><div class="row"><div class="column"><div class="row center list-form-label">Name (optional)</div><div class="row"><input type="text" name="name"/></div></div><div class="column"><div class="row center list-form-label">Email Address</div><div class="row"><input type="text" name="email"/></div></div></div><div><input type="submit" value="Subscribe!"/></div></form></div></div><footer class="site-footer"><div class="container"><div class="row"><div class="column"><p><a href="https://systemcrafters.net/privacy-policy/">Privacy Policy</a> · <a href="https://systemcrafters.net/credits/">Credits</a> · <a href="https://systemcrafters.net/rss/">RSS Feeds</a> · <a rel="me" href="https://fosstodon.org/@daviwil">Fediverse</a></p><p>© 2021-2023 System Crafters LLC</p></div><div class="column align-right"><p><a href="https://codeberg.org/SystemCrafters/systemcrafters.net"><img src="https://systemcrafters.net/img/codeberg.png" style="width: 120px" alt="Contribute on Codeberg"/></a></p></div></div></div></footer></body></html>

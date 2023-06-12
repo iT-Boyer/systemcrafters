@@ -1,0 +1,304 @@
+<!-- Generated from 83cf183 on 2023-06-12 @ 08:55 with Emacs 27.2 (Org mode 9.4.4) -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://systemcrafters.net/rss/news.xml"/><link rel="stylesheet" href="https://systemcrafters.net/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://systemcrafters.net/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://systemcrafters.net/css/code.css"/><link rel="stylesheet" href="https://systemcrafters.net/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>用 org-roam 在 emacs 中构建第二个大脑 - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://systemcrafters.net/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/">Home</a> <a class="nav-link" href="/guides/">Guides</a> <a class="nav-link" href="/news/">News</a> <a class="nav-link" href="/community/">Community</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/how-to-help/">How to Help</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">用 org-roam 在 emacs 中构建第二个大脑</h1><p class="site-post-meta"></p><div id="content"><p>
+<div class="video">  <iframe src="https://www.youtube.com/embed/AyhPmypHDEw" allowfullscreen></iframe></div>
+</p>
+
+<div class="cta center">
+If you find this guide helpful, please consider supporting System Crafters via the links on the <a href="/how-to-help/#support-my-work">How to Help</a> page!
+</div>
+
+<h2><a id="org-roam-是什么" class="anchor" href="#org-roam-是什么">¶</a>Org Roam 是什么?</h2><div class="outline-text-2" id="text-orgb7d9ad2">
+<p>
+Org Mode 不仅是一种很好的工具用于写作和个人笔记,还可以用于TODO列表、项目计划、时间跟踪等。一旦您真正投入使用 Org Mode,最终您将需要制定一个系统来管理 Org 文件,以便轻松存储和查找所需的信息。
+</p>
+
+<p>
+<a href="https://github.com/org-roam/org-roam">Org Roam</a> 是 Org Mode 的一个扩展,它解决了我个人使用 Org 进行个人笔记时遇到的几个最大问题:
+</p>
+
+<ul class="org-ul">
+<li><b>我需要多少个 Org 文件?</b></li>
+<li><b>我应该把东西放在 Org 文件中的什么位置?</b></li>
+</ul>
+
+<p>
+Org Roam 通过使创建专注于主题的 Org 文件变得容易,并将它们链接在一起,使您可以将信息视为网络中的节点而不是层次结构文档来解决这些问题。您可以把它看作是一个个人 Wiki!
+</p>
+
+<p>
+它的灵感来自一个名为 <a href="https://roamresearch.com/">Roam</a> 的程序和一个名为 <a href="https://www.orgroam.com/manual.html#A-Brief-Introduction%3Ehe-Zettelkasten-Method">Zettelkasten</a> 的笔记策略,其目标是创建许多单一主题的独立笔记,并将它们链接在一起以创建一个“网络”知识库。
+</p>
+
+<p>
+许多人认为这就像创建一个“第二大脑”,因为它可以轻松处理大量知识,并非常有效地提醒您主题之间的联系。
+</p>
+
+<p>
+与其他类似的笔记工具相比,Org Roam 的主要优点是您可以以新的方式使用 Org Mode 的所有其他优秀功能!
+</p>
+
+<p>
+Org Roam 允许您在保留 Org Mode 的所有现有功能的同时,以网络方式组织笔记和思想。这种方法可以显著提高工作效率和创造力。
+</p>
+</div>
+
+<h2><a id="先决条件" class="anchor" href="#先决条件">¶</a>先决条件</h2><div class="outline-text-2" id="text-orgd99b655">
+<p>
+Org Roam v2 依赖于定制的 SQLite 数据库工具才能运行。Org Roam 将为您编译此代码,只要您安装了兼容的编译器!
+</p>
+
+<p>
+Linux 和 macOS 用户请确保安装了 gcc 或 clang 等C/C++编译器。
+</p>
+
+<p>
+Windows 用户可以按照 Org Roam 手册中的说明编译数据库程序。
+</p>
+
+<p>
+您可能会疑惑为什么 Org Roam 需要数据库。数据库使 Org Roam 能够非常高效地跟踪您创建的所有“节点”及其之间的链接。您也可以使用 Org Roam 的数据库开发自己的扩展!
+</p>
+</div>
+
+<h2><a id="安装" class="anchor" href="#安装">¶</a>安装</h2><div class="outline-text-2" id="text-orgb6d2aa5">
+<p>
+从MELPA使用 package.el、straight.el 或您通常使用的任何其他包管理器安装 org-roam 包。
+</p>
+
+<p>
+如果您使用 use-package 和 package.el,请添加此内容并执行以安装 org-roam:
+</p>
+
+<pre>(<span class="org-keyword">use-package</span> <span class="org-constant">org-roam</span>
+  <span class="org-builtin">:ensure</span> t)</pre>
+
+<p>
+加载包后,您可以检查变量 <code>org-roam--sqlite-available-p</code> 的值是否为 <code>t</code>,以确保一切设置正确并准备好运行。
+</p>
+</div>
+
+<h2><a id="基本配置" class="anchor" href="#基本配置">¶</a>基本配置</h2><div class="outline-text-2" id="text-orgff3519d">
+<p>
+安装 Org Roam 后,最重要的配置是设置保存 Org Roam 文件的文件夹。
+</p>
+
+<p>
+默认情况下,这将是 <code>$HOME</code> 目录下名为 <code>org-roam</code> 的文件夹,但您可能会想将其设置为其他内容。无论使用什么路径,如果提前创建文件夹,事情会简单一些!
+</p>
+
+<p>
+<b>提示:</b> 不要使用现有的 Org 文件文件夹!现有的文件不会有必要的元数据,因此不会显示在 Org Roam 的数据库中。
+</p>
+
+<p>
+我们还将添加一些必要的键绑定和调用 <code>org-roam-setup</code> 的调用,以确保一切准备就绪。
+</p>
+
+<pre>(<span class="org-keyword">use-package</span> <span class="org-constant">org-roam</span>
+  <span class="org-builtin">:ensure</span> t
+  <span class="org-builtin">:custom</span>
+  (org-roam-directory <span class="org-string">"~/RoamNotes"</span>)
+  <span class="org-builtin">:bind</span> ((<span class="org-string">"C-c n l"</span> . org-roam-buffer-toggle)
+         (<span class="org-string">"C-c n f"</span> . org-roam-node-find)
+         (<span class="org-string">"C-c n i"</span> . org-roam-node-insert))
+  <span class="org-builtin">:config</span>
+  (org-roam-setup))</pre>
+</div>
+
+<h2><a id="处理迁移警告" class="anchor" href="#处理迁移警告">¶</a>处理迁移警告</h2><div class="outline-text-2" id="text-org414afe0">
+<p>
+第一次加载包时,您可能会在 <code>*Warnings*</code> 缓冲区中看到有关迁移 Org Roam v1 文件到 v2 的消息。
+</p>
+
+<p>
+如果您以前从未使用过 Org Roam,您可以在配置中将变量 <code>org-roam-v2-ack</code> 设置为 <code>t</code> 。
+</p>
+
+<p>
+<b>如果您一直在使用 Org Roam v1</b>,请按消息中的提示执行 <code>M-x org-roam-migrate-wizard</code>!有关详细信息,请查看 wiki 中的 <a href="https://github.com/org-roam/org-roam/wiki/Hitchhiker's-Rough-Guide-to-Org-roam-V2#migration-instructions">迁移说明</a>。
+</p>
+
+<p>
+下面是如何在配置中设置变量,以便您不再看到此消息:
+</p>
+
+<pre>(<span class="org-keyword">use-package</span> <span class="org-constant">org-roam</span>
+  <span class="org-builtin">:ensure</span> t
+  <span class="org-builtin">:init</span>
+  (<span class="org-keyword">setq</span> org-roam-v2-ack t)
+  <span class="org-builtin">:custom</span>
+  (org-roam-directory <span class="org-string">"~/RoamNotes"</span>)
+  <span class="org-builtin">:bind</span> ((<span class="org-string">"C-c n l"</span> . org-roam-buffer-toggle)
+       (<span class="org-string">"C-c n f"</span> . org-roam-node-find)
+       (<span class="org-string">"C-c n i"</span> . org-roam-node-insert))
+   <span class="org-builtin">:config</span>
+   (org-roam-setup))</pre>
+</div>
+
+<h2><a id="创建第一个节点" class="anchor" href="#创建第一个节点">¶</a>创建第一个节点</h2><div class="outline-text-2" id="text-org14a3c25">
+<p>
+让我们创建第一个节点!我们可以使用 <code>C-c n f</code> 绑定来调用 <code>org-roam-node-find</code>,它会带来一个完成会话来选择或创建一个节点。
+</p>
+
+<p>
+因为我们想创建一个新节点,我们可以输入所需节点名称“Programming Languages”并按 <code>RET</code> (Enter)键。
+</p>
+
+<p>
+为节点创建一个新的 Org 捕获缓冲区。为什么捕获缓冲区?因为 Org Roam 允许您指定多个捕获模板来创建不同种类的新笔记!我们将在另一个视频中介绍这一点。
+</p>
+
+<p>
+现在,我们可以在文件中添加一些文本,然后按 <code>C-c C-c</code> 确认捕获以保存文件。
+</p>
+
+<p>
+让我们按相同的步骤创建另一个名为“Emacs Lisp”的节点。
+</p>
+</div>
+
+<h2><a id="它们只是-org-文件" class="anchor" href="#它们只是-org-文件">¶</a>它们只是 .org 文件!</h2><div class="outline-text-2" id="text-orgeaae92d">
+<p>
+这些只是您笔记文件夹中的普通 <code>.org</code> 文件!您可以将其检入 Git 仓库或使用任何其他工具进行同步。Org Roam 创建的数据库文件 <b>不需要</b> 在计算机之间同步,因为 Org Roam 可以从现有的 .org 文件重新创建它。
+</p>
+</div>
+
+<h2><a id="插入到其他节点的链接" class="anchor" href="#插入到其他节点的链接">¶</a>插入到其他节点的链接</h2><div class="outline-text-2" id="text-orge44dfb7">
+<p>
+Org Roam 的真正强大之处在于开始链接节点文件!但是,这与正常的 Org 链接工作方式不同。
+</p>
+
+<p>
+在 Org Roam 缓冲区中,我们可以使用 <code>C-c n i</code> 绑定调用 <code>org-roam-node-insert</code>,它会带来包含您所有节点的完成列表。选择其中一个将导致当前缓冲区中的链接指向那个节点。
+</p>
+
+<p>
+让我们使用此命令在“Programming Languages”节点中插入指向“Emacs Lisp”的链接。
+</p>
+</div>
+
+<h2><a id="插入尚未存在的节点链接" class="anchor" href="#插入尚未存在的节点链接">¶</a>插入尚未存在的节点链接</h2><div class="outline-text-2" id="text-orge22a59e">
+<p>
+您也可以键入一个尚不存在的节点名称,它将被创建!一旦使用 <code>C-c C-c</code> 确认出现的新节点的捕获缓冲区,指向该节点的链接将被插入到您开始的缓冲区中。
+</p>
+
+<p>
+让我们使用 <code>C-c n i</code> 插入一个名为“Scheme”的新节点,看看这是如何工作的。
+</p>
+
+<p>
+这使得构建节点图变得更加迅速!
+</p>
+</div>
+
+<h2><a id="使用自动补全插入节点链接" class="anchor" href="#使用自动补全插入节点链接">¶</a>使用自动补全插入节点链接</h2><div class="outline-text-2" id="text-orgfd96b56">
+<p>
+您还可以使用 <code>M-x completion-at-point</code> 在双方括号 <code>[[]]</code> 内完成节点名称。不过,我发现这在某些情况下不起作用!
+</p>
+
+<p>
+如果您想在 Org Roam 文件中的任何位置完成节点名称而不使用括号,请将 <code>org-roam-completion-everywhere</code> 设置为 <code>t</code> 。如果您在缓冲区中键入几个字母并运行 <code>M-x completion-at-point</code>,完成会话将允许您完成节点名称。保存文件后,=roam:Node= 链接语法将被修复!
+</p>
+
+<p>
+这里有一个更新的配置,可以更轻松地完成节点:
+</p>
+
+<pre>(<span class="org-keyword">use-package</span> <span class="org-constant">org-roam</span>
+  <span class="org-builtin">:ensure</span> t
+  <span class="org-builtin">:init</span>
+  (<span class="org-keyword">setq</span> org-roam-v2-ack t)
+  <span class="org-builtin">:custom</span>
+  (org-roam-directory <span class="org-string">"~/RoamNotes"</span>)
+  (org-roam-completion-everywhere t)
+  <span class="org-builtin">:bind</span> ((<span class="org-string">"C-c n l"</span> . org-roam-buffer-toggle)
+         (<span class="org-string">"C-c n f"</span> . org-roam-node-find)
+         (<span class="org-string">"C-c n i"</span> . org-roam-node-insert)
+         <span class="org-builtin">:map</span> org-mode-map
+         (<span class="org-string">"C-M-i"</span>    . completion-at-point))
+  <span class="org-builtin">:config</span>
+  (org-roam-setup))</pre>
+</div>
+
+<h2><a id="创建标题节点" class="anchor" href="#创建标题节点">¶</a>创建标题节点</h2><div class="outline-text-2" id="text-orgc2e4997">
+<p>
+Org Roam v2 的新功能之一是 能够 <code>将节点文件中的顶级标题转换为其自己的唯一节点</code> 。如果某些节点不真正配得上自己的文件,但您仍然想链接到它们,这可能会很有帮助!
+</p>
+
+<p>
+当您的光标位于 Org Roam 节点缓冲区中的顶级标题中时,运行 <code>M-x org-id-get-create</code> 为标题分配 Org ID。现在,您将在 <code>C-c n f</code> 显示的节点列表中看到该标题的名称。
+</p>
+
+<p>
+让我们在“Emacs Lisp”节点中创建一个名为“资源”的顶级标题节点!
+</p>
+</div>
+
+<h2><a id="为节点创建别名" class="anchor" href="#为节点创建别名">¶</a>为节点创建别名</h2><div class="outline-text-2" id="text-org88769b4">
+<p>
+如果您在多个文件中的顶级标题节点具有相同的名称,会发生什么情况?
+</p>
+
+<p>
+让我们在“Scheme”节点中创建另一个名为“资源”的顶级标题节点,并使用 <code>org-id-get-create</code> 为其提供 ID。
+</p>
+
+<p>
+现在,如果我们使用 <code>C-c n f</code> 列出所有节点,我们会在列表中看到两个“资源”节点!我们怎么才能把它们区分开来?
+</p>
+
+<p>
+解决这个问题的方法是为具有相同名称的一个(或所有)节点创建别名。如果将光标置于标题节点或文件节点上,您可以运行 <code>M-x org-roam-alias-add</code> 。系统会提示您输入要添加的别名名称。
+</p>
+
+<p>
+现在如果检查节点列表(<code>C-c n f</code>),您仍然会看到重复的“资源”名称,但您添加的别名也将在列表中!
+</p>
+
+<p>
+如果需要,您可以为单个节点添加多个别名。
+</p>
+</div>
+
+<h2><a id="查看当前文件的反向链接" class="anchor" href="#查看当前文件的反向链接">¶</a>查看当前文件的反向链接</h2><div class="outline-text-2" id="text-org353fd8b">
+<p>
+一旦您开始创建许多相互链接的节点,打开反向链接缓冲区以查看链接到您当前正在查看的节点的笔记可能会非常有帮助。
+</p>
+
+<p>
+让我们打开“Emacs Lisp”节点,然后按 <code>C-c n l</code> 执行 <code>org-roam-buffer-toggle</code> 命令。一个名为 <code>*org-roam*</code> 的新缓冲区将在新窗口中创建。
+</p>
+
+<p>
+现在,每次选择 Org Roam 节点的缓冲区时,您都会看到从任何其他节点到该节点的引用列表。由于我们正在查看“Emacs Lisp”节点,我们可以看到来自“Programming Languages”节点的引用!
+</p>
+
+<p>
+让我们创建另一个名为“System Crafters”的节点,并添加指向“Programming”和“Emacs Lisp”的链接,以查看这些节点的反向链接缓冲区中的情况。
+</p>
+</div>
+
+<h2><a id="下一步是什么" class="anchor" href="#下一步是什么">¶</a>下一步是什么?</h2><div class="outline-text-2" id="text-org20aa869">
+<p>
+我们在此视频中已经涵盖了足够的 Org Roam 知识,让您可以以新的方式开始记笔记!构建个人知识库非常令人满意。
+</p>
+
+<p>
+在后续的视频中,我们将涵盖以下主题:
+</p>
+
+<ul class="org-ul">
+<li>使用捕获模板创建 Org Roam 节点</li>
+<li>使用“每日”功能进行每日日记和记录</li>
+<li>使用 Org Roam 文件填充 Org Agenda</li>
+</ul>
+
+<p>
+&#x2026;以及随着 Org Roam v2 的开发而增加的更多内容!
+</p>
+
+<p>
+同时,请查看 <a href="https://www.orgroam.com/manual.html">Org Roam 手册</a>以获取有关其提供的功能的更多信息。
+</p>
+</div>
+</div></div><div class="list-form center"><div class="list-form-title">Subscribe to the System Crafters Newsletter!</div><form method="POST" action="https://www.simplelists.com/subscribe.php"><input type="hidden" name="format" value="text"/><input type="hidden" name="action" value="subscribe"/><input type="hidden" name="list" value="news@lists.systemcrafters.net"/><div class="list-form-message">Stay up to date with the latest System Crafters news and updates!  Read the <a href="/newsletter/">Newsletter</a> page for more information.</div><div class="row"><div class="column"><div class="row center list-form-label">Name (optional)</div><div class="row"><input type="text" name="name"/></div></div><div class="column"><div class="row center list-form-label">Email Address</div><div class="row"><input type="text" name="email"/></div></div></div><div><input type="submit" value="Subscribe!"/></div></form></div></div><footer class="site-footer"><div class="container"><div class="row"><div class="column"><p><a href="https://systemcrafters.net/privacy-policy/">Privacy Policy</a> · <a href="https://systemcrafters.net/credits/">Credits</a> · <a href="https://systemcrafters.net/rss/">RSS Feeds</a> · <a rel="me" href="https://fosstodon.org/@daviwil">Fediverse</a></p><p>© 2021-2023 System Crafters LLC</p></div><div class="column align-right"><p><a href="https://codeberg.org/SystemCrafters/systemcrafters.net"><img src="https://systemcrafters.net/img/codeberg.png" style="width: 120px" alt="Contribute on Codeberg"/></a></p></div></div></div></footer></body></html>

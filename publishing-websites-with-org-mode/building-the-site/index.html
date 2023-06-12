@@ -1,0 +1,621 @@
+<!-- Generated from 83cf183 on 2023-06-12 @ 08:55 with Emacs 27.2 (Org mode 9.4.4) -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://systemcrafters.net/rss/news.xml"/><link rel="stylesheet" href="https://systemcrafters.net/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://systemcrafters.net/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://systemcrafters.net/css/code.css"/><link rel="stylesheet" href="https://systemcrafters.net/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>用 Org Mode 建立你的网站 - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://systemcrafters.net/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/">Home</a> <a class="nav-link" href="/guides/">Guides</a> <a class="nav-link" href="/news/">News</a> <a class="nav-link" href="/community/">Community</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/how-to-help/">How to Help</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">用 Org Mode 建立你的网站</h1><p class="site-post-meta"></p><div id="content"><p>
+<div class="video">  <iframe src="https://www.youtube.com/embed/AfkrzFodoNw" allowfullscreen></iframe></div>
+</p>
+
+<h2><a id="介绍" class="anchor" href="#介绍">¶</a>介绍</h2><div class="outline-text-2" id="text-org0631dd3">
+<p>
+Org 模式的发布系统是其最有用的功能之一。它允许您将 Org 文件转换为许多其他格式,包括HTML、PDF、LaTeX 等。
+</p>
+
+<p>
+在这个视频中,我将向您展示如何利用 Org 模式的HTML发布功能生成一个简单但外观漂亮的网站!
+</p>
+
+<div class="cta center">
+If you find this guide helpful, please consider supporting System Crafters via the links on the <a href="/how-to-help/#support-my-work">How to Help</a> page!
+</div>
+</div>
+
+<h2><a id="开始入门" class="anchor" href="#开始入门">¶</a>开始入门</h2><div class="outline-text-2" id="text-orgcca7573">
+<p>
+要开始,我们需要一个地方放置我们将用于生成网站的所有代码以及将提供网站内容的 <code>.org</code> 文件。
+</p>
+
+<p>
+我们将创建一个名为 <code>my-org-site</code> 的文件夹,其中包含一个名为 <code>content</code> 的子文件夹,其中包含一个名为 <code>index.org</code> 的文件。这将创建一个名为 <code>index.html</code> 的文件,它将是我们网站的主页!
+</p>
+
+<p>
+您在其中放置的 <code>.org</code> 文件可以非常简单,就像我将向您展示的那个。现在暂时不要在其中放置任何代码块,我们将在本视频的稍后部分介绍这一点。
+</p>
+
+<p>
+我们在本集中要做的大部分工作只需要 Emacs 版本24.5或更高版本,其中内置了 Org 模式包。
+</p>
+
+<p>
+创建文件夹结构:
+</p>
+<blockquote>
+<p>
+my-org-site/
+└── content/
+    └── index.org
+</p>
+</blockquote>
+</div>
+
+<h2><a id="创建构建脚本" class="anchor" href="#创建构建脚本">¶</a>创建构建脚本</h2><div class="outline-text-2" id="text-org49e72d4">
+<p>
+现在我们将创建一个 Emacs Lisp 脚本,通过运行单个 shell 命令来生成您的 Org 文档的HTML文件。
+</p>
+
+<p>
+我们将称之为 <code>build-site.el</code> :
+</p>
+
+<pre><span class="org-comment-delimiter">;; </span><span class="org-comment">&#21152;&#36733;&#21457;&#24067;&#31995;&#32479;</span>
+(<span class="org-keyword">require</span> '<span class="org-constant">ox-publish</span>)
+
+(message <span class="org-string">"&#26500;&#24314;&#23436;&#25104;!"</span>)</pre>
+
+<p>
+我们还需要一个可以运行我们的 Emacs Lisp 脚本的 shell 脚本。我们将称之为 <code>build.sh</code>:
+</p>
+
+<pre><span class="org-comment-delimiter">#</span><span class="org-comment">!/bin/sh</span>
+emacs -Q --script build-site.el</pre>
+
+<p>
+不要忘记使用 <code>chmod +x build.sh</code> 使脚本可执行!
+</p>
+
+<blockquote>
+<p>
+my-org-site
+├── build.sh
+├── build-site.el
+└── content
+    └── index.org
+</p>
+</blockquote>
+
+<p>
+*注意:*如果您使用 Windows,可以创建一个 <code>build.cmd</code> 文件以相同的方式调用 Emacs。
+</p>
+
+<p>
+<code>-Q</code> 参数可防止 Emacs 加载您自己的 Emacs 配置,这将有助于确保一旦我们准备开始发布此站点,此相同的脚本可以在其他机器上干净地执行。
+</p>
+</div>
+
+<h2><a id="设置发布项目" class="anchor" href="#设置发布项目">¶</a>设置发布项目</h2><div class="outline-text-2" id="text-orga37355f">
+<p>
+现在我们有了基本的脚本,我们可以为我们的网站设置 Org 发布配置。
+</p>
+
+<p>
+我们将以下代码片段添加到 <code>build-site.el</code> 文件中:
+</p>
+
+<pre><span class="org-comment-delimiter">;; </span><span class="org-comment">&#23450;&#20041;&#21457;&#24067;&#39033;&#30446;</span>
+(<span class="org-keyword">setq</span> org-publish-project-alist
+      (list
+       (list <span class="org-string">"my-org-site"</span>
+             <span class="org-builtin">:recursive</span> t
+             <span class="org-builtin">:base-directory</span> <span class="org-string">"./content"</span>
+             <span class="org-builtin">:publishing-directory</span> <span class="org-string">"./public"</span>
+             <span class="org-builtin">:publishing-function</span> 'org-html-publish-to-html)))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#29983;&#25104;&#31449;&#28857;&#36755;&#20986;</span>
+(org-publish-all t)</pre>
+
+<p>
+此配置将 <code>org-publish-project-alist</code> 变量定义为我们网站的发布项目。使用 <code>M-x describe-variable</code> 阅读此变量的文档以获取更多信息!
+</p>
+
+<p>
+我们使用名称 <code>my-org-site</code>,但您可以把项目命名为任何您想要的名称!
+</p>
+
+<ul class="org-ul">
+<li><code>:base-directory</code> 告诉 Org 我们要发布为HTML的文件文件夹</li>
+<li><code>:publishing-directory</code> 配置所有发布文件输出的文件夹</li>
+<li><code>:recursive</code> 告诉 Org 在 <code>:base-directory</code> 的所有子文件夹中发布 <code>.org</code> 文件</li>
+<li><code>:publishing-function</code> 告诉 Org 我们要将文件发布为HTML</li>
+</ul>
+
+<p>
+最后的 <code>org-publish-all</code> 函数告诉 Org 发布 <code>org-publish-project-alist</code> 中配置的每个项目! <code>t</code> 参数告诉它无论何时生成,都要重新生成所有文件。
+</p>
+
+<p>
+我们现在可以通过运行 <code>build.sh</code> 来生成我们网站的输出!运行它后,请查看 <code>public/</code> 文件夹。
+</p>
+</div>
+
+<h2><a id="预览生成的站点" class="anchor" href="#预览生成的站点">¶</a>预览生成的站点</h2><div class="outline-text-2" id="text-org77d9110">
+<p>
+我们来看看刚刚生成的基本网站。有一个叫做 <a href="https://github.com/skeeto/emacs-web-server">simple-httpd</a> 的 Emacs 包可以在本地机器上托管您的文件作为网站,这样您就可以在浏览器中打开它。
+</p>
+
+<p>
+您可以从 <a href="https://melpa.org/#/getting-started">MELPA</a> 使用 <code>M-x package-install</code> 或将以下代码片段 <b>放入 Emacs 配置中</b> 安装 <code>simple-httpd</code>,如果您安装了 <code>use-package</code> 并将MELPA配置为软件包源:
+</p>
+
+<pre>(<span class="org-keyword">use-package</span> <span class="org-constant">simple-httpd</span>
+  <span class="org-builtin">:ensure</span> t)</pre>
+
+<p>
+现在您可以运行 <code>M-x httpd-serve-directory</code> 。它会提示您选择 Emacs 内部的目录来提供服务。
+</p>
+
+<p>
+选择 <code>public/</code> 目录的路径,然后打开浏览器转到<a href="http://localhost:8080">http://localhost:8080</a>来预览您的网站!如果需要,可以设置 <code>httpd-port</code> 来更改默认端口。
+</p>
+
+<p>
+每次重新生成网站文件时,您只需重新加载页面即可查看所做更改的结果!
+</p>
+
+<p>
+这是一个非常方便的方法来实时预览您的 Org 网站,而无需部署到网页服务器。您可以在 Emacs 中做出更改,保存文件,然后简单地在浏览器中重新加载以查看结果。这使得构建和测试 Org 网站变得非常简单和流畅。
+</p>
+</div>
+
+
+<h2><a id="改进html输出" class="anchor" href="#改进html输出">¶</a>改进HTML输出</h2><div class="outline-text-2" id="text-orgf0311c5">
+<p>
+我们刚看到的页面有几件事我想改变一下,使输出看起来更清晰:
+</p>
+
+<ul class="org-ul">
+<li>节号</li>
+<li>作者姓名</li>
+<li>发布时间戳</li>
+<li>验证链接</li>
+</ul>
+
+<p>
+幸运的是,发布系统非常可定制,所以我将向您展示如何在项目配置中禁用一些内容以获得更好的结果。
+</p>
+
+<pre><span class="org-comment-delimiter">;; </span><span class="org-comment">&#23450;&#20041;&#21457;&#24067;&#39033;&#30446;</span>
+(<span class="org-keyword">setq</span> org-publish-project-alist
+      (list
+       (list <span class="org-string">"org-site:main"</span>
+             <span class="org-builtin">:recursive</span> t
+             <span class="org-builtin">:base-directory</span> <span class="org-string">"./content"</span>
+             <span class="org-builtin">:publishing-function</span> 'org-html-publish-to-html
+             <span class="org-builtin">:publishing-directory</span> <span class="org-string">"./public"</span>
+             <span class="org-builtin">:with-author</span> nil          <span class="org-comment-delimiter">;; </span><span class="org-comment">&#19981;&#21253;&#25324;&#20316;&#32773;&#22995;&#21517;</span>
+             <span class="org-builtin">:with-creator</span> t           <span class="org-comment-delimiter">;; </span><span class="org-comment">&#22312;&#39029;&#33050;&#20013;&#21253;&#25324;Emacs&#21644;Org&#29256;&#26412;</span>
+             <span class="org-builtin">:with-toc</span> t               <span class="org-comment-delimiter">;; </span><span class="org-comment">&#21253;&#25324;&#30446;&#24405;</span>
+             <span class="org-builtin">:section-numbers</span> nil      <span class="org-comment-delimiter">;; </span><span class="org-comment">&#19981;&#21253;&#25324;&#33410;&#21495;</span>
+             <span class="org-builtin">:time-stamp-file</span> nil)))   <span class="org-comment-delimiter">;; </span><span class="org-comment">&#19981;&#21253;&#25324;&#25991;&#20214;&#20013;&#30340;&#26102;&#38388;&#25139;</span></pre>
+
+<p>
+我们需要设置其他变量来除去底部的验证链接:
+</p>
+
+<pre>(<span class="org-keyword">setq</span> org-html-validation-link nil)</pre>
+
+<p>
+通过这些更改,我们的HTML输出现在应该没有:
+</p>
+
+<ul class="org-ul">
+<li>节号(例如=1.2=)</li>
+<li>作者的名称和联系信息</li>
+<li>文件上次更新的时间戳</li>
+<li>底部的W3C验证链接</li>
+</ul>
+</div>
+
+<h3><a id="其他可自定义的项目设置" class="anchor" href="#其他可自定义的项目设置">¶</a>其他可自定义的项目设置</h3><div class="outline-text-3" id="text-orga6f0e04">
+<p>
+这是您可能想要定制的更多项目设置列表,直接从 <code>org-publish-project-alist</code> 文档中提取:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Publish setting key</td>
+<td class="org-left">Emacs Lisp variable</td>
+</tr>
+
+<tr>
+<td class="org-left">------------------------</td>
+<td class="org-left">----------------------------------</td>
+</tr>
+
+<tr>
+<td class="org-left">:author</td>
+<td class="org-left">user-full-name</td>
+</tr>
+
+<tr>
+<td class="org-left">:email</td>
+<td class="org-left">user-mail-address</td>
+</tr>
+
+<tr>
+<td class="org-left">:creator</td>
+<td class="org-left">org-export-creator-string</td>
+</tr>
+
+<tr>
+<td class="org-left">:exclude-tags</td>
+<td class="org-left">org-export-exclude-tags</td>
+</tr>
+
+<tr>
+<td class="org-left">:headline-levels</td>
+<td class="org-left">org-export-headline-levels</td>
+</tr>
+
+<tr>
+<td class="org-left">:language</td>
+<td class="org-left">org-export-default-language</td>
+</tr>
+
+<tr>
+<td class="org-left">:preserve-breaks</td>
+<td class="org-left">org-export-preserve-breaks</td>
+</tr>
+
+<tr>
+<td class="org-left">:section-numbers</td>
+<td class="org-left">org-export-with-section-numbers</td>
+</tr>
+
+<tr>
+<td class="org-left">:select-tags</td>
+<td class="org-left">org-export-select-tags</td>
+</tr>
+
+<tr>
+<td class="org-left">:time-stamp-file</td>
+<td class="org-left">org-export-time-stamp-file</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-archived-trees</td>
+<td class="org-left">org-export-with-archived-trees</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-author</td>
+<td class="org-left">org-export-with-author</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-creator</td>
+<td class="org-left">org-export-with-creator</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-date</td>
+<td class="org-left">org-export-with-date</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-drawers</td>
+<td class="org-left">org-export-with-drawers</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-email</td>
+<td class="org-left">org-export-with-email</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-emphasize</td>
+<td class="org-left">org-export-with-emphasize</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-entities</td>
+<td class="org-left">org-export-with-entities</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-fixed-width</td>
+<td class="org-left">org-export-with-fixed-width</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-footnotes</td>
+<td class="org-left">org-export-with-footnotes</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-inlinetasks</td>
+<td class="org-left">org-export-with-inlinetasks</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-latex</td>
+<td class="org-left">org-export-with-latex</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-planning</td>
+<td class="org-left">org-export-with-planning</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-priority</td>
+<td class="org-left">org-export-with-priority</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-properties</td>
+<td class="org-left">org-export-with-properties</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-smart-quotes</td>
+<td class="org-left">org-export-with-smart-quotes</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-special-strings</td>
+<td class="org-left">org-export-with-special-strings</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-statistics-cookies</td>
+<td class="org-left">org-export-with-statistics-cookies</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-sub-superscript</td>
+<td class="org-left">org-export-with-sub-superscripts</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-toc</td>
+<td class="org-left">org-export-with-toc</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-tables</td>
+<td class="org-left">org-export-with-tables</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-tags</td>
+<td class="org-left">org-export-with-tags</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-tasks</td>
+<td class="org-left">org-export-with-tasks</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-timestamps</td>
+<td class="org-left">org-export-with-timestamps</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-title</td>
+<td class="org-left">org-export-with-title</td>
+</tr>
+
+<tr>
+<td class="org-left">:with-todo-keywords</td>
+<td class="org-left">org-export-with-todo-keywords</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h2><a id="改进页面样式" class="anchor" href="#改进页面样式">¶</a>改进页面样式</h2><div class="outline-text-2" id="text-orgc7f7208">
+<p>
+在这一点上,我们为网站生成了一套基本的输出,但是如果我们想让它看起来更漂亮一些怎么办?
+</p>
+
+<p>
+通过设置更多变量,我们可以使用一个很好的样式表来使我们的网站看起来更加精致:
+</p>
+
+<pre><span class="org-comment-delimiter">;; </span><span class="org-comment">&#23450;&#21046;HTML&#36755;&#20986;</span>
+(<span class="org-keyword">setq</span> org-html-validation-link nil           <span class="org-comment-delimiter">;; </span><span class="org-comment">&#19981;&#26174;&#31034;&#39564;&#35777;&#38142;&#25509;</span>
+      org-html-head-include-scripts nil      <span class="org-comment-delimiter">;; </span><span class="org-comment">&#20351;&#29992;&#25105;&#20204;&#33258;&#24049;&#30340;&#33050;&#26412;</span>
+      org-html-head-include-default-style nil<span class="org-comment-delimiter">;; </span><span class="org-comment">&#20351;&#29992;&#25105;&#20204;&#33258;&#24049;&#30340;&#26679;&#24335;</span>
+      org-html-head <span class="org-string">"&lt;link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\" /&gt;"</span>)</pre>
+
+<p>
+这将删除默认插入到HTML输出中的默认 JavaScript 和CSS代码,并将其替换为指向一个名为 <a href="https://simplecss.org/">Simple.css</a> 的很好的样式表的链接(或您自己的CSS文件!)。
+</p>
+
+<p>
+让我们重新生成网站和看一看!
+通过将样式表链接添加到 <code>org-html-head</code>,我们现在应该有一个更加精致的网站输出,带有更好的字体,颜色,间距等。=Simple.css= 是一个很好的开源样式表,可以改善网站的外观并使其看起来更专业。
+</p>
+
+<p>
+除了 <code>org-html-head</code> ,还有其他变量可以用于进一步定制网站的样式和外观:
+</p>
+
+<ul class="org-ul">
+<li><code>org-html-head-extra</code>:可以添加其他 &lt;head&gt; 内容,例如自定义CSS或JS文件</li>
+<li><code>org-html-style-default</code>:默认的内联样式</li>
+<li><code>org-html-htmlize-output-type</code>:控制如何格式化链接和着重缩进的输出。设置为 <code>css</code> 可与外部CSS配合使用。</li>
+</ul>
+
+<p>
+通过结合这些选项,您可以完全控制网站的样式和外观。您可以使用自定义CSS,内联样式,外部样式表或这三者的组合。
+</p>
+</div>
+
+<h2><a id="生成含代码块的页面" class="anchor" href="#生成含代码块的页面">¶</a>生成含代码块的页面</h2><div class="outline-text-2" id="text-org9e8b1eb">
+<p>
+到目前为止,我们一直在查看一个非常简单的示例页面,上面几乎没有太多内容。当我们尝试生成一个包含代码块的更详细的 Org 文件时会怎么样?
+</p>
+
+<p>
+让我们试试另一个文件,我的文学 Emacs 配置的版本称为 <code>Emacs.org</code>!
+</p>
+
+<p>
+如果您正在生成一个特色代码块的网站,如编码博客或文学 Emacs 配置,在生成网站时您可能会遇到这样的错误:
+</p>
+
+<pre>Cannot fontify source block (htmlize.el &gt;= 1.34 required)</pre>
+
+<p>
+要解决此问题,您需要从MELPA安装 <code>htmlize</code> 包。我们可以通过将以下代码片段添加到我们的 <code>build-site.el</code> 文件中来自动安装此包:
+</p>
+
+<pre><span class="org-comment-delimiter">;; </span><span class="org-comment">&#35774;&#32622;&#36719;&#20214;&#21253;&#23433;&#35013;&#30446;&#24405;,&#20197;&#20415;&#36719;&#20214;&#21253;&#19981;&#23384;&#20648;&#22312;~/.emacs.d/elpa&#36335;&#24452;&#20013;&#12290;</span>
+(<span class="org-keyword">require</span> '<span class="org-constant">package</span>)
+(<span class="org-keyword">setq</span> package-user-dir (expand-file-name <span class="org-string">"./.packages"</span>))
+(<span class="org-keyword">setq</span> package-archives '((<span class="org-string">"melpa"</span> . <span class="org-string">"https://melpa.org/packages/"</span>)
+                         (<span class="org-string">"elpa"</span> . <span class="org-string">"https://elpa.gnu.org/packages/"</span>)))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#21021;&#22987;&#21270;&#21253;&#31995;&#32479;</span>
+(package-initialize)
+(<span class="org-keyword">unless</span> package-archive-contents
+  (package-refresh-contents))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#23433;&#35013;&#20381;&#36182;&#39033;</span>
+(package-install 'htmlize)</pre>
+<p>
+在此代码片段中,我们加载 Emacs 的软件包管理器,并将 <code>package-user-dir</code> 设置为项目文件夹的子目录。这允许您为脚本安装软件包,而不会与个人 Emacs 配置的软件包混淆!
+</p>
+
+<p>
+下一步我们做的是将MELPA添加到软件包存档列表并刷新软件包存档,以便可以找到 <code>htmlize</code> 。最后,我们调用 <code>package-install</code> 来安装它!
+</p>
+
+<p>
+在未来的视频中,我将向您展示如何将 Emacs 配色方案转换为CSS文件,您可以使用该文件为源代码块着色,颜色与主题使用的颜色完全相同!
+</p>
+
+<p>
+通过添加此安装过程,现在您应该可以成功生成包含源代码块的 Org 文件,而不会遇到字体错误! <code>htmlize</code> 将处理将源代码转换为带有语法高亮的HTML。
+</p>
+
+<p>
+这是一个非常有用的技巧,可以轻松将含有源代码的 Org 文件转换为具有语法高亮效果的HTML网站。特别是如果您正在构建一个技术博客或文学配置,这会非常有帮助。
+</p>
+</div>
+
+<h2><a id="页面之间的链接" class="anchor" href="#页面之间的链接">¶</a>页面之间的链接</h2><div class="outline-text-2" id="text-org2626b8a">
+<p>
+最后一件事我想向您展示的是如何在网站上的页面之间创建链接。让我们打开 <code>index.org</code> 并创建指向 <code>Emacs.org</code> 文件的链接。
+</p>
+
+<p>
+在 <code>index.org</code> 中,我们可以按 <code>C-c C-l</code> (<code>org-insert-link</code>),输入我们要链接到的 Org 文件的路径(<code>./Emacs.org</code>),按 Enter 键,然后输入链接的文本(&ldquo;My Emacs configuration&rdquo;)。
+</p>
+
+<p>
+当您再次生成网站时,您应该能够在页面之间进行链接,因为 Org 的发布系统会将链接转换为适当的输出扩展名。
+</p>
+
+<p>
+当找不到链接的文件时,它也会发出警告!
+</p>
+
+<pre>Debugger entered--Lisp error: (user-error <span class="org-string">"Unable to resolve link: \"Emacs2.org\""</span>)</pre>
+
+<p>
+这是一个很好的提示,提醒您检查链接是否指向存在的文件,以避免在网站上出现坏链接。
+</p>
+
+<p>
+通过在 Org 文件之间创建链接,您可以轻松构建一个组织良好的网站,将相关页面连接在一起。读者可以简单地单击链接在各个页面之间导航。
+</p>
+
+<p>
+要创建链接,只需将光标放在您要链接的文本上,然后按 <code>C-c C-l</code> 并输入链接目标的路径即可。Org 模式会自动为您处理输出格式 - 您只需专注于网站的内容和结构。
+</p>
+
+<p>
+链接也可以指向:
+</p>
+
+<ul class="org-ul">
+<li>网站上的其他文件(相对路径)</li>
+<li>网站外部的URL(绝对路径)</li>
+<li>特定的标题/节(使用#符号)</li>
+<li>邮箱地址(<a href="mailto:链接">mailto:链接</a>)</li>
+</ul>
+
+<p>
+这使您可以在网站内外创建丰富的链接网络。我希望这个快速入门指南对您有所帮助,可以开始构建自己的 Org 网站!
+</p>
+</div>
+
+<h2><a id="最后的构建脚本" class="anchor" href="#最后的构建脚本">¶</a>最后的构建脚本</h2><div class="outline-text-2" id="text-org3d0a377">
+<p>
+我已经将您在此视频中看到的所有代码提交到以下 GitHub 存储库:
+</p>
+
+<p>
+<a href="https://github.com/SystemCrafters/org-website-example/">https://github.com/SystemCrafters/org-website-example/</a> (see the <a href="https://github.com/SystemCrafters/org-website-example/commit/1ee251e97f5b4d6c614936030203cd7368d4adc8">commit for this episode</a>)
+</p>
+
+<p>
+在下一集中,我将向您展示如何自动将基于 Org 的网站发布到 GitHub Pages 和 Sourcehut Pages 等 Git 托管服务!
+</p>
+
+<p>
+这里是我们 <code>build-site.el</code> 脚本的最终形式:
+</p>
+
+<pre><span class="org-comment-delimiter">;; </span><span class="org-comment">&#35774;&#32622;&#21253;&#23433;&#35013;&#30446;&#24405;,&#36825;&#26679;&#21253;&#19981;&#20250;&#23384;&#20648;&#22312;~/.emacs.d/elpa&#36335;&#24452;&#19979;&#12290;</span>
+(<span class="org-keyword">require</span> '<span class="org-constant">package</span>)
+(<span class="org-keyword">setq</span> package-user-dir (expand-file-name <span class="org-string">"./.packages"</span>))
+(<span class="org-keyword">setq</span> package-archives '((<span class="org-string">"melpa"</span> . <span class="org-string">"https://melpa.org/packages/"</span>)
+                         (<span class="org-string">"elpa"</span> . <span class="org-string">"https://elpa.gnu.org/packages/"</span>)))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#21021;&#22987;&#21270;&#21253;&#31995;&#32479;</span>
+(package-initialize)
+(<span class="org-keyword">unless</span> package-archive-contents
+  (package-refresh-contents))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#23433;&#35013;&#20381;&#36182;&#39033;</span>
+(package-install 'htmlize)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#21152;&#36733;&#21457;&#24067;&#31995;&#32479;</span>
+(<span class="org-keyword">require</span> '<span class="org-constant">ox-publish</span>)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#33258;&#23450;&#20041;HTML&#36755;&#20986;</span>
+(<span class="org-keyword">setq</span> org-html-validation-link nil            <span class="org-comment-delimiter">;; </span><span class="org-comment">&#19981;&#26174;&#31034;&#39564;&#35777;&#38142;&#25509;</span>
+      org-html-head-include-scripts nil       <span class="org-comment-delimiter">;; </span><span class="org-comment">&#20351;&#29992;&#25105;&#20204;&#33258;&#24049;&#30340;&#33050;&#26412;</span>
+      org-html-head-include-default-style nil <span class="org-comment-delimiter">;; </span><span class="org-comment">&#20351;&#29992;&#25105;&#20204;&#33258;&#24049;&#30340;&#26679;&#24335;</span>
+      org-html-head <span class="org-string">"&lt;link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\" /&gt;"</span>)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#23450;&#20041;&#21457;&#24067;&#39033;&#30446;</span>
+(<span class="org-keyword">setq</span> org-publish-project-alist
+      (list
+       (list <span class="org-string">"org-site:main"</span>
+             <span class="org-builtin">:recursive</span> t
+             <span class="org-builtin">:base-directory</span> <span class="org-string">"./content"</span>
+             <span class="org-builtin">:publishing-function</span> 'org-html-publish-to-html
+             <span class="org-builtin">:publishing-directory</span> <span class="org-string">"./public"</span>
+             <span class="org-builtin">:with-author</span> nil           <span class="org-comment-delimiter">;; </span><span class="org-comment">&#19981;&#21253;&#21547;&#20316;&#32773;&#22995;&#21517;</span>
+             <span class="org-builtin">:with-creator</span> t            <span class="org-comment-delimiter">;; </span><span class="org-comment">&#21253;&#25324;Emacs&#21644;Org&#29256;&#26412;&#22312;&#39029;&#33050;</span>
+             <span class="org-builtin">:with-toc</span> t                <span class="org-comment-delimiter">;; </span><span class="org-comment">&#21253;&#25324;&#30446;&#24405;</span>
+             <span class="org-builtin">:section-numbers</span> nil       <span class="org-comment-delimiter">;; </span><span class="org-comment">&#19981;&#21253;&#21547;&#31456;&#33410;&#21495;</span>
+             <span class="org-builtin">:time-stamp-file</span> nil)))    <span class="org-comment-delimiter">;; </span><span class="org-comment">&#19981;&#21253;&#21547;&#26102;&#38388;&#25139;</span>
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#29983;&#25104;&#32593;&#31449;&#36755;&#20986;</span>
+(org-publish-all t)
+
+(message <span class="org-string">"&#26500;&#24314;&#23436;&#25104;!"</span>)</pre>
+</div>
+</div></div><div class="list-form center"><div class="list-form-title">Subscribe to the System Crafters Newsletter!</div><form method="POST" action="https://www.simplelists.com/subscribe.php"><input type="hidden" name="format" value="text"/><input type="hidden" name="action" value="subscribe"/><input type="hidden" name="list" value="news@lists.systemcrafters.net"/><div class="list-form-message">Stay up to date with the latest System Crafters news and updates!  Read the <a href="/newsletter/">Newsletter</a> page for more information.</div><div class="row"><div class="column"><div class="row center list-form-label">Name (optional)</div><div class="row"><input type="text" name="name"/></div></div><div class="column"><div class="row center list-form-label">Email Address</div><div class="row"><input type="text" name="email"/></div></div></div><div><input type="submit" value="Subscribe!"/></div></form></div></div><footer class="site-footer"><div class="container"><div class="row"><div class="column"><p><a href="https://systemcrafters.net/privacy-policy/">Privacy Policy</a> · <a href="https://systemcrafters.net/credits/">Credits</a> · <a href="https://systemcrafters.net/rss/">RSS Feeds</a> · <a rel="me" href="https://fosstodon.org/@daviwil">Fediverse</a></p><p>© 2021-2023 System Crafters LLC</p></div><div class="column align-right"><p><a href="https://codeberg.org/SystemCrafters/systemcrafters.net"><img src="https://systemcrafters.net/img/codeberg.png" style="width: 120px" alt="Contribute on Codeberg"/></a></p></div></div></div></footer></body></html>

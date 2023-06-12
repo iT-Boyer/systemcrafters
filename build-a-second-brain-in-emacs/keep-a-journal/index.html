@@ -1,0 +1,215 @@
+<!-- Generated from 83cf183 on 2023-06-12 @ 08:55 with Emacs 27.2 (Org mode 9.4.4) -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://systemcrafters.net/rss/news.xml"/><link rel="stylesheet" href="https://systemcrafters.net/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://systemcrafters.net/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://systemcrafters.net/css/code.css"/><link rel="stylesheet" href="https://systemcrafters.net/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>用 org roam 在 emacs 中写日记 - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://systemcrafters.net/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/">Home</a> <a class="nav-link" href="/guides/">Guides</a> <a class="nav-link" href="/news/">News</a> <a class="nav-link" href="/community/">Community</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/how-to-help/">How to Help</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">用 org roam 在 emacs 中写日记</h1><p class="site-post-meta"></p><div id="content"><p>
+<div class="video">  <iframe src="https://www.youtube.com/embed/3-sLBaJAtew" allowfullscreen></iframe></div>
+</p>
+
+<h2><a id="介绍" class="anchor" href="#介绍">¶</a>介绍</h2><div class="outline-text-2" id="text-orgf085cde">
+<p>
+思考问题并解决问题的最佳方式之一是与自己进行书面对话。通过本视频,您将了解如何记录一天的想法,将其链接到现有笔记,并轻松查看任何一天的笔记,全部使用 Org Roam。
+</p>
+
+<div class="cta center">
+If you find this guide helpful, please consider supporting System Crafters via the links on the <a href="/how-to-help/#support-my-work">How to Help</a> page!
+</div>
+</div>
+
+<h2><a id="开始配置" class="anchor" href="#开始配置">¶</a>开始配置</h2><div class="outline-text-2" id="text-orgfb08a71">
+<p>
+在我们开始之前,请确保您已经设置了 Org Roam。
+</p>
+
+<p>
+您可以快速开始复制下面的配置,但如果您首先观看 Org Roam 系列的前两部视频,您将学到更多:
+</p>
+
+<ul class="org-ul">
+<li><a href="https://youtu.be/AyhPmypHDEw">使用 Org Roam 入门</a></li>
+<li><a href="https://youtu.be/YxgA5z2R08I">使用 Org Roam 有效捕获笔记</a></li>
+</ul>
+
+<pre>(<span class="org-keyword">use-package</span> <span class="org-constant">org-roam</span>
+  <span class="org-builtin">:ensure</span> t
+  <span class="org-builtin">:init</span>
+  (<span class="org-keyword">setq</span> org-roam-v2-ack t)
+  <span class="org-builtin">:custom</span>
+  (org-roam-directory <span class="org-string">"~/RoamNotes"</span>)
+  (org-roam-completion-everywhere t)
+  <span class="org-builtin">:bind</span> ((<span class="org-string">"C-c n l"</span> . org-roam-buffer-toggle)
+         (<span class="org-string">"C-c n f"</span> . org-roam-node-find)
+         (<span class="org-string">"C-c n i"</span> . org-roam-node-insert)
+         <span class="org-builtin">:map</span> org-mode-map
+         (<span class="org-string">"C-M-i"</span> . completion-at-point)
+         <span class="org-builtin">:map</span> org-roam-dailies-map
+         (<span class="org-string">"Y"</span> . org-roam-dailies-capture-yesterday)
+         (<span class="org-string">"T"</span> . org-roam-dailies-capture-tomorrow))
+  <span class="org-builtin">:bind-keymap</span>
+  (<span class="org-string">"C-c n d"</span> . org-roam-dailies-map)
+  <span class="org-builtin">:config</span>
+  (<span class="org-keyword">require</span> '<span class="org-constant">org-roam-dailies</span>) <span class="org-comment-delimiter">;; </span><span class="org-comment">Ensure the keymap is available</span>
+  (org-roam-db-autosync-mode))</pre>
+</div>
+
+<h3><a id="配置说明" class="anchor" href="#配置说明">¶</a>配置说明</h3><div class="outline-text-3" id="text-org0098724">
+<ul class="org-ul">
+<li>请确保更新 <code>org-roam-directory</code> 的值以指向要存储 Org Roam 文件的路径。在加载配置之前创建该目录!</li>
+
+<li>此配置与前几集略有不同, <code>org-roam-setup</code> 函数已重命名为 <code>org-roam-db-autosync-mode</code></li>
+</ul>
+</div>
+
+<h2><a id="创建日记条目文件夹" class="anchor" href="#创建日记条目文件夹">¶</a>创建日记条目文件夹</h2><div class="outline-text-2" id="text-orgee6328c">
+<p>
+在我们可以创建和查看日记条目之前,我们首先需要确保文件夹存在。
+</p>
+
+<p>
+默认情况下,Org Roam 将在 <code>org-roam-directory</code> 的 <code>daily/</code> 子文件夹下创建每日文件。让我们创建那个文件夹!
+</p>
+
+<p>
+如果您想要将此文件夹更改为不同的路径,可以如下设置 <code>org-roam-dailies-directory</code>:
+</p>
+
+<pre>(<span class="org-keyword">setq</span> org-roam-dailies-directory <span class="org-string">"journal/"</span>)</pre>
+
+<p>
+此路径必须相对于 <code>org-roam-directory!</code>
+</p>
+</div>
+
+<h2><a id="为今天创建日记条目" class="anchor" href="#为今天创建日记条目">¶</a>为今天创建日记条目</h2><div class="outline-text-2" id="text-orge20b9ee">
+<p>
+配置 Org Roam 后,您可以运行命令 <code>org-roam-dailies-capture-today</code>,我们已将其绑定到 <code>C-c n d n</code> 。
+</p>
+
+<p>
+我们正在使用现有的 <code>org-roam-dailies-map</code> 进行键绑定!
+</p>
+
+<p>
+当您运行该命令时,将出现一个捕获窗口,用于名为当前日期的文件。在这里,您可以写任何您喜欢的内容,然后按 <code>C-c C-c</code> 保存条目或按 <code>C-c C-k</code> 取消捕获而不保存。
+</p>
+
+<p>
+这个命令的好处是您可以再次运行它来捕获另一个条目,基本上允许您在整天创建条目。让我们试一试!
+</p>
+
+<p>
+使用 Org Roam 记录日志的主要好处(而不是像 <a href="https://github.com/bastibe/org-journal">org-journal</a> 一样)是您可以链接到 Org Roam 数据库中的任何其他笔记。我们可以使用 <code>C-c n i</code> 在前一集创建的 <code>Scheme</code> 条目中插入链接。
+</p>
+</div>
+
+<h2><a id="查看今天的日记条目" class="anchor" href="#查看今天的日记条目">¶</a>查看今天的日记条目</h2><div class="outline-text-2" id="text-orgcf70f12">
+<p>
+也许您想查看您今天已经写的日志条目。要实现这一点,可以运行命令 <code>org-roam-dailies-goto-today</code>,我们将其绑定为 <code>C-c n d d</code> 。
+</p>
+
+<p>
+运行此命令时,将打开今天的日记文件,以便您可以阅读它并进行任何您喜欢的编辑。
+</p>
+
+<p>
+该文件设置与任何其他 Org Roam 笔记相同。您也可以使用 <code>C-c n f</code> 访问它,甚至在其他笔记文件中插入到它的链接!
+</p>
+</div>
+
+<h2><a id="创建和查看昨天或明天的条目" class="anchor" href="#创建和查看昨天或明天的条目">¶</a>创建和查看昨天或明天的条目</h2><div class="outline-text-2" id="text-orgf728111">
+<p>
+您还可以从今天创建前一天或下一天的条目:
+</p>
+
+<ul class="org-ul">
+<li>使用 <code>org-roam-dailies-capture-yesterday</code> (<code>C-c n d Y</code>) 捕获昨天的笔记</li>
+<li>使用 <code>org-roam-dailies-capture-tomorrow</code> (<code>C-c n d T</code>)  捕获明天的笔记</li>
+</ul>
+
+<p>
+这些命令对于写下前一天的结论性想法或为明天留言很有用!
+</p>
+
+<p>
+也有命令导航到这些日子的条目:
+</p>
+
+<ul class="org-ul">
+<li>使用 <code>org-roam-dailies-goto-yesterday</code> (<code>C-c n d y</code>) 转到昨天的文件</li>
+<li>使用 <code>org-roam-dailies-goto-tomorrow</code> (<code>C-c n d t</code>) 转到明天的文件</li>
+</ul>
+</div>
+
+<h2><a id="创建和查看特定日期的条目" class="anchor" href="#创建和查看特定日期的条目">¶</a>创建和查看特定日期的条目</h2><div class="outline-text-2" id="text-orgb790fd3">
+<p>
+您可以使用以下命令创建或查看特定日期的笔记:
+</p>
+
+<ul class="org-ul">
+<li>使用 <code>org-roam-dailies-capture-date</code> (<code>C-c n d v</code>) 捕获特定日期的笔记</li>
+<li>使用 <code>org-roam-dailies-goto-date</code> (<code>C-c n d c</code>) 转到特定日期的文件</li>
+</ul>
+
+<p>
+当您运行这两个命令中的任何一个时,会显示一个日历,让您选择要查看或创建条目的日期。只需按住 Shift 键并使用方向键在日历中移动!
+</p>
+
+<p>
+您还可以从当前查看文件的日期向前或向后移动:
+</p>
+
+<ul class="org-ul">
+<li>使用 <code>org-roam-dailies-goto-next-note</code> (<code>C-c n d b</code>) 后退到现有的日期文件</li>
+<li>使用 <code>org-roam-dailies-goto-previous-note</code> (<code>C-c n d f</code>) 向前移动到现有的日期文件</li>
+</ul>
+</div>
+
+<h2><a id="为每个条目添加时间" class="anchor" href="#为每个条目添加时间">¶</a>为每个条目添加时间</h2><div class="outline-text-2" id="text-org45cf848">
+<p>
+如果您想为捕获的条目添加更多信息,可以自定义默认的捕获模板:
+</p>
+
+<pre>(<span class="org-keyword">setq</span> org-roam-dailies-capture-templates
+      '((<span class="org-string">"d"</span> <span class="org-string">"default"</span> entry <span class="org-string">"* %&lt;%I:%M %p&gt;: %?"</span>
+         <span class="org-builtin">:if-new</span> (file+head <span class="org-string">"%&lt;%Y-%m-%d&gt;.org"</span> <span class="org-string">"#+title: %&lt;%Y-%m-%d&gt;\n"</span>))))</pre>
+
+<p>
+有关格式的更多信息,请参阅 <code>format-time-string</code> 的文档。
+</p>
+
+<p>
+现在创建新的日常条目时,日期将显示在标题中。
+</p>
+
+<p>
+您可以为日常条目创建更多捕获模板!我将在另一个视频中给出更多如何使用此内容的示例。
+</p>
+</div>
+
+<h2><a id="最终配置" class="anchor" href="#最终配置">¶</a>最终配置</h2><div class="outline-text-2" id="text-orgcf0008a">
+<p>
+以下是视频中显示的所有内容的最终配置:
+</p>
+
+<pre>(<span class="org-keyword">use-package</span> <span class="org-constant">org-roam</span>
+  <span class="org-builtin">:ensure</span> t
+  <span class="org-builtin">:init</span>
+  (<span class="org-keyword">setq</span> org-roam-v2-ack t)
+  <span class="org-builtin">:custom</span>
+  (org-roam-directory <span class="org-string">"~/RoamNotes"</span>)
+  (org-roam-completion-everywhere t)
+  (org-roam-dailies-capture-templates
+    '((<span class="org-string">"d"</span> <span class="org-string">"default"</span> entry <span class="org-string">"* %&lt;%I:%M %p&gt;: %?"</span>
+       <span class="org-builtin">:if-new</span> (file+head <span class="org-string">"%&lt;%Y-%m-%d&gt;.org"</span> <span class="org-string">"#+title: %&lt;%Y-%m-%d&gt;\n"</span>))))
+  <span class="org-builtin">:bind</span> ((<span class="org-string">"C-c n l"</span> . org-roam-buffer-toggle)
+         (<span class="org-string">"C-c n f"</span> . org-roam-node-find)
+         (<span class="org-string">"C-c n i"</span> . org-roam-node-insert)
+         <span class="org-builtin">:map</span> org-mode-map
+         (<span class="org-string">"C-M-i"</span> . completion-at-point)
+         <span class="org-builtin">:map</span> org-roam-dailies-map
+         (<span class="org-string">"Y"</span> . org-roam-dailies-capture-yesterday)
+         (<span class="org-string">"T"</span> . org-roam-dailies-capture-tomorrow))
+  <span class="org-builtin">:bind-keymap</span>
+  (<span class="org-string">"C-c n d"</span> . org-roam-dailies-map)
+  <span class="org-builtin">:config</span>
+  (<span class="org-keyword">require</span> '<span class="org-constant">org-roam-dailies</span>) <span class="org-comment-delimiter">;; </span><span class="org-comment">Ensure the keymap is available</span>
+  (org-roam-db-autosync-mode))</pre>
+</div>
+</div></div><div class="list-form center"><div class="list-form-title">Subscribe to the System Crafters Newsletter!</div><form method="POST" action="https://www.simplelists.com/subscribe.php"><input type="hidden" name="format" value="text"/><input type="hidden" name="action" value="subscribe"/><input type="hidden" name="list" value="news@lists.systemcrafters.net"/><div class="list-form-message">Stay up to date with the latest System Crafters news and updates!  Read the <a href="/newsletter/">Newsletter</a> page for more information.</div><div class="row"><div class="column"><div class="row center list-form-label">Name (optional)</div><div class="row"><input type="text" name="name"/></div></div><div class="column"><div class="row center list-form-label">Email Address</div><div class="row"><input type="text" name="email"/></div></div></div><div><input type="submit" value="Subscribe!"/></div></form></div></div><footer class="site-footer"><div class="container"><div class="row"><div class="column"><p><a href="https://systemcrafters.net/privacy-policy/">Privacy Policy</a> · <a href="https://systemcrafters.net/credits/">Credits</a> · <a href="https://systemcrafters.net/rss/">RSS Feeds</a> · <a rel="me" href="https://fosstodon.org/@daviwil">Fediverse</a></p><p>© 2021-2023 System Crafters LLC</p></div><div class="column align-right"><p><a href="https://codeberg.org/SystemCrafters/systemcrafters.net"><img src="https://systemcrafters.net/img/codeberg.png" style="width: 120px" alt="Contribute on Codeberg"/></a></p></div></div></div></footer></body></html>

@@ -1,9 +1,9 @@
-<!-- Generated from d78ba51 on 2023-06-12 @ 09:44 with Emacs 27.2 (Org mode 9.4.4) -->
+<!-- Generated from 838b11e on 2023-06-12 @ 10:13 with Emacs 27.2 (Org mode 9.4.4) -->
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title> - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">Home</a> <a class="nav-link" href="/systemcrafters/guides/">Guides</a> <a class="nav-link" href="/systemcrafters/news/">News</a> <a class="nav-link" href="/systemcrafters/community/">Community</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/systemcrafters/how-to-help/">How to Help</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title"></h1><p class="site-post-meta"></p><div id="content"><p>
 #+titl the final code <a href="https://github.com/daviwil/emacs-from-scratch/blob/b927109521b4b8a7e701709dabbdd9c1ea2fc27c/Desktop.org#desktop-notifications-with-dunst">here</a>.
 </p>
 
-<h2><a id="the-final-piece" class="anchor" href="#the-final-piece">¶</a>The final piece</h2><div class="outline-text-2" id="text-orgea66e05">
+<h2><a id="the-final-piece" class="anchor" href="#the-final-piece">¶</a>The final piece</h2><div class="outline-text-2" id="text-org9830d22">
 <p>
 Desktop notifications are pretty common in applications, it&rsquo;s good to support them in our desktop environment.
 </p>
@@ -21,7 +21,7 @@ We&rsquo;ll use a program called Dunst to accomplish this.
 </p>
 </div>
 
-<h2><a id="dunst" class="anchor" href="#dunst">¶</a>Dunst</h2><div class="outline-text-2" id="text-orgc657906">
+<h2><a id="dunst" class="anchor" href="#dunst">¶</a>Dunst</h2><div class="outline-text-2" id="text-orgd98936f">
 <ul class="org-ul">
 <li>Minimal</li>
 <li>Easy to customize</li>
@@ -44,7 +44,7 @@ It&rsquo;s pretty commonly available in other Linux distributions as well!
 </p>
 </div>
 
-<h2><a id="launching-dunst" class="anchor" href="#launching-dunst">¶</a>Launching Dunst</h2><div class="outline-text-2" id="text-org725f309">
+<h2><a id="launching-dunst" class="anchor" href="#launching-dunst">¶</a>Launching Dunst</h2><div class="outline-text-2" id="text-org0055a3f">
 <p>
 It&rsquo;s just as simple as running <code>dunst</code>!  We can run it and see its output with <code>async-shell-command</code> (<code>M-&amp;</code>)
 </p>
@@ -68,7 +68,7 @@ We can add it to our <code>efs/exwm-init-hook</code> function:
 <pre>(efs/run-in-background <span class="org-string">"dunst"</span>)</pre>
 </div>
 
-<h2><a id="customizing-dunst" class="anchor" href="#customizing-dunst">¶</a>Customizing Dunst</h2><div class="outline-text-2" id="text-orgd9b31a4">
+<h2><a id="customizing-dunst" class="anchor" href="#customizing-dunst">¶</a>Customizing Dunst</h2><div class="outline-text-2" id="text-org6bfad0c">
 <p>
 Much of this is boilerplate, you can read more about how to configure Dunst here:
 </p>
@@ -309,7 +309,7 @@ Some things you&rsquo;ll want to consider setting:
 </ul>
 </div>
 
-<h2><a id="control-dunst-with-dunstctl" class="anchor" href="#control-dunst-with-dunstctl">¶</a>Control Dunst with dunstctl</h2><div class="outline-text-2" id="text-org0d0ec5b">
+<h2><a id="control-dunst-with-dunstctl" class="anchor" href="#control-dunst-with-dunstctl">¶</a>Control Dunst with dunstctl</h2><div class="outline-text-2" id="text-org2becf92">
 <p>
 Starting with Dunst 1.5.0 there is a new command line tool called <code>dunstctl</code> which enables you to set up key bindings in your desktop environment (Emacs!) which launch <code>dunstctl</code> to control the running Dunst instance:
 </p>
@@ -336,7 +336,7 @@ Commands:
 (exwm-input-set-key (kbd <span class="org-string">"s-N"</span>) (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (efs/dunstctl <span class="org-string">"close-all"</span>)))</pre>
 </div>
 
-<h2><a id="enabling-and-disabling-notifications" class="anchor" href="#enabling-and-disabling-notifications">¶</a>Enabling and disabling notifications</h2><div class="outline-text-2" id="text-orga1e0505">
+<h2><a id="enabling-and-disabling-notifications" class="anchor" href="#enabling-and-disabling-notifications">¶</a>Enabling and disabling notifications</h2><div class="outline-text-2" id="text-org047e525">
 <p>
 You can use either of the following commands to disable desktop notifications temporarily:
 </p>
@@ -376,13 +376,13 @@ It can be useful to create an interactive function to enable/disable notificatio
   (start-process-shell-command <span class="org-string">"notify-send"</span> nil <span class="org-string">"notify-send \"This is from Emacs!\""</span>)</pre>
 </div>
 
-<h2><a id="sending-notifications-from-emacs" class="anchor" href="#sending-notifications-from-emacs">¶</a>Sending notifications from Emacs</h2><div class="outline-text-2" id="text-org9a74cac">
+<h2><a id="sending-notifications-from-emacs" class="anchor" href="#sending-notifications-from-emacs">¶</a>Sending notifications from Emacs</h2><div class="outline-text-2" id="text-orge6139d7">
 <p>
 Now that we can display notifications, we can use them in our Emacs configuration too:
 </p>
 </div>
 
-<h3><a id="built-in-functions" class="anchor" href="#built-in-functions">¶</a>Built-in functions</h3><div class="outline-text-3" id="text-org1ca4905">
+<h3><a id="built-in-functions" class="anchor" href="#built-in-functions">¶</a>Built-in functions</h3><div class="outline-text-3" id="text-orgae5edd6">
 <p>
 Emacs has a built-in function for this:
 </p>
@@ -395,7 +395,7 @@ Manual: <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Deskt
 </p>
 </div>
 
-<h3><a id="alertel" class="anchor" href="#alertel">¶</a>alert.el</h3><div class="outline-text-3" id="text-org878278e">
+<h3><a id="alertel" class="anchor" href="#alertel">¶</a>alert.el</h3><div class="outline-text-3" id="text-org33ad872">
 <p>
 An alternative is alert.el: <a href="https://github.com/jwiegley/alert">https://github.com/jwiegley/alert</a>
 </p>

@@ -2,5 +2,26 @@
 
 * Episodes
 
-1. [[file:building-the-site.org][Build Your Website with Org Mode]]
-2. [[file:automated-site-publishing.org][Automated Org Mode Website Publishing with GitHub or SourceHut]]
+1. [[file:building-the-site.org][构建Org Mode网站]]
+2. [[file:automated-site-publishing.org][使用GitHub或SourceHut自动发布Org模式网站]]
+
+
+1. 构建 Org Mode 网站
+这篇教程说明了如何使用Org模式和一些其他Emacs功能来构建一个简单的静态网站。它涵盖了:
+
+- 使用 Org Exporter 将 Org 文件转换为HTML
+- 使用 Template 来定义网站的布局和样式
+- 使用 Publishing 函数自动将文件发布到网站
+- 使用 Git 来版本化网站源文件并将其托管在 GitHub 上
+- 等等
+
+2. 使用 GitHub 或 SourceHut 自动发布 Org 模式网站
+这篇教程构建在第一个教程的基础上,演示了如何使用 Continuous Integration 服务自动构建和部署您的网站。它包含:
+
+- 为您的网站源文件设置 GitHub Actions 或 SourceHut CI
+- 当您推送更改时,Actions/CI将自动构建网站
+- 它将 Org 文件转换为HTML,并将其部署到 GitHub Pages 或 SourceHut Pages
+- 结果是,每次您推送更改时,网站都会自动更新!
+
+这两个教程提供了构建高度自动化静态网站的强大 Work 流程。通过 Org 模式和 Emacs,您可以高效地管理网站内容。通过CI服务,您可以自动更新和部署网站,而无需手动构建或上传文件。
+

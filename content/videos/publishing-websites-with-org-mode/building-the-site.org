@@ -4,62 +4,96 @@
 
 * Intro
 
-One of Org Mode's most useful features is its publishing system which allows you to turn Org files into many other formats.
+Org 模式的发布系统是其最有用的功能之一。它允许您将 Org 文件转换为许多其他格式,包括HTML、PDF、LaTeX 等。
 
-In this video, I'll show you how to use it to generate a simple but nice looking website using Org Mode's HTML publishing capabilities!
+在这个视频中,我将向您展示如何利用 Org 模式的HTML发布功能生成一个简单但外观漂亮的网站!
 
 #+begin_cta
 #+end_cta
 
 * Getting started
 
-To get started, we'll need a place to put all of the code we'll use to generate the site along with the =.org= files that will provide the site's content.
+要开始,我们需要一个地方放置我们将用于生成网站的所有代码以及将提供网站内容的 =.org= 文件。
 
-We'll create a folder called =my-org-site= with a subfolder called =content= which contains a single =index.org= file.  This will create a file called =index.html= which will be the root page of our site!
+我们将创建一个名为 =my-org-site= 的文件夹,其中包含一个名为 =content= 的子文件夹,其中包含一个名为 =index.org= 的文件。这将创建一个名为 =index.html= 的文件,它将是我们网站的主页!
 
-The =.org= file you place in there can be very simple like the one I'll show you.  Don't put any code blocks in there yet, we'll cover that a bit later in this video.
+您在其中放置的 =.org= 文件可以非常简单,就像我将向您展示的那个。现在暂时不要在其中放置任何代码块,我们将在本视频的稍后部分介绍这一点。
 
-Most of what we'll do in this episode only requires Emacs version 24.5 or higher with the Org Mode package that comes built-in.
+我们在本集中要做的大部分工作只需要 Emacs 版本24.5或更高版本,其中内置了 Org 模式包。
+
+创建文件夹结构:
+  #+begin_quote
+my-org-site/
+└── content/
+    └── index.org
+  #+end_quote
 
 * Creating the build script
 
-Now we're going to create a script in Emacs Lisp that will generate the HTML files for your Org documents by running a single shell command.
+现在我们将创建一个 Emacs Lisp 脚本,通过运行单个 shell 命令来生成您的 Org 文档的HTML文件。
 
-Let's call it =build-site.el=:
+我们将称之为 =build-site.el= :
 
 #+begin_src emacs-lisp
 
-;; Load the publishing system
+;; 加载发布系统
 (require 'ox-publish)
 
-(message "Build complete!")
+(message "构建完成!")
 
 #+end_src
 
-We also need a shell script that can run our Emacs Lisp script.  We'll call that =build.sh=:
+我们还需要一个可以运行我们的 Emacs Lisp 脚本的 shell 脚本。我们将称之为 =build.sh=:
 
 #+begin_src sh
 
 #!/bin/sh
 emacs -Q --script build-site.el
-  
+
 #+end_src
 
-Don't forget to use =chmod +x build.sh= to make the script executable!
+不要忘记使用 =chmod +x build.sh= 使脚本可执行!
 
-*NOTE:* If you're on Windows, you can create a =build.cmd= file that invokes Emacs the same way.
+*注意:*如果您使用 Windows,可以创建一个 =build.cmd= 文件以相同的方式调用 Emacs。
 
-The =-Q= parameter prevents Emacs from loading your own Emacs configuration which will help ensure that this same script can be executed cleanly on other machines once we get ready to start publishing this site.
+=-Q= 参数可防止 Emacs 加载您自己的 Emacs 配置,这将有助于确保一旦我们准备开始发布此站点,此相同的脚本可以在其他机器上干净地执行。
+
+
+现在我们有一个 Emacs Lisp 脚本来生成我们的HTML文件,以及一个 shell 脚本来运行该 Emacs Lisp 脚本。
+
+让我们看看我们现在有什么:
+#+begin_quote
+my-org-site
+├── build.sh
+├── build-site.el
+└── content
+    └── index.org
+#+end_quote
+
+要生成HTML文件,我们只需要在终端/命令行中运行:
+#+BEGIN_SRC sh -n 1 :hl_lines 0-0,0-0
+./build.sh
+#+END_SRC
+
+```bash
+```
+
+这将启动 Emacs,运行我们的 =build-site.el= 脚本,然后退出 Emacs。
+
+我们的 =build-site.el= 脚本目前还没有做太多工作 - 它只是打印一条消息。但很快我们将配置 Org 发布过程,并告诉它需要发布哪些 Org 文件及如何发布。
+
+使用 =-Q= 参数确保我们的个人 Emacs 配置不会影响构建过程,这很重要,因为我们希望这个构建脚本可以在其他机器上干净地运行。
+
+这为我们提供了一个很好的起点来自动化我们的 Org 网站构建过程。让我知道如果您有任何其他问题!我们将继续添加更多功能,以构建和发布我们的 Org 网站。
 
 * Setting up the publish project
 
-Now that we have our basic script ready, we can set up a Org publishing configuration for our website.
+现在我们有了基本的脚本,我们可以为我们的网站设置 Org 发布配置。
 
-We'll add the following snippet into our =build-site.el= file:
+我们将以下代码片段添加到 =build-site.el= 文件中:
 
 #+begin_src emacs-lisp
-
-;; Define the publishing project
+;; 定义发布项目
 (setq org-publish-project-alist
       (list
        (list "my-org-site"
@@ -68,29 +102,28 @@ We'll add the following snippet into our =build-site.el= file:
              :publishing-directory "./public"
              :publishing-function 'org-html-publish-to-html)))
 
-;; Generate the site output
+;; 生成站点输出
 (org-publish-all t)
-
 #+end_src
 
-This configures the =org-publish-project-alist= variable to define a publishing project for our site.  Read the documentation of this variable using =M-x describe-variable= for a lot more information!
+此配置将 =org-publish-project-alist= 变量定义为我们网站的发布项目。使用 =M-x describe-variable= 阅读此变量的文档以获取更多信息!
 
-We use the name =my-org-site= but you can call the project whatever you want!
+我们使用名称 =my-org-site=,但您可以把项目命名为任何您想要的名称!
 
-- =:base-directory= tells Org the folder of files that we want to publish to HTML
-- =:publishing-directory= configures the output folder for all published files
-- =:recursive= tells Org to publish =.org= files under all subdirectories of =:base-directory=
-- =:publishing-function= tells Org that we want to publish the files as HTML
+- =:base-directory= 告诉 Org 我们要发布为HTML的文件文件夹
+- =:publishing-directory= 配置所有发布文件输出的文件夹
+- =:recursive= 告诉 Org 在 =:base-directory= 的所有子文件夹中发布 =.org= 文件
+- =:publishing-function= 告诉 Org 我们要将文件发布为HTML
 
-The =org-publish-all= function at the end tells Org to publish every project configured in =org-publish-project-alist=!  The =t= parameter tells it to regenerate all files regardless of when they were last generated.
+最后的 =org-publish-all= 函数告诉 Org 发布 =org-publish-project-alist= 中配置的每个项目! =t= 参数告诉它无论何时生成,都要重新生成所有文件。
 
-We can now generate the output of our site by running =build.sh=!  Check out the =public/= folder after running it.
+我们现在可以通过运行 =build.sh= 来生成我们网站的输出!运行它后,请查看 =public/= 文件夹。
 
-* Previewing the generated site
+* 预览生成的站点
 
-Let's take a look at the basic site we just generated.  There's a great Emacs package called [[https://github.com/skeeto/emacs-web-server][simple-httpd]] which can host your files as a website on your local machine so that you can pull it up in your browser.
+我们来看看刚刚生成的基本网站。有一个叫做 [[https://github.com/skeeto/emacs-web-server][simple-httpd]] 的 Emacs 包可以在本地机器上托管您的文件作为网站,这样您就可以在浏览器中打开它。
 
-You can install =simple-httpd= from [[https://melpa.org/#/getting-started][MELPA]] using =M-x package-install= or by putting the following snippet *in your Emacs configuration* if you have =use-package= installed and MELPA configured as a package source:
+您可以从 [[https://melpa.org/#/getting-started][MELPA]] 使用 =M-x package-install= 或将以下代码片段 *放入 Emacs 配置中* 安装 =simple-httpd=,如果您安装了 =use-package= 并将MELPA配置为软件包源:
 
 #+begin_src emacs-lisp
 
@@ -99,11 +132,14 @@ You can install =simple-httpd= from [[https://melpa.org/#/getting-started][MELPA
 
 #+end_src
 
-Now you can run =M-x httpd-serve-directory=.  It will prompt you for a directory to serve from within Emacs.
+现在您可以运行 =M-x httpd-serve-directory= 。它会提示您选择 Emacs 内部的目录来提供服务。
 
-Select the path of your =public/= directory and then open your browser to [[http://localhost:8080]] to see the preview of your site!  Set =httpd-port= to change the default port if necessary.
+选择 =public/= 目录的路径,然后打开浏览器转到[[http://localhost:8080]]来预览您的网站!如果需要,可以设置 =httpd-port= 来更改默认端口。
 
-Any time you regenerate the site files, you can just reload the page to see the result of changes you made!
+每次重新生成网站文件时,您只需重新加载页面即可查看所做更改的结果!
+
+这是一个非常方便的方法来实时预览您的 Org 网站,而无需部署到网页服务器。您可以在 Emacs 中做出更改,保存文件,然后简单地在浏览器中重新加载以查看结果。这使得构建和测试 Org 网站变得非常简单和流畅。
+
 
 * Improving the HTML output
 
@@ -142,9 +178,53 @@ We'll need to set a different variable to get rid of the validate link at the bo
 
 #+end_src
 
-** Other project settings you might want to customize
 
-Here's a list of some more project settings you might want to customize, pulled directly from the =org-publish-project-alist= documentation:
+* 改进HTML输出
+
+我们刚看到的页面有几件事我想改变一下,使输出看起来更清晰:
+
+- 节号
+- 作者姓名
+- 发布时间戳
+- 验证链接
+
+幸运的是,发布系统非常可定制,所以我将向您展示如何在项目配置中禁用一些内容以获得更好的结果。
+
+#+begin_src emacs-lisp
+;; 定义发布项目
+(setq org-publish-project-alist
+      (list
+       (list "org-site:main"
+             :recursive t
+             :base-directory "./content"
+             :publishing-function 'org-html-publish-to-html
+             :publishing-directory "./public"
+             :with-author nil          ;; 不包括作者姓名
+             :with-creator t           ;; 在页脚中包括Emacs和Org版本
+             :with-toc t               ;; 包括目录
+             :section-numbers nil      ;; 不包括节号
+             :time-stamp-file nil)))   ;; 不包括文件中的时间戳
+
+#+end_src
+
+我们需要设置其他变量来除去底部的验证链接:
+
+#+begin_src emacs-lisp
+
+(setq org-html-validation-link nil)
+
+#+end_src
+
+通过这些更改,我们的HTML输出现在应该没有:
+
+- 节号(例如=1.2=)
+- 作者的名称和联系信息
+- 文件上次更新的时间戳
+- 底部的W3C验证链接
+
+** 其他可自定义的项目设置
+
+这是您可能想要定制的更多项目设置列表,直接从 =org-publish-project-alist= 文档中提取:
 
 | Publish setting key      | Emacs Lisp variable                |
 | ------------------------ | ---------------------------------- |
@@ -185,33 +265,40 @@ Here's a list of some more project settings you might want to customize, pulled 
 | :with-title              | org-export-with-title              |
 | :with-todo-keywords      | org-export-with-todo-keywords      |
 
-* Improving the page styling
+* 改进页面样式
 
-At this point have a decent basic output for our website, but what if we want to make it look a little bit nicer?
+在这一点上,我们为网站生成了一套基本的输出,但是如果我们想让它看起来更漂亮一些怎么办?
 
-By setting a few more variables, we can use a nice stylesheet to give our site a more polished look:
+通过设置更多变量,我们可以使用一个很好的样式表来使我们的网站看起来更加精致:
 
 #+begin_src emacs-lisp
-
-;; Customize the HTML output
-(setq org-html-validation-link nil            ;; Don't show validation link
-      org-html-head-include-scripts nil       ;; Use our own scripts
-      org-html-head-include-default-style nil ;; Use our own styles
+;; 定制HTML输出
+(setq org-html-validation-link nil           ;; 不显示验证链接
+      org-html-head-include-scripts nil      ;; 使用我们自己的脚本
+      org-html-head-include-default-style nil;; 使用我们自己的样式
       org-html-head "<link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\" />")
-
 #+end_src
 
-This will remove the default JavaScript and CSS code that gets injected into the HTML output by default and replace it with the link to a nice stylesheet called [[https://simplecss.org/][Simple.css]] (or a CSS file of your own!).
+这将删除默认插入到HTML输出中的默认 JavaScript 和CSS代码,并将其替换为指向一个名为 [[https://simplecss.org/][Simple.css]] 的很好的样式表的链接(或您自己的CSS文件!)。
 
-Let's regenerate the site and take a look!
+让我们重新生成网站和看一看!
+通过将样式表链接添加到 =org-html-head=,我们现在应该有一个更加精致的网站输出,带有更好的字体,颜色,间距等。=Simple.css= 是一个很好的开源样式表,可以改善网站的外观并使其看起来更专业。
 
-* Generating pages with code blocks
+除了 =org-html-head= ,还有其他变量可以用于进一步定制网站的样式和外观:
 
-So far we've been looking at a very simple example page that doesn't really have much on it.  What happens when we try to generate a more elaborate Org file containing code blocks?
+- =org-html-head-extra=:可以添加其他 <head> 内容,例如自定义CSS或JS文件
+- =org-html-style-default=:默认的内联样式
+- =org-html-htmlize-output-type=:控制如何格式化链接和着重缩进的输出。设置为 =css= 可与外部CSS配合使用。
 
-Let's try it out with another file, a version of my literate Emacs configuration called =Emacs.org=!
+通过结合这些选项,您可以完全控制网站的样式和外观。您可以使用自定义CSS,内联样式,外部样式表或这三者的组合。
 
-If you're generating a site that features code blocks like a coding blog or a literate Emacs configuration, you'll probably see an error like this when you generate the site:
+* 生成含代码块的页面
+
+到目前为止,我们一直在查看一个非常简单的示例页面,上面几乎没有太多内容。当我们尝试生成一个包含代码块的更详细的 Org 文件时会怎么样?
+
+让我们试试另一个文件,我的文学 Emacs 配置的版本称为 =Emacs.org=!
+
+如果您正在生成一个特色代码块的网站,如编码博客或文学 Emacs 配置,在生成网站时您可能会遇到这样的错误:
 
 #+begin_src sh
 
@@ -219,86 +306,100 @@ Cannot fontify source block (htmlize.el >= 1.34 required)
 
 #+end_src
 
-To resolve this issue, you will need to install the =htmlize= package from MELPA.  We can automate the process of installing this package by adding the following snippet to our =build-site.el= file:
+要解决此问题,您需要从MELPA安装 =htmlize= 包。我们可以通过将以下代码片段添加到我们的 =build-site.el= 文件中来自动安装此包:
 
 #+begin_src emacs-lisp
 
-;; Set the package installation directory so that packages aren't stored in the
-;; ~/.emacs.d/elpa path.
+;; 设置软件包安装目录,以便软件包不存储在~/.emacs.d/elpa路径中。
 (require 'package)
 (setq package-user-dir (expand-file-name "./.packages"))
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("elpa" . "https://elpa.gnu.org/packages/")))
 
-;; Initialize the package system
+;; 初始化包系统
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
 
-;; Install dependencies
+;; 安装依赖项
 (package-install 'htmlize)
 
 #+end_src
+在此代码片段中,我们加载 Emacs 的软件包管理器,并将 =package-user-dir= 设置为项目文件夹的子目录。这允许您为脚本安装软件包,而不会与个人 Emacs 配置的软件包混淆!
 
-In this snippet, we load Emacs' package manager and configure the =package-user-dir= to be a sub-directory of our project folder.  This allows you to install packages for the script without mixing them up with the packages of your personal Emacs configuration!
+下一步我们做的是将MELPA添加到软件包存档列表并刷新软件包存档,以便可以找到 =htmlize= 。最后,我们调用 =package-install= 来安装它!
 
-The next thing we do is add MELPA to the package archive list and refresh the package archive so that =htmlize= can be found.  Finally, we call =package-install= to install it!
+在未来的视频中,我将向您展示如何将 Emacs 配色方案转换为CSS文件,您可以使用该文件为源代码块着色,颜色与主题使用的颜色完全相同!
 
-In a future video I'll show you how to convert your Emacs color theme to a CSS file that you can use to colorize source blocks with exactly the same colors used in the theme!
+通过添加此安装过程,现在您应该可以成功生成包含源代码块的 Org 文件,而不会遇到字体错误! =htmlize= 将处理将源代码转换为带有语法高亮的HTML。
 
-* Linking between pages
+这是一个非常有用的技巧,可以轻松将含有源代码的 Org 文件转换为具有语法高亮效果的HTML网站。特别是如果您正在构建一个技术博客或文学配置,这会非常有帮助。
 
-One last thing I want to show you is how you can create links between pages on your site.  Let's open up =index.org= and create a link to the =Emacs.org= file.
+* 页面之间的链接
 
-Inside =index.org=, we can press ~C-c C-l~ (=org-insert-link=), enter the path of the Org file we want to link to (=./Emacs.org=), press Enter, then enter the text for the link ("My Emacs configuration").
+最后一件事我想向您展示的是如何在网站上的页面之间创建链接。让我们打开 =index.org= 并创建指向 =Emacs.org= 文件的链接。
 
-When you generate the site again, you should be able to follow the link between pages because Org's publishing system will convert the link to the proper output extension.
+在 =index.org= 中,我们可以按 ~C-c C-l~ (=org-insert-link=),输入我们要链接到的 Org 文件的路径(=./Emacs.org=),按 Enter 键,然后输入链接的文本("My Emacs configuration")。
 
-It will also complain when a linked file can't be found!
+当您再次生成网站时,您应该能够在页面之间进行链接,因为 Org 的发布系统会将链接转换为适当的输出扩展名。
+
+当找不到链接的文件时,它也会发出警告!
 
 #+begin_src sh
-
 Debugger entered--Lisp error: (user-error "Unable to resolve link: \"Emacs2.org\"")
-
 #+end_src
 
-* The final build script
+这是一个很好的提示,提醒您检查链接是否指向存在的文件,以避免在网站上出现坏链接。
 
-I've committed all of the code you see in this video to the following GitHub repository:
+通过在 Org 文件之间创建链接,您可以轻松构建一个组织良好的网站,将相关页面连接在一起。读者可以简单地单击链接在各个页面之间导航。
+
+要创建链接,只需将光标放在您要链接的文本上,然后按 ~C-c C-l~ 并输入链接目标的路径即可。Org 模式会自动为您处理输出格式 - 您只需专注于网站的内容和结构。
+
+链接也可以指向:
+
+- 网站上的其他文件(相对路径)
+- 网站外部的URL(绝对路径)
+- 特定的标题/节(使用#符号)
+- 邮箱地址(mailto:链接)
+
+这使您可以在网站内外创建丰富的链接网络。我希望这个快速入门指南对您有所帮助,可以开始构建自己的 Org 网站!
+
+* 最后的构建脚本
+
+我已经将您在此视频中看到的所有代码提交到以下 GitHub 存储库:
 
 https://github.com/SystemCrafters/org-website-example/ (see the [[https://github.com/SystemCrafters/org-website-example/commit/1ee251e97f5b4d6c614936030203cd7368d4adc8][commit for this episode]])
 
-In the next video I'll show you how to automatically publish an Org-based website to Git hosting services like GitHub Pages and Sourcehut Pages!
+在下一集中,我将向您展示如何自动将基于 Org 的网站发布到 GitHub Pages 和 Sourcehut Pages 等 Git 托管服务!
 
-Here is the final form of our =build-site.el= script:
+这里是我们 =build-site.el= 脚本的最终形式:
 
 #+begin_src emacs-lisp
 
-;; Set the package installation directory so that packages aren't stored in the
-;; ~/.emacs.d/elpa path.
+;; 设置包安装目录,这样包不会存储在~/.emacs.d/elpa路径下。
 (require 'package)
 (setq package-user-dir (expand-file-name "./.packages"))
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("elpa" . "https://elpa.gnu.org/packages/")))
 
-;; Initialize the package system
+;; 初始化包系统
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
 
-;; Install dependencies
+;; 安装依赖项
 (package-install 'htmlize)
 
-;; Load the publishing system
+;; 加载发布系统
 (require 'ox-publish)
 
-;; Customize the HTML output
-(setq org-html-validation-link nil            ;; Don't show validation link
-      org-html-head-include-scripts nil       ;; Use our own scripts
-      org-html-head-include-default-style nil ;; Use our own styles
+;; 自定义HTML输出
+(setq org-html-validation-link nil            ;; 不显示验证链接
+      org-html-head-include-scripts nil       ;; 使用我们自己的脚本
+      org-html-head-include-default-style nil ;; 使用我们自己的样式
       org-html-head "<link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\" />")
 
-;; Define the publishing project
+;; 定义发布项目
 (setq org-publish-project-alist
       (list
        (list "org-site:main"
@@ -306,15 +407,15 @@ Here is the final form of our =build-site.el= script:
              :base-directory "./content"
              :publishing-function 'org-html-publish-to-html
              :publishing-directory "./public"
-             :with-author nil           ;; Don't include author name
-             :with-creator t            ;; Include Emacs and Org versions in footer
-             :with-toc t                ;; Include a table of contents
-             :section-numbers nil       ;; Don't include section numbers
-             :time-stamp-file nil)))    ;; Don't include time stamp in file
+             :with-author nil           ;; 不包含作者姓名
+             :with-creator t            ;; 包括Emacs和Org版本在页脚
+             :with-toc t                ;; 包括目录
+             :section-numbers nil       ;; 不包含章节号
+             :time-stamp-file nil)))    ;; 不包含时间戳
 
-;; Generate the site output
+;; 生成网站输出
 (org-publish-all t)
 
-(message "Build complete!")
+(message "构建完成!")
 
 #+end_src

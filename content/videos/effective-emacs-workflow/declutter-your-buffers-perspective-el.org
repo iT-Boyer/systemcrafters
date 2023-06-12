@@ -1,4 +1,4 @@
-#+title: Declutter Your Emacs Buffers with Perspective.el
+#+title: 使用 perspective.el 清理 emacs 缓冲区
 
 [[https://youtu.be/uyMdDzjQFMU][Watch the video]] on YouTube!
 

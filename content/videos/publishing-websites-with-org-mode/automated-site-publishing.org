@@ -1,156 +1,149 @@
-#+title: Automated Org Mode Website Publishing with GitHub or SourceHut
+#+title: 使用 github 或 SourceHut 自动化 Org Mode 网站发布
 
 [[yt:za99DwdZEyg][Watch the video on YouTube!]]
 
-* Intro
+* 介绍
 
-Once you start generating a static website using Org Mode's publishing system, the next thing you'll probably want to know is how to publish the site so that other people can check it out.
+一旦您开始使用 Org Mode 的发布系统生成静态网站,您下一个想知道的事情可能是如何发布网站,以便其他人可以查看它。
 
-In this video, you'll learn how to set up automatic publishing of your Org Mode website every time you push a commit to your Git repository.
+在此视频中,您将学习如何在每次将提交推送到 Git 存储库时自动发布 Org Mode 网站。
 
 #+begin_cta
 #+end_cta
 
-* Getting started
+* 入门
 
-To get started, make sure you have an account on one of the websites we'll talk about today: GitHub or SourceHut.
+要开始,请确保您有以下我们今天要讨论的网站之一的帐户:GitHub 或 SourceHut。
 
-On GitHub, it's free to create an account and do everything that we'll talk about in this video.  You can create an account here:
+在 GitHub 上,创建帐户和我们在此视频中要讨论的所有内容都是免费的。您可以在这里创建帐户:
 
 https://github.com/join
 
-It's also free to create an account on SourceHut but they've [[https://man.sr.ht/ops/builds.sr.ht-migration.md][recently had to require payment]] to use their build service because crypto miners ruined the party for everyone.  Fortunately you can sign up with a "maintainer" account for as little as $2 per month:
+在 SourceHut 上创建帐户也是免费的,但 [[https://man.sr.ht/ops/builds.sr.ht-migration.md][他们最近不得不要求支付]] 才能使用他们的构建服务,因为加密货币矿工让每个人的派对变得糟糕。 幸运的是,您可以以每月至少2美元的价格注册“维护人”帐户:
 
 https://meta.sr.ht/register/step2
 
-There are other ways you can get free service on SourceHut, check out [[https://man.sr.ht/billing-faq.md#i-dont-think-i-can-pay-for-it][this entry]] in the Billing FAQ.
+有其他方法可以在 SourceHut 上获得免费服务,请查看 [[https://man.sr.ht/billing-faq.md#i-dont-think-i-can-pay-for-it][这个条目]]中的计费常见问题解答。
 
-** Which one should I choose?
+** 我应该选择哪一个?
 
-Both are great options and it will be similarly easy to publish sites on each.
+这两个选项都很好,在每个选项上发布网站的难易程度大致相同。
 
-GitHub is the well-known mainstream option, doesn't hurt to have an account there.
+GitHub 是知名的主流选项,拥有一个帐户无伤大雅。
 
-SourceHut is a more hacker-focused site with a totally different philosophy that you might appreciate.  You can learn more about it by checking out their website at [[https://sourcehut.org/][sourcehut.org]].  Be aware, there are [[https://srht.site/limitations][some restrictions]] about what kind of content you can publish on SourceHut pages!
+SourceHut 是一个更注重黑客的网站,采用完全不同的哲学,您可能会欣赏。您可以通过查看他们的网站[[https://sourcehut.org/][http://sourcehut.org|sourcehut.org]]了解更多信息。请注意,在 SourceHut 页面上发布的内容有[[https://srht.site/limitations][一些限制]]!
 
-* Preparing a local repository for your site
+* 准备本地存储库以托管您的网站
 
-On either hosting site, you'll need a repository where you store your Org Mode website's content files and the build script that we created in the previous video of this series.  If you haven't seen that yet, check it out here:
+无论在哪个托管网站上,您都需要一个存储库来存储您的 Org Mode 网站的内容文件和我们在此系列视频的上一段中创建的构建脚本。如果您还没看过,可以在这里查看:
 
-- [[https://youtu.be/AfkrzFodoNw][Build Your Website with Org Mode]]
+- [[https://youtu.be/AfkrzFodoNw][使用Org Mode构建您的网站]]
 
-We'll be starting from the code in the [[https://github.com/SystemCrafters/org-website-example][org-website-example repository]] from that video, so you might want to clone that repo, create a new folder on your filesystem, and copy those site files into it as a starting point.
+我们将从该视频中的[[https://github.com/SystemCrafters/org-website-example][org-website-example repository]]中的代码开始,所以您可能需要克隆该存储库,在文件系统上创建一个新文件夹,并将这些网站文件复制到其中以做为起点。
 
-** Quick Repo Setup
+** 快速设置存储库
 
-I won't be going into depth about how to use Git in this episode, but I'll give a brief rundown of the commands you need to know to turn your site files into a Git repository and "commit" the changes:
+我不会在此集中深入讨论如何使用 Git,但我会简要概述您需要了解的命令,以将您的网站文件转化为 Git 存储库并“提交”更改:
 
 #+begin_src sh
-
-  # Copy the starting point files
+  # 复制起点文件
   git clone https://github.com/SystemCrafters/org-website-example
 
-  # Create the folder for the local repo
+  # 创建本地存储库文件夹
   mkdir my-org-site
   cd my-org-site
   cp -R ../org-website-example/* .
 
-  # Initialize the Git repository and make your first commit
+  # 初始化Git存储库并执行第一次提交
   git init
   git add -A
-  git commit -m "My first commit!"
+  git commit -m "我的第一个提交!"
 
 #+end_src
 
-Now every time you make changes to your site, you can go to your =my-org-site= folder and run the following commands:
+现在,每次对网站进行更改,您都可以转到 =my-org-site= 文件夹并运行以下命令:
 
 #+begin_src sh
 
   git add -A
-  git commit -m "Updating website files"
+  git commit -m "更新网站文件"
 
-  # We will talk about this step in a bit
+  # 我们将在稍后讨论此步骤
   # git push origin master
 
 #+end_src
 
-I recommend reading the [[https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository][Git Book]] if you're a beginner to Git and want to learn more about how to use it.
+如果您是 Git 的初学者并想了解更多如何使用它的信息,我建议阅读 [[https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository][Git Book]]。
 
-* Creating a hosted repository for website publishing
+* 为网站发布创建托管存储库
 
 ** GitHub
 
-To publish a website with GitHub Pages, you'll need to create a repository with a specific name:
+要使用 GitHub Pages 发布网站,您需要创建一个具有特定名称的存储库:
 
 =yourusername.github.io=
+您可以转到 https://github.com/new 并使用您的实际 GitHub 用户名创建此名称的公共存储库!不要选择任何复选框,我们将在创建 GitHub 存储库后推送我们自己的存储库。
 
-You can go to https://github.com/new and create a public repository with this name, making sure to use your actual GitHub username!  Don't select any of the checkboxes, we will push our own repository once the GitHub repo is created.
-
-Now that the repo is created, you can copy the link that they give you so that you can configure your local repository to push there:
+现在存储库已创建,您可以复制他们提供的链接,以便您可以配置本地存储库以推送到那里:
 
 #+begin_src sh
 
-  # To use HTTPS
+  # 使用HTTPS
   git remote add origin https://github.com/yourusername/yourusername.github.io.git
 
-  # To use SSH if you've set up a public key
+  # 如果您设置了公钥,请使用SSH
   git remote add origin git@github.com:yourusername/yourusername.github.io.git
 
 #+end_src
 
-Authenticating to GitHub can be a little tricky if you've never done it before, consult this documentation page for more details!
-
+如果您以前从未尝试过,向 GitHub 验证身份可能有点棘手,请参阅此文档页面以获取更多详细信息!
 https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github#authenticating-with-the-command-line
 
-Once you've created the repository, you can push your local repository there using =git push=:
+创建存储库后,您可以使用 =git push= 将本地存储库推送到那里:
 
 #+begin_src sh
-
   git push origin master
-
 #+end_src
 
-You'll need to run this after every commit you make so that the changes go to the hosted repository!
+每次提交更改后,您都需要运行此命令,以便更改提交到托管存储库!
 
 ** SourceHut
 
-On SourceHut, you can create a new repository by heading to the following link.  It does not require a specific name!
+在 SourceHut 上,您可以通过转到以下链接来创建一个新存储库。它不需要特定的名称!
 
 https://git.sr.ht/create
 
-Just make sure you set up your [[https://man.sr.ht/meta.sr.ht/#keys][SSH key]] first since this is the only way to authenticate to =git.sr.ht=.
+只需要确保首先设置[[https://man.sr.ht/meta.sr.ht/#keys][SSH 密钥]],因为这是向 =git.sr.ht= 验证身份的唯一方式。
 
-Once the repository is created, you can configure it as a remote for your local repository:
+创建存储库后,您可以将其配置为本地存储库的远程存储库:
 
 #+begin_src sh
-
-  git remote add origin git@git.sr.ht:~yourusername/my-org-site
-  git push origin master
-
+git remote add origin git@git.sr.ht:~yourusername/my-org-site
+git push origin master
 #+end_src
 
-SourceHut allows you to publish pages for a personal site (=yourusername.srht.site=) or any custom domain you choose using a simple HTTP-based API.
+SourceHut 允许您为个人网站(=yourusername.srht.site=)或使用简单的HTTP API的任何自定义域发布页面。
 
-More details can be found in the [[https://srht.site/quickstart][quickstart instructions]] and [[https://srht.site/][documentation]].
+可以在 [[https://srht.site/quickstart][快速入门说明]] 和 [[https://srht.site/][文档]] 中找到更多详细信息。
 
-* Crafting a build configuration
+* 制作构建配置
 
-Now we can set up a build configuration that will automatically publish your website every time you push a commit to its repository!
+现在我们可以设置一个构建配置,以便每次向其存储库推送提交时,它都会自动发布您的网站!
 
-This is possible by using a "continuous integration" service like [[https://github.com/features/actions][GitHub Actions]] or [[https://man.sr.ht/builds.sr.ht/][SourceHut Builds]].  This type of service enables you to run a build script for your repository on a machine in the cloud so that you can do things like run tests on code or publish a website.
+这是通过使用像 [[https://github.com/features/actions][GitHub Actions]] 或 [[https://man.sr.ht/builds.sr.ht/][SourceHut Builds]] 这样的“持续集成”服务实现的。此类型的服务使您能够在云中的计算机上为存储库运行构建脚本,以便您可以执行诸如对代码运行测试或发布网站之类的操作。
 
-I'll show you example build configurations for both GitHub and SourceHut that you can copy and paste to get started, only with a couple of small tweaks if you decide to use SourceHut.
+我将向您展示 GitHub 和 SourceHut 的示例构建配置,您可以复制和粘贴以开始使用,如果决定使用 SourceHut,只需要做几个细微调整。
 
 ** GitHub Actions
 
-This file should be placed in your repository at =.github/workflows/publish.yml=.  Here's what it does:
+此文件应放置在存储库中的 =.github/workflows/publish.yml= 。它做的事情如下:
 
-- Configures the build to trigger on commits to the =master= branch (change branch name if yours is =main=)!
-- Sets up an Ubuntu VM to run the build
-- Checks out the code for this repo
-- Installs =emacs-nox= (without the graphical interface) - 26.3 at the time of this video
-- Runs our =build.sh= script to build the site
-- Uses a custom action to publish the site to the =gh-pages= branch
+- 配置构建以在 =master= 分支上触发提交(如果您的分支名称为 =main=,请更改分支名称)!
+- 设置 Ubuntu VM 来运行构建
+- 检出此存储库的代码
+- 安装 =emacs-nox= (没有图形界面)- 视频录制时的26.3版本
+- 运行我们的 =build.sh= 脚本来构建网站
+- 使用自定义操作将网站发布到 =gh-pages= 分支
 
 #+begin_src yaml
 
@@ -182,29 +175,28 @@ This file should be placed in your repository at =.github/workflows/publish.yml=
 
 #+end_src
 
-Add this file to your repository folder, commit it, and push it to your GitHub repository using the commands I showed you before.
+将此文件添加到存储库文件夹,提交并使用我之前向您展示的命令将其推送到 GitHub 存储库。
 
-You can watch the progress of the "Publish to GitHub Pages" action from the *Actions* tab on your repository.
+您可以从存储库的 *Actions* 选项卡监视 “Publish to GitHub Pages” 操作的进度。
+完成后,网站仍不会发布,因为我们需要采取最后一步来配置网站!单击存储库上的 *Settings* 选项卡,单击设置页面左侧的 *Pages* 选项卡,然后将源分支更改为 =gh-pages= 并单击 *Save* 。
 
-After it completes, the site still won't be published because we need to take one final step to configure your site!  Click the *Settings* tab on your repo, click the *Pages* tab on the left side of the Settings page, then change the Source Branch to =gh-pages= and click *Save*.
-
-After a minute or two your site will now be live!
+一两分钟后,您的网站现已上线!
 
 ** builds.sr.ht
 
-This file should be placed in your repository at =.build.yml=.  Here's what it does:
+此文件应放置在存储库中的 =.build.yml= 。它做的事情如下:
 
-- Sets up an Arch Linux VM to run the build
-- Installs the =emacs-nox= package after the VM is running
-- Uses the =oauth= field to automatically grab a token for publishing the site
-- Specifies the source repositories to be cloned (can be multiple)
-- Sets an environment variable containing the site name
+- 设置 Arch Linux VM来运行构建
+- 运行VM后安装 =emacs-nox= 软件包
+- 使用 =oauth= 字段自动获取发布网站的令牌
+- 指定要克隆的源存储库(可以有多个)
+- 设置包含网站名称的环境变量
 
-*YOU MUST CHANGE THESE THINGS:*
+*您必须更改这些内容:*
 
-- =sources=: Use the correct URL for your repo
-- =site:= Update the URL to use your username
-- =build:= Update the =cd my-org-site= to refer to the name of your repo
+- =sources=: 使用存储库的正确URL
+- =site:= 更新URL以使用您的用户名
+- =build:= 更新 =cd my-org-site= 以引用存储库的名称
 
 #+begin_src yaml
 
@@ -218,11 +210,11 @@ This file should be placed in your repository at =.build.yml=.  Here's what it d
     site: username.srht.site
   tasks:
     - build: |
-        # Generate site files (make sure to update folder name!)
+        # 生成网站文件(请确保更新文件夹名称!)
         cd my-org-site
         ./build.sh
 
-        # Bundle the site
+        # 捆绑网站
         cd public
         tar -czf /home/build/html.tar.gz .
     - upload: |
@@ -230,28 +222,27 @@ This file should be placed in your repository at =.build.yml=.  Here's what it d
         acurl --fail-with-body https://pages.sr.ht/publish/$site -Fcontent=@html.tar.gz
 
 #+end_src
-
-After committing and pushing this file to your SourceHut repository, you can monitor the build by going to the builds page for your account:
+提交此文件并将其推送到 SourceHut 存储库后,您可以通过转到帐户的构建页面来监视构建:
 
 https://builds.sr.ht
 
-Once the build has completed you can visit your site at https://yourusername.srht.site!  It may take a minute or so before it shows up.
+构建完成后,您可以在https://yourusername.sr.ht.site 访问您的网站!它可能需要一分钟左右才会显示。
 
-If the build fails, double-check all of the information in your =.build.yml= file to ensure that you didn't miss anything!
+如果构建失败,请仔细检查 =.build.yml= 文件中的所有信息,确保您没有遗漏任何内容!
 
-* Setting up a custom domain for your site
+* 为您的网站设置自定义域名
 
-I won't go into too many details here because the documentation pages for both GitHub and SourceHut cover this pretty well.
+我不会在这里详细介绍,因为 GitHub 和 SourceHut 的文档页面已经很好地介绍了这一点。
 
-It is possible to set up a custom domain to point to your website on either of these platforms!
+可以为这两个平台上的网站设置自定义域名!
 
-- [[https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site][Instructions for GitHub Pages]]
-- [[https://srht.site/custom-domains][Instructions for SourceHut]]
+- [[https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site][GitHub Pages 的说明]]
+- [[https://srht.site/custom-domains][SourceHut 的说明]]
 
-If you don't have a domain for your website yet, you can get one and support the channel at the same time by using my [[https://namecheap.pxf.io/NK0yXK][Namecheap affiliate link]]!
+如果您的网站还没有域名,可以使用我的[[https://namecheap.pxf.io/NK0yXK][Namecheap的推广链接]]同时获得域名和支持该频道!
 
-* Enjoy your new site!
+* 欣赏您的新网站!
 
-Hopefully these instructions helped you get a new site running using Emacs, Org Mode, and Git.
+希望这些说明能帮助您使用 Emacs、Org Mode 和 Git 运行新的网站。
 
-In future videos of this series, we'll learn how to customize the style of Org Mode sites and also add useful features like RSS feeds and site maps!
+在本系列的未来视频中,我们将学习如何定制 Org Mode 网站的样式,并添加有用的功能,例如RSS种子和网站地图!

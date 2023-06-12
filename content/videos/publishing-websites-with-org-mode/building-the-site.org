@@ -1,8 +1,8 @@
-#+title: Build Your Website with Org Mode
+#+title: 用 Org Mode 建立你的网站
 
 [[yt:AfkrzFodoNw][Watch the video on YouTube!]]
 
-* Intro
+* 介绍
 
 Org 模式的发布系统是其最有用的功能之一。它允许您将 Org 文件转换为许多其他格式,包括HTML、PDF、LaTeX 等。
 
@@ -11,7 +11,7 @@ Org 模式的发布系统是其最有用的功能之一。它允许您将 Org �
 #+begin_cta
 #+end_cta
 
-* Getting started
+* 开始入门
 
 要开始,我们需要一个地方放置我们将用于生成网站的所有代码以及将提供网站内容的 =.org= 文件。
 
@@ -28,7 +28,7 @@ my-org-site/
     └── index.org
   #+end_quote
 
-* Creating the build script
+* 创建构建脚本
 
 现在我们将创建一个 Emacs Lisp 脚本,通过运行单个 shell 命令来生成您的 Org 文档的HTML文件。
 
@@ -54,14 +54,6 @@ emacs -Q --script build-site.el
 
 不要忘记使用 =chmod +x build.sh= 使脚本可执行!
 
-*注意:*如果您使用 Windows,可以创建一个 =build.cmd= 文件以相同的方式调用 Emacs。
-
-=-Q= 参数可防止 Emacs 加载您自己的 Emacs 配置,这将有助于确保一旦我们准备开始发布此站点,此相同的脚本可以在其他机器上干净地执行。
-
-
-现在我们有一个 Emacs Lisp 脚本来生成我们的HTML文件,以及一个 shell 脚本来运行该 Emacs Lisp 脚本。
-
-让我们看看我们现在有什么:
 #+begin_quote
 my-org-site
 ├── build.sh
@@ -70,23 +62,11 @@ my-org-site
     └── index.org
 #+end_quote
 
-要生成HTML文件,我们只需要在终端/命令行中运行:
-#+BEGIN_SRC sh -n 1 :hl_lines 0-0,0-0
-./build.sh
-#+END_SRC
+*注意:*如果您使用 Windows,可以创建一个 =build.cmd= 文件以相同的方式调用 Emacs。
 
-```bash
-```
+=-Q= 参数可防止 Emacs 加载您自己的 Emacs 配置,这将有助于确保一旦我们准备开始发布此站点,此相同的脚本可以在其他机器上干净地执行。
 
-这将启动 Emacs,运行我们的 =build-site.el= 脚本,然后退出 Emacs。
-
-我们的 =build-site.el= 脚本目前还没有做太多工作 - 它只是打印一条消息。但很快我们将配置 Org 发布过程,并告诉它需要发布哪些 Org 文件及如何发布。
-
-使用 =-Q= 参数确保我们的个人 Emacs 配置不会影响构建过程,这很重要,因为我们希望这个构建脚本可以在其他机器上干净地运行。
-
-这为我们提供了一个很好的起点来自动化我们的 Org 网站构建过程。让我知道如果您有任何其他问题!我们将继续添加更多功能,以构建和发布我们的 Org 网站。
-
-* Setting up the publish project
+* 设置发布项目
 
 现在我们有了基本的脚本,我们可以为我们的网站设置 Org 发布配置。
 
@@ -139,44 +119,6 @@ my-org-site
 每次重新生成网站文件时,您只需重新加载页面即可查看所做更改的结果!
 
 这是一个非常方便的方法来实时预览您的 Org 网站,而无需部署到网页服务器。您可以在 Emacs 中做出更改,保存文件,然后简单地在浏览器中重新加载以查看结果。这使得构建和测试 Org 网站变得非常简单和流畅。
-
-
-* Improving the HTML output
-
-There are a few things about the page we just looked at that I'd like to change to make the output look a bit cleaner:
-
-- Section numbers
-- Author name
-- Publish timestamp
-- Validate link
-
-Luckily the publish system is very customizable so I'll show you how we can disable a few things in the project configuration to get a better result.
-
-#+begin_src emacs-lisp
-
-;; Define the publishing project
-(setq org-publish-project-alist
-      (list
-       (list "org-site:main"
-             :recursive t
-             :base-directory "./content"
-             :publishing-function 'org-html-publish-to-html
-             :publishing-directory "./public"
-             :with-author nil           ;; Don't include author name
-             :with-creator t            ;; Include Emacs and Org versions in footer
-             :with-toc t                ;; Include a table of contents
-             :section-numbers nil       ;; Don't include section numbers
-             :time-stamp-file nil)))    ;; Don't include time stamp in file
-
-#+end_src
-
-We'll need to set a different variable to get rid of the validate link at the bottom:
-
-#+begin_src emacs-lisp
-
-(setq org-html-validation-link nil)
-
-#+end_src
 
 
 * 改进HTML输出

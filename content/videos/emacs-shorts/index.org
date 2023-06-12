@@ -1,5 +1,5 @@
 #+title: Emacs Shorts
 
-* Episodes
+* 集锦
 
-1. [[file:pomodoro-timer.org][Emacs Has a Built-in Pomodoro Timer?]]
+1. [[file:pomodoro-timer.org][Emacs 有一个内置的番茄时钟?]]

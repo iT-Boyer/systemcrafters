@@ -1,5 +1,5 @@
-<!-- Generated from c07c182 on 2023-06-12 @ 10:53 with Emacs 27.2 (Org mode 9.4.4) -->
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>Optimizing Window Placement in EXWM - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">首页</a> <a class="nav-link" href="/systemcrafters/guides/">指南</a> <a class="nav-link" href="/systemcrafters/news/">动态</a> <a class="nav-link" href="/systemcrafters/community/">社区</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/systemcrafters/how-to-help/">帮助</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">Optimizing Window Placement in EXWM</h1><p class="site-post-meta"></p><div id="content"><p>
+<!-- Generated from 4cd4783 on 2023-06-12 @ 11:00 with Emacs 27.2 (Org mode 9.4.4) -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>Optimizing Window Placement in EXWM - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">首页</a> <a class="nav-link" href="/systemcrafters/guides/">指南</a> <a class="nav-link" href="/systemcrafters/news/">动态</a> <a class="nav-link" href="/systemcrafters/community/">社区</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">商店</a> <a class="nav-link" href="/systemcrafters/how-to-help/">帮助</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">Optimizing Window Placement in EXWM</h1><p class="site-post-meta"></p><div id="content"><p>
 <div class="video">  <iframe src="https://www.youtube.com/embed/HGGU5Zvljj8" allowfullscreen></iframe></div>
 </p>
 
@@ -7,7 +7,7 @@
 Check out the final code <a href="https://github.com/daviwil/emacs-from-scratch/blob/39f63fe133cd4c41e13bbd1551c6517162851411/Desktop.org#exwm-configuration">here</a>.
 </p>
 
-<h2><a id="customizing-buffer-name-based-on-window-title" class="anchor" href="#customizing-buffer-name-based-on-window-title">¶</a>Customizing buffer name based on window title</h2><div class="outline-text-2" id="text-org4f23034">
+<h2><a id="customizing-buffer-name-based-on-window-title" class="anchor" href="#customizing-buffer-name-based-on-window-title">¶</a>Customizing buffer name based on window title</h2><div class="outline-text-2" id="text-orge00ebed">
 <pre>(<span class="org-keyword">defun</span> <span class="org-function-name">efs/exwm-update-title</span> ()
   (<span class="org-keyword">pcase</span> exwm-class-name
     (<span class="org-string">"Firefox"</span> (exwm-workspace-rename-buffer (format <span class="org-string">"Firefox: %s"</span> exwm-title)))))
@@ -16,7 +16,7 @@ Check out the final code <a href="https://github.com/daviwil/emacs-from-scratch/
   (add-hook 'exwm-update-title-hook #'efs/exwm-update-title)</pre>
 </div>
 
-<h2><a id="configuring-windows-when-they-appear" class="anchor" href="#configuring-windows-when-they-appear">¶</a>Configuring windows when they appear</h2><div class="outline-text-2" id="text-orga4366fe">
+<h2><a id="configuring-windows-when-they-appear" class="anchor" href="#configuring-windows-when-they-appear">¶</a>Configuring windows when they appear</h2><div class="outline-text-2" id="text-orgf5171c3">
 <p>
 Use the <code>exwm-manage-finish-hook</code>:
 </p>
@@ -29,13 +29,13 @@ Use the <code>exwm-manage-finish-hook</code>:
   (add-hook 'exwm-manage-finish-hook #'efs/configure-window-by-class)</pre>
 </div>
 
-<h3><a id="sending-programs-to-specific-workspaces" class="anchor" href="#sending-programs-to-specific-workspaces">¶</a>Sending programs to specific workspaces</h3><div class="outline-text-3" id="text-org4d7463f">
+<h3><a id="sending-programs-to-specific-workspaces" class="anchor" href="#sending-programs-to-specific-workspaces">¶</a>Sending programs to specific workspaces</h3><div class="outline-text-3" id="text-org8928808">
 <pre>(<span class="org-keyword">pcase</span> exwm-class-name
   (<span class="org-string">"Firefox"</span> (exwm-workspace-move-window 2))
   (<span class="org-string">"Sol"</span> (exwm-workspace-move-window 3))))</pre>
 </div>
 
-<h3><a id="making-windows-float-automatically" class="anchor" href="#making-windows-float-automatically">¶</a>Making windows float automatically</h3><div class="outline-text-3" id="text-orgbae48cc">
+<h3><a id="making-windows-float-automatically" class="anchor" href="#making-windows-float-automatically">¶</a>Making windows float automatically</h3><div class="outline-text-3" id="text-orge283c42">
 <p>
 Use the <code>exwm-floating-toggle-floating</code> command (<code>C-c C-t C-f</code>)
 </p>
@@ -43,7 +43,7 @@ Use the <code>exwm-floating-toggle-floating</code> command (<code>C-c C-t C-f</c
 <pre>(<span class="org-string">"mpv"</span> (exwm-floating-toggle-floating))</pre>
 </div>
 
-<h3><a id="hide-the-mode-line" class="anchor" href="#hide-the-mode-line">¶</a>Hide the mode line</h3><div class="outline-text-3" id="text-orgbe9f3dc">
+<h3><a id="hide-the-mode-line" class="anchor" href="#hide-the-mode-line">¶</a>Hide the mode line</h3><div class="outline-text-3" id="text-orgf4f0abe">
 <p>
 Use the <code>exwm-layout-toggle-mode-line</code> command (<code>C-c C-t RET</code>)
 </p>
@@ -52,7 +52,7 @@ Use the <code>exwm-layout-toggle-mode-line</code> command (<code>C-c C-t RET</co
        (exwm-layout-toggle-mode-line))</pre>
 </div>
 
-<h3><a id="resizing-a-floating-window" class="anchor" href="#resizing-a-floating-window">¶</a>Resizing a floating window</h3><div class="outline-text-3" id="text-org14ef115">
+<h3><a id="resizing-a-floating-window" class="anchor" href="#resizing-a-floating-window">¶</a>Resizing a floating window</h3><div class="outline-text-3" id="text-org9109a60">
 <ul class="org-ul">
 <li><code>exwm-layout-enlarge-window[-horizontally]</code> - Make a window larger by a number of pixels</li>
 <li><code>exwm-layout-shrink-window[-horizontally]</code> - Make a window smaller by a number of pixels</li>
@@ -60,21 +60,21 @@ Use the <code>exwm-layout-toggle-mode-line</code> command (<code>C-c C-t RET</co
 </ul>
 </div>
 
-<h3><a id="positioning-a-floating-window" class="anchor" href="#positioning-a-floating-window">¶</a>Positioning a floating window</h3><div class="outline-text-3" id="text-orgf032f8f">
+<h3><a id="positioning-a-floating-window" class="anchor" href="#positioning-a-floating-window">¶</a>Positioning a floating window</h3><div class="outline-text-3" id="text-orgae60520">
 <ul class="org-ul">
 <li><code>exwm-floating-move</code> - Move a window based on a delta</li>
 <li><code>x-display-pixel-width</code> / <code>x-display-pixel-height</code> - Get the width and height of the display</li>
 </ul>
 </div>
 
-<h3><a id="automatically-enter-char-mode" class="anchor" href="#automatically-enter-char-mode">¶</a>Automatically enter char-mode</h3><div class="outline-text-3" id="text-org19e9778">
+<h3><a id="automatically-enter-char-mode" class="anchor" href="#automatically-enter-char-mode">¶</a>Automatically enter char-mode</h3><div class="outline-text-3" id="text-org75af7c6">
 <ul class="org-ul">
 <li>Use <code>exwm-reset</code> to toggle back to line-mode (bound to <code>s-r</code> in our configuration)</li>
 <li>Use <code>C-c C-k</code> (<code>exwm-input-release-keyboard</code> to toggle back to char-mode)</li>
 </ul>
 </div>
 
-<h2><a id="automatically-move-windows-between-workspaces" class="anchor" href="#automatically-move-windows-between-workspaces">¶</a>Automatically move windows between workspaces</h2><div class="outline-text-2" id="text-org3c00fea">
+<h2><a id="automatically-move-windows-between-workspaces" class="anchor" href="#automatically-move-windows-between-workspaces">¶</a>Automatically move windows between workspaces</h2><div class="outline-text-2" id="text-org12f5659">
 <pre><span class="org-comment-delimiter">;; </span><span class="org-comment">Automatically move EXWM buffer to current workspace when selected</span>
 (<span class="org-keyword">setq</span> exwm-layout-show-all-buffers t)
 
@@ -82,7 +82,7 @@ Use the <code>exwm-layout-toggle-mode-line</code> command (<code>C-c C-t RET</co
 (<span class="org-keyword">setq</span> exwm-workspace-show-all-buffers t)</pre>
 </div>
 
-<h2><a id="automatically-hiding-the-minibuffer" class="anchor" href="#automatically-hiding-the-minibuffer">¶</a>Automatically hiding the minibuffer</h2><div class="outline-text-2" id="text-orgebcfcd4">
+<h2><a id="automatically-hiding-the-minibuffer" class="anchor" href="#automatically-hiding-the-minibuffer">¶</a>Automatically hiding the minibuffer</h2><div class="outline-text-2" id="text-orgef9a15b">
 <p>
 EXWM enables you to &ldquo;detach&rdquo; the minibuffer so that you can auto-hide it with <code>exwm-workspace-toggle-minibuffer</code>:
 </p>
@@ -95,7 +95,7 @@ EXWM enables you to &ldquo;detach&rdquo; the minibuffer so that you can auto-hid
 (<span class="org-keyword">setq</span> exwm-workspace-minibuffer-position 'bottom)</pre>
 </div>
 
-<h2><a id="miscellaneous-packages-i-mentioned" class="anchor" href="#miscellaneous-packages-i-mentioned">¶</a>Miscellaneous packages I mentioned:</h2><div class="outline-text-2" id="text-org32e03c6">
+<h2><a id="miscellaneous-packages-i-mentioned" class="anchor" href="#miscellaneous-packages-i-mentioned">¶</a>Miscellaneous packages I mentioned:</h2><div class="outline-text-2" id="text-orgbc0d3b8">
 <ul class="org-ul">
 <li>Dynamic tiling like xmonad or dwm using Edwina: <a href="https://github.com/ajgrf/edwina">https://github.com/ajgrf/edwina</a></li>
 <li>Hiding the mode line for all Emacs buffers: <a href="https://github.com/hlissner/emacs-hide-mode-line">https://github.com/hlissner/emacs-hide-mode-line</a></li>
@@ -103,4 +103,4 @@ EXWM enables you to &ldquo;detach&rdquo; the minibuffer so that you can auto-hid
 <li>Showing Ivy commands in a centered frame: <a href="https://github.com/tumashu/ivy-posframe">https://github.com/tumashu/ivy-posframe</a></li>
 </ul>
 </div>
-</div></div><div class="list-form center"><div class="list-form-title">Subscribe to the System Crafters Newsletter!</div><form method="POST" action="https://www.simplelists.com/subscribe.php"><input type="hidden" name="format" value="text"/><input type="hidden" name="action" value="subscribe"/><input type="hidden" name="list" value="news@lists.systemcrafters.net"/><div class="list-form-message">Stay up to date with the latest System Crafters news and updates!  Read the <a href="/newsletter/">Newsletter</a> page for more information.</div><div class="row"><div class="column"><div class="row center list-form-label">Name (optional)</div><div class="row"><input type="text" name="name"/></div></div><div class="column"><div class="row center list-form-label">Email Address</div><div class="row"><input type="text" name="email"/></div></div></div><div><input type="submit" value="Subscribe!"/></div></form></div></div><footer class="site-footer"><div class="container"><div class="row"><div class="column"><p><a href="https://it-boyer.github.io/systemcrafters/privacy-policy/">Privacy Policy</a> · <a href="https://it-boyer.github.io/systemcrafters/credits/">Credits</a> · <a href="https://it-boyer.github.io/systemcrafters/rss/">RSS Feeds</a> · <a rel="me" href="https://fosstodon.org/@daviwil">Fediverse</a></p><p>© 2021-2023 System Crafters LLC</p></div><div class="column align-right"><p><a href="https://codeberg.org/SystemCrafters/systemcrafters.net"><img src="https://it-boyer.github.io/systemcrafters/img/codeberg.png" style="width: 120px" alt="Contribute on Codeberg"/></a></p></div></div></div></footer></body></html>
+</div></div><div class="list-form center"><div class="list-form-title">订阅系统工匠通讯!</div><form method="POST" action="https://www.simplelists.com/subscribe.php"><input type="hidden" name="format" value="text"/><input type="hidden" name="action" value="subscribe"/><input type="hidden" name="list" value="news@lists.systemcrafters.net"/><div class="list-form-message">与最新的系统工匠新闻和更新保持同步! 阅读 <a href="/newsletter/">Newsletter</a> 浏览更多信息。</div><div class="row"><div class="column"><div class="row center list-form-label">名称 (optional)</div><div class="row"><input type="text" name="name"/></div></div><div class="column"><div class="row center list-form-label">邮箱</div><div class="row"><input type="text" name="email"/></div></div></div><div><input type="submit" value="订阅!"/></div></form></div></div><footer class="site-footer"><div class="container"><div class="row"><div class="column"><p><a href="https://it-boyer.github.io/systemcrafters/privacy-policy/">Privacy Policy</a> · <a href="https://it-boyer.github.io/systemcrafters/credits/">Credits</a> · <a href="https://it-boyer.github.io/systemcrafters/rss/">RSS Feeds</a> · <a rel="me" href="https://fosstodon.org/@daviwil">Fediverse</a></p><p>© 2021-2023 System Crafters LLC</p></div><div class="column align-right"><p><a href="https://codeberg.org/SystemCrafters/systemcrafters.net"><img src="https://it-boyer.github.io/systemcrafters/img/codeberg.png" style="width: 120px" alt="Contribute on Codeberg"/></a></p></div></div></div></footer></body></html>

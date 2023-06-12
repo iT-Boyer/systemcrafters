@@ -1,13 +1,13 @@
-<!-- Generated from c07c182 on 2023-06-12 @ 10:53 with Emacs 27.2 (Org mode 9.4.4) -->
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>Configuring Emacs with Only the UI? - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">首页</a> <a class="nav-link" href="/systemcrafters/guides/">指南</a> <a class="nav-link" href="/systemcrafters/news/">动态</a> <a class="nav-link" href="/systemcrafters/community/">社区</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/systemcrafters/how-to-help/">帮助</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">Configuring Emacs with Only the UI?</h1><p class="site-post-meta">February  4, 2022</p><div class="video">  <iframe src="https://www.youtube.com/embed/76jp8qkLZC8" allowfullscreen></iframe></div><div id="content">
-<h2><a id="updates" class="anchor" href="#updates">¶</a>Updates</h2><div class="outline-text-2" id="text-org041e8b6">
+<!-- Generated from 4cd4783 on 2023-06-12 @ 11:00 with Emacs 27.2 (Org mode 9.4.4) -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>Configuring Emacs with Only the UI? - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">首页</a> <a class="nav-link" href="/systemcrafters/guides/">指南</a> <a class="nav-link" href="/systemcrafters/news/">动态</a> <a class="nav-link" href="/systemcrafters/community/">社区</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">商店</a> <a class="nav-link" href="/systemcrafters/how-to-help/">帮助</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">Configuring Emacs with Only the UI?</h1><p class="site-post-meta">February  4, 2022</p><div class="video">  <iframe src="https://www.youtube.com/embed/76jp8qkLZC8" allowfullscreen></iframe></div><div id="content">
+<h2><a id="updates" class="anchor" href="#updates">¶</a>Updates</h2><div class="outline-text-2" id="text-orgad06b4a">
 <ul class="org-ul">
 <li>I&rsquo;ll be shutting down the System Crafters Store next week (it will be back!)</li>
 <li>Slackware 15 released: <a href="http://www.slackware.com/announce/15.0.php">http://www.slackware.com/announce/15.0.php</a></li>
 </ul>
 </div>
 
-<h2><a id="irsquod-love-your-opinion" class="anchor" href="#irsquod-love-your-opinion">¶</a>I&rsquo;d love your opinion!</h2><div class="outline-text-2" id="text-org57a3aef">
+<h2><a id="irsquod-love-your-opinion" class="anchor" href="#irsquod-love-your-opinion">¶</a>I&rsquo;d love your opinion!</h2><div class="outline-text-2" id="text-orga1cd977">
 <p>
 I&rsquo;m interested to try and publish a eBook on a topic that you all would find valuable, something related to what we talk about on this channel.
 </p>
@@ -33,7 +33,7 @@ What format?
 <li>info</li>
 </ul>
 </div>
-<h2><a id="using-the-customize-ui-to-build-an-emacs-configuration" class="anchor" href="#using-the-customize-ui-to-build-an-emacs-configuration">¶</a>Using the Customize UI to Build an Emacs Configuration</h2><div class="outline-text-2" id="text-orgfee0c87">
+<h2><a id="using-the-customize-ui-to-build-an-emacs-configuration" class="anchor" href="#using-the-customize-ui-to-build-an-emacs-configuration">¶</a>Using the Customize UI to Build an Emacs Configuration</h2><div class="outline-text-2" id="text-org1662fc4">
 <p>
 Mickey Petersen of Mastering Emacs fame wrote a blog post recently titled &ldquo;Bad Emacs Advice&rdquo;:
 </p>
@@ -55,7 +55,7 @@ We&rsquo;ll also take a look at the resulting configuration file to see what it 
 </p>
 </div>
 
-<h3><a id="configuration-goals" class="anchor" href="#configuration-goals">¶</a>Configuration Goals</h3><div class="outline-text-3" id="text-orgfbf45d7">
+<h3><a id="configuration-goals" class="anchor" href="#configuration-goals">¶</a>Configuration Goals</h3><div class="outline-text-3" id="text-org35dd0b9">
 <ul class="org-ul">
 <li>Set theme and font</li>
 <li>Add hooks to configure modes</li>
@@ -72,7 +72,7 @@ What else?
 </p>
 </div>
 
-<h3><a id="conclusions" class="anchor" href="#conclusions">¶</a>Conclusions</h3><div class="outline-text-3" id="text-org05422ae">
+<h3><a id="conclusions" class="anchor" href="#conclusions">¶</a>Conclusions</h3><div class="outline-text-3" id="text-orgf0c7ac3">
 <ul class="org-ul">
 <li>Customize system can write out your init.el file to be loaded again on future sessions</li>
 <li>You can add custom elisp inside of the file</li>
@@ -81,7 +81,7 @@ What else?
 </ul>
 </div>
 
-<h2><a id="the-final-configuration" class="anchor" href="#the-final-configuration">¶</a>The final configuration</h2><div class="outline-text-2" id="text-orgad53f90">
+<h2><a id="the-final-configuration" class="anchor" href="#the-final-configuration">¶</a>The final configuration</h2><div class="outline-text-2" id="text-orgc04e489">
 <p>
 <b>init.el:</b>
 </p>
@@ -132,4 +132,4 @@ What else?
  '(tab-bar ((t (<span class="org-builtin">:inherit</span> nil <span class="org-builtin">:background</span> <span class="org-string">"RoyalBlue1"</span>))))
  '(tab-bar-tab ((t (<span class="org-builtin">:inherit</span> bold <span class="org-builtin">:background</span> <span class="org-string">"sky blue"</span> <span class="org-builtin">:box</span> (<span class="org-builtin">:line-width</span> (2 . 2) <span class="org-builtin">:color</span> <span class="org-string">"#0e0e0e"</span>))))))</pre>
 </div>
-</div></div><div class="list-form center"><div class="list-form-title">Subscribe to the System Crafters Newsletter!</div><form method="POST" action="https://www.simplelists.com/subscribe.php"><input type="hidden" name="format" value="text"/><input type="hidden" name="action" value="subscribe"/><input type="hidden" name="list" value="news@lists.systemcrafters.net"/><div class="list-form-message">Stay up to date with the latest System Crafters news and updates!  Read the <a href="/newsletter/">Newsletter</a> page for more information.</div><div class="row"><div class="column"><div class="row center list-form-label">Name (optional)</div><div class="row"><input type="text" name="name"/></div></div><div class="column"><div class="row center list-form-label">Email Address</div><div class="row"><input type="text" name="email"/></div></div></div><div><input type="submit" value="Subscribe!"/></div></form></div></div><footer class="site-footer"><div class="container"><div class="row"><div class="column"><p><a href="https://it-boyer.github.io/systemcrafters/privacy-policy/">Privacy Policy</a> · <a href="https://it-boyer.github.io/systemcrafters/credits/">Credits</a> · <a href="https://it-boyer.github.io/systemcrafters/rss/">RSS Feeds</a> · <a rel="me" href="https://fosstodon.org/@daviwil">Fediverse</a></p><p>© 2021-2023 System Crafters LLC</p></div><div class="column align-right"><p><a href="https://codeberg.org/SystemCrafters/systemcrafters.net"><img src="https://it-boyer.github.io/systemcrafters/img/codeberg.png" style="width: 120px" alt="Contribute on Codeberg"/></a></p></div></div></div></footer></body></html>
+</div></div><div class="list-form center"><div class="list-form-title">订阅系统工匠通讯!</div><form method="POST" action="https://www.simplelists.com/subscribe.php"><input type="hidden" name="format" value="text"/><input type="hidden" name="action" value="subscribe"/><input type="hidden" name="list" value="news@lists.systemcrafters.net"/><div class="list-form-message">与最新的系统工匠新闻和更新保持同步! 阅读 <a href="/newsletter/">Newsletter</a> 浏览更多信息。</div><div class="row"><div class="column"><div class="row center list-form-label">名称 (optional)</div><div class="row"><input type="text" name="name"/></div></div><div class="column"><div class="row center list-form-label">邮箱</div><div class="row"><input type="text" name="email"/></div></div></div><div><input type="submit" value="订阅!"/></div></form></div></div><footer class="site-footer"><div class="container"><div class="row"><div class="column"><p><a href="https://it-boyer.github.io/systemcrafters/privacy-policy/">Privacy Policy</a> · <a href="https://it-boyer.github.io/systemcrafters/credits/">Credits</a> · <a href="https://it-boyer.github.io/systemcrafters/rss/">RSS Feeds</a> · <a rel="me" href="https://fosstodon.org/@daviwil">Fediverse</a></p><p>© 2021-2023 System Crafters LLC</p></div><div class="column align-right"><p><a href="https://codeberg.org/SystemCrafters/systemcrafters.net"><img src="https://it-boyer.github.io/systemcrafters/img/codeberg.png" style="width: 120px" alt="Contribute on Codeberg"/></a></p></div></div></div></footer></body></html>

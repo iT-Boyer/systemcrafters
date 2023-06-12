@@ -1,6 +1,6 @@
-<!-- Generated from c07c182 on 2023-06-12 @ 10:53 with Emacs 27.2 (Org mode 9.4.4) -->
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>Exploring the Metaobject Protocol - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">首页</a> <a class="nav-link" href="/systemcrafters/guides/">指南</a> <a class="nav-link" href="/systemcrafters/news/">动态</a> <a class="nav-link" href="/systemcrafters/community/">社区</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">Store</a> <a class="nav-link" href="/systemcrafters/how-to-help/">帮助</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">Exploring the Metaobject Protocol</h1><p class="site-post-meta">September 23, 2022</p><div class="video">  <iframe src="https://www.youtube.com/embed/ZKsvmkovXH0" allowfullscreen></iframe></div><div id="content">
-<h2><a id="updates" class="anchor" href="#updates">¶</a>Updates</h2><div class="outline-text-2" id="text-org61a85c9">
+<!-- Generated from 4cd4783 on 2023-06-12 @ 11:00 with Emacs 27.2 (Org mode 9.4.4) -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta author="System Crafters - David Wilson"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="icon" type="image/png" href="/img/favicon.png"/><link rel="alternative" type="application/rss+xml" title="System Crafters News" href="https://it-boyer.github.io/systemcrafters/rss/news.xml"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/iosevka-aile/iosevka-aile.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/fonts/jetbrains-mono/jetbrains-mono.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/code.css"/><link rel="stylesheet" href="https://it-boyer.github.io/systemcrafters/css/site.css"/><script defer="defer" data-domain="systemcrafters.net" src="https://plausible.io/js/plausible.js"></script><title>Exploring the Metaobject Protocol - System Crafters</title></head><body><header class="site-header"><div class="container"><div class="site-title"><img class="logo" src="https://it-boyer.github.io/systemcrafters/img/sc_logo.png" alt="System Crafters"/></div></div><div class="site-masthead"><div class="container"><nav class="nav"><a class="nav-link" href="/systemcrafters/">首页</a> <a class="nav-link" href="/systemcrafters/guides/">指南</a> <a class="nav-link" href="/systemcrafters/news/">动态</a> <a class="nav-link" href="/systemcrafters/community/">社区</a> <a class="nav-link" href="https://store.systemcrafters.net?utm_source=sc-site-nav">商店</a> <a class="nav-link" href="/systemcrafters/how-to-help/">帮助</a></nav></div></div></header><div class="container"><div class="site-post"><h1 class="site-post-title">Exploring the Metaobject Protocol</h1><p class="site-post-meta">September 23, 2022</p><div class="video">  <iframe src="https://www.youtube.com/embed/ZKsvmkovXH0" allowfullscreen></iframe></div><div id="content">
+<h2><a id="updates" class="anchor" href="#updates">¶</a>Updates</h2><div class="outline-text-2" id="text-orgca1d586">
 <ul class="org-ul">
 <li><p>
 The Guix Birthday Event was a great success!  Keep an eye out here for talk recordings, coming soon:
@@ -21,7 +21,7 @@ The Guix Birthday Event was a great success!  Keep an eye out here for talk reco
 </ul>
 </div>
 
-<h2><a id="exploring-the-metaobject-protocol" class="anchor" href="#exploring-the-metaobject-protocol">¶</a>Exploring the Metaobject Protocol</h2><div class="outline-text-2" id="text-orgee3875e">
+<h2><a id="exploring-the-metaobject-protocol" class="anchor" href="#exploring-the-metaobject-protocol">¶</a>Exploring the Metaobject Protocol</h2><div class="outline-text-2" id="text-org0f9f7bf">
 <p>
 Today we&rsquo;ll take a look at the concept of a &ldquo;metaobject protocol&rdquo; from a high level and try to understand it by studying the implementation of Tiny CLOS, a minimal implementation of the metaobject protocol for Scheme.
 </p>
@@ -31,7 +31,7 @@ If you are interested to study this idea further, you can&rsquo;t beat the book 
 </p>
 </div>
 
-<h3><a id="what-is-it" class="anchor" href="#what-is-it">¶</a>What is it?</h3><div class="outline-text-3" id="text-orge0f6aa4">
+<h3><a id="what-is-it" class="anchor" href="#what-is-it">¶</a>What is it?</h3><div class="outline-text-3" id="text-org66bef23">
 <p>
 The metaobject &ldquo;protocol&rdquo; is a design pattern that enables a highly flexible object oriented system that goes beyond what you would normally expect from classes and methods in a programming language.
 </p>
@@ -50,7 +50,7 @@ The metaobject &ldquo;protocol&rdquo; is a design pattern that enables a highly 
 </p>
 </div>
 
-<h3><a id="why-should-you-be-interested" class="anchor" href="#why-should-you-be-interested">¶</a>Why should you be interested?</h3><div class="outline-text-3" id="text-orga4ea818">
+<h3><a id="why-should-you-be-interested" class="anchor" href="#why-should-you-be-interested">¶</a>Why should you be interested?</h3><div class="outline-text-3" id="text-orge136569">
 <p>
 Because it&rsquo;s cool!
 </p>
@@ -96,7 +96,7 @@ Interesting aspects:
 </ul>
 </div>
 
-<h3><a id="why-am-i-interested-in-it" class="anchor" href="#why-am-i-interested-in-it">¶</a>Why am I interested in it?</h3><div class="outline-text-3" id="text-org6cff11a">
+<h3><a id="why-am-i-interested-in-it" class="anchor" href="#why-am-i-interested-in-it">¶</a>Why am I interested in it?</h3><div class="outline-text-3" id="text-org21d7d54">
 <p>
 Because I&rsquo;m implementing it for Mesche!
 </p>
@@ -117,7 +117,7 @@ I believe this feature will give Mesche an interesting advantage in hackability:
 </ul>
 </div>
 
-<h3><a id="letrsquos-dive-in" class="anchor" href="#letrsquos-dive-in">¶</a>Let&rsquo;s dive in!</h3><div class="outline-text-3" id="text-org3f7ed10">
+<h3><a id="letrsquos-dive-in" class="anchor" href="#letrsquos-dive-in">¶</a>Let&rsquo;s dive in!</h3><div class="outline-text-3" id="text-org53c1206">
 <p>
 Now we&rsquo;ll take a look at the code for Tiny CLOS and see what we can make of it:
 </p>
@@ -135,7 +135,7 @@ We can also experiment with Guile&rsquo;s GOOPS some more to try out some of the
 </p>
 </div>
 
-<h3><a id="lisps-with-a-meta-object-protocol" class="anchor" href="#lisps-with-a-meta-object-protocol">¶</a>Lisps with a meta-object protocol</h3><div class="outline-text-3" id="text-org04d2c65">
+<h3><a id="lisps-with-a-meta-object-protocol" class="anchor" href="#lisps-with-a-meta-object-protocol">¶</a>Lisps with a meta-object protocol</h3><div class="outline-text-3" id="text-org4e7a304">
 <p>
 If you&rsquo;d like to try out a Lisp with a meta-object protocol, check these out:
 </p>
@@ -147,4 +147,4 @@ If you&rsquo;d like to try out a Lisp with a meta-object protocol, check these o
 <li>&#x2026; and probably many others</li>
 </ul>
 </div>
-</div></div><div class="list-form center"><div class="list-form-title">Subscribe to the System Crafters Newsletter!</div><form method="POST" action="https://www.simplelists.com/subscribe.php"><input type="hidden" name="format" value="text"/><input type="hidden" name="action" value="subscribe"/><input type="hidden" name="list" value="news@lists.systemcrafters.net"/><div class="list-form-message">Stay up to date with the latest System Crafters news and updates!  Read the <a href="/newsletter/">Newsletter</a> page for more information.</div><div class="row"><div class="column"><div class="row center list-form-label">Name (optional)</div><div class="row"><input type="text" name="name"/></div></div><div class="column"><div class="row center list-form-label">Email Address</div><div class="row"><input type="text" name="email"/></div></div></div><div><input type="submit" value="Subscribe!"/></div></form></div></div><footer class="site-footer"><div class="container"><div class="row"><div class="column"><p><a href="https://it-boyer.github.io/systemcrafters/privacy-policy/">Privacy Policy</a> · <a href="https://it-boyer.github.io/systemcrafters/credits/">Credits</a> · <a href="https://it-boyer.github.io/systemcrafters/rss/">RSS Feeds</a> · <a rel="me" href="https://fosstodon.org/@daviwil">Fediverse</a></p><p>© 2021-2023 System Crafters LLC</p></div><div class="column align-right"><p><a href="https://codeberg.org/SystemCrafters/systemcrafters.net"><img src="https://it-boyer.github.io/systemcrafters/img/codeberg.png" style="width: 120px" alt="Contribute on Codeberg"/></a></p></div></div></div></footer></body></html>
+</div></div><div class="list-form center"><div class="list-form-title">订阅系统工匠通讯!</div><form method="POST" action="https://www.simplelists.com/subscribe.php"><input type="hidden" name="format" value="text"/><input type="hidden" name="action" value="subscribe"/><input type="hidden" name="list" value="news@lists.systemcrafters.net"/><div class="list-form-message">与最新的系统工匠新闻和更新保持同步! 阅读 <a href="/newsletter/">Newsletter</a> 浏览更多信息。</div><div class="row"><div class="column"><div class="row center list-form-label">名称 (optional)</div><div class="row"><input type="text" name="name"/></div></div><div class="column"><div class="row center list-form-label">邮箱</div><div class="row"><input type="text" name="email"/></div></div></div><div><input type="submit" value="订阅!"/></div></form></div></div><footer class="site-footer"><div class="container"><div class="row"><div class="column"><p><a href="https://it-boyer.github.io/systemcrafters/privacy-policy/">Privacy Policy</a> · <a href="https://it-boyer.github.io/systemcrafters/credits/">Credits</a> · <a href="https://it-boyer.github.io/systemcrafters/rss/">RSS Feeds</a> · <a rel="me" href="https://fosstodon.org/@daviwil">Fediverse</a></p><p>© 2021-2023 System Crafters LLC</p></div><div class="column align-right"><p><a href="https://codeberg.org/SystemCrafters/systemcrafters.net"><img src="https://it-boyer.github.io/systemcrafters/img/codeberg.png" style="width: 120px" alt="Contribute on Codeberg"/></a></p></div></div></div></footer></body></html>

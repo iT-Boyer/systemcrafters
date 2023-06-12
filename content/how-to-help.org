@@ -1,63 +1,62 @@
-#+title: How to Help
+#+title: 帮助
 
-The System Crafters website, YouTube channel, and community would not exist without your participation and support!
+System Crafters 网站、YouTube 频道和社区的存在都离不开您的参与和支持!
 
-If have found value from my content, please consider contributing in one of the following ways:
+如果您从我的内容中获得价值,请考虑通过以下方式做出贡献:
 
-* Spread the Word!
+* 传播信息!
 
-If there is a particular video, guide, or series that has been especially helpful to you, please share it on your favorite website and social platforms!  Many people have recommended my videos on Reddit and other websites and it has helped many new people find the community.
+如果某个视频、指南或系列对您特别有帮助,请在您喜欢的网站和社交平台上分享它!许多人在 Reddit 和其他网站上推荐我的视频,这帮助许多新人找到这个社区。
 
-If you're on the [[https://en.wikipedia.org/wiki/Fediverse][Fediverse]] ([[https://joinmastodon.org][Mastodon]], etc), feel free to mention me in posts about the configurations you make after following my guides and I will boost you!
+如果您在 [[https://en.wikipedia.org/wiki/Fediverse][Fediverse]]( [[https://joinmastodon.org][Mastodon]] 等)上,请随意在遵循我的指南后构建的配置帖子中提到我,我会推动您!
 
-David on the Fediverse: [[https://fosstodon.org/@daviwil][@daviwil@fosstodon.org]].
+David 在 Fediverse: [[https://fosstodon.org/@daviwil][@daviwil@fosstodon.org]]。
 
-* Join the Community
+* 加入社区
 
-You can also contribute to the System Crafters community in a number of ways:
+您也可以通过许多方式为 System Crafters 社区做出贡献:
 
-- Participate in [[/community/#chat-with-us][community chatrooms]]
-- Contribute to [[/community/#community-projects][community projects]] like [[/community/#crafted-emacs][Crafted Emacs]]
-- Make suggestions and report issues in System Crafters content (e-mail =david= at =systemcrafters.net=)
+- 参与 [[/community/#chat-with-us][社区聊天室]]
+- 向如 [[/community/#crafted-emacs][Crafted Emacs]] 等[[/community/#community-projects][社区项目]]做出贡献
+- 对 System Crafters 内容提出建议和报告问题(电邮 =david= at =systemcrafters.net=)
 
-Read the [[/community][Community page]] for more information!
+请查看[[/community][社区页面]]了解更多信息!
 
-* Support My Work
+* 支持我的工作
 
-Please consider supporting my work financially as well!
+请考虑在经济上支持我的工作!
 
-My ultimate goal is to work on System Crafters *full time* so that I have the freedom to go really deep into the tools we discuss on the channel and then teach you everything that I've learned.  The more financial support I get, the closer I get to that goal!
+我的最终目标是全职工作于 System Crafters,这样我就有自由深入研究我们在频道中讨论的工具,然后教给您我学到的所有知识。我得到的经济支持越多,我实现这个目标越近!
 
-** Monthly Sponsorships
+** 每月赞助
 
-Monthly support is the best way to help me achieve my goal of going full-time with System Crafters!  There are different sponsorship tiers to choose from, each with their own perks.
+每月支持是帮助我实现全职从事 System Crafters 目标的最佳方式!有不同的赞助级别可供选择,每个级别都有自己的特权。
 
-$5 and above sponsors will get access to private discussion lists where you can ask questions to a small group of fellow Crafters.  I will prioritize responding to questions on these lists!
+5 美元及以上赞助者将获得专门的讨论列表,您可以在那里向一小群其他 Crafters 提问。我将优先回答这些列表上的问题!
 
-Monthly support options:
+每月支持选择:
 
-- [[https://github.com/sponsors/daviwil][GitHub Sponsors]]
+- [[https://github.com/sponsors/daviwil][GitHub 赞助者]]
 - [[https://patreon.com/SystemCrafters][Patreon]]
 - [[https://liberapay.com/SystemCrafters/][Liberapay]]
 
-** One-Time Tips
+** 一次性小费
 
-You can also send a one-time tip via [[https://ko-fi.com/SystemCrafters][Ko-Fi]], [[https://github.com/sponsors/daviwil][GitHub Sponsors]] or [[https://paypal.me/SystemCrafters][PayPal]]!  I really appreciate all support, no matter the amount.
+您也可以通过 [[https://ko-fi.com/SystemCrafters][Ko-Fi]]、[[https://github.com/sponsors/daviwil][GitHub 赞助者]] 或 [[https://paypal.me/SystemCrafters][PayPal]] 发送一次性小费!无论金额,我都非常感激所有的支持。
 
-** Custom Crafting Support
+** 定制化支持
+如果您有一个配置或工具要构建,并需要一点帮助,请通过电子邮件(=david= at =systemcrafters.net=)与我联系以讨论咨询费率。从小提高到完整的 Emacs 和 Guix 配置,我很乐意帮助您!
 
-If you have a configuration or tool you want to build and you need a little help with it, contact me by e-mail (=david= at =systemcrafters.net=) to discuss consulting rates.  From small enhancements to complete Emacs and Guix configurations, I will be happy to help you!
+* 购买 System Crafters 商品
 
-* Buy System Crafters Merchandise
+[[https://store.systemcrafters.net?utm_source=support-the-channel][System Crafters 商店]] 是您可以找到印有我们徽标的T恤、衣服、咖啡杯、帽子、贴纸等的地方!通过购买我们的商品支持这个频道。
 
-The [[https://store.systemcrafters.net?utm_source=support-the-channel][System Crafters Store]] is a place where you can find t-shirts, hoodies, coffee cups, hats, stickers, and more!  Support the channel by purchasing something with our logo on it.
+如果您对其他酷东西加入商店有想法,请给我发邮件: =david= at =systemcrafters.net=!
 
-If you have ideas for other cool things to add to the store, send me an e-mail: =david= at =systemcrafters.net=!
+* 购买《精通Emacs》
 
-* Buy Mastering Emacs
-
-Mastering Emacs is an excellent resource to deepen your knowledge about Emacs!  If you use the following affiliate link, a portion of your purchase will go to supporting System Crafters.
+《精通Emacs》是深入了解 Emacs 的优秀资源!如果使用以下联盟链接,您购买的一部分将用于支持 System Crafters。
 
 https://www.masteringemacs.org/r/systemcrafters
 
-The Mastering Emacs website is also a really good source of tips and tricks for Emacs, so check it out before you buy the book to get a good idea of the quality of Mickey's content!
+《精通Emacs》网站也是一个关于 Emacs 提示和技巧的很好来源,所以在购买书籍之前检查它以对米奇的内容质量有一个很好的了解!

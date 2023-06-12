@@ -98,8 +98,7 @@ nil     ; 假值(布尔值)
 
 总之,理解 Emacs Lisp 中的类型和值是掌握语言的重要一步。我希望这个概述能给您一个很好的起点。请随时提出任何问题!
 
-https://www.gnu.org/software/emacs/manual/html_node/elisp/Programming-Types.html#Programming-Types
-
+见：[[https://www.gnu.org/software/emacs/manual/html_node/elisp/Programming-Types.html#Programming-Types][Programming-Types]]
 ** Emacs Types
 
 Emacs Lisp 还有许多专用于 Emacs 的类型,其中大多数类型没有代码表达式:
@@ -123,7 +122,8 @@ Emacs Lisp 还有许多专用于 Emacs 的类型,其中大多数类型没有代�
 
 #+end_src
 
-https://www.gnu.org/software/emacs/manual/html_node/elisp/Editing-Types.html#Editing-Types
+见：[[https://www.gnu.org/software/emacs/manual/html_node/elisp/Editing-Types.html#Editing-Types][Editing-Types]]
+
 例如:
 
 - 我们可以创建、删除、重命名和修改缓冲区来打开/关闭文件并编辑文本。
